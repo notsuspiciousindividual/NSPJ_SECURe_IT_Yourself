@@ -8,7 +8,7 @@
         Title="SECURe-It-Yourself" Height="600" Width="900" Background="White">
     <Grid Background="#25315D">
         <StackPanel Width="120" HorizontalAlignment="Left">
-            <Button Width="120" Height="30" Background="#25315D" Foreground="White" BorderBrush="#25315D">
+            <Button Width="120" Height="30" Background="#25315D" Foreground="White" BorderBrush="#25315D" Click="Button_Click">
                 <Image> 
                 </Image>
             </Button>
