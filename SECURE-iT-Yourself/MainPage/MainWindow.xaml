@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SECURe-It-Yourself" Height="450" Width="800" Background="White">
-    <Grid Margin="0,0,-0.4,0">
-
+        Title="SECURe-It-Yourself" Height="600" Width="900" Background="White">
+    <Grid Background="#25315D">
+        <StackPanel Width="120" HorizontalAlignment="Left">
+            <Button Width="120" Height="30" Background="#25315D" Foreground="White" BorderBrush="#25315D">
+                <Image> 
+                </Image>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
