@@ -13,5 +13,13 @@ namespace MainPage
     /// </summary>
     public partial class App : Application
     {
+        private void Application_StartUp(object sender, StartupEventArgs e) {
+            // Create the startup window
+            MainWindow wnd = new MainWindow();
+            // Do stuff here, e.g. to the window
+            wnd.Title = "Something else";
+            // Show the window
+            wnd.Show();
+        }
     }
 }
