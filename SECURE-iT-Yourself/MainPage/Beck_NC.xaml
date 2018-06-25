@@ -6,8 +6,18 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="SECURe_IT_Yourself" Height="450" Width="800">
-    <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
+    <Grid Background="#39424D">
+        <Grid Margin="10,155,193.333,26.667">
+            <DataGrid HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="590" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
+        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="501,195,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="501,245,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
