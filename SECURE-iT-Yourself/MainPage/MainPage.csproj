@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="SY_NetworkStart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,8 +69,8 @@
     <Compile Include="Beck_NC.xaml.cs">
       <DependentUpon>Beck_NC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="SY_NetworkStart.xaml.cs">
+      <DependentUpon>SY_NetworkStart.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
