@@ -21,6 +21,7 @@
         </StackPanel>
         <Canvas Grid.Column="1">
             <Label FontSize="30" Foreground="White" Canvas.Top="45" Canvas.Right="340">Network Forensic</Label>
+            
         </Canvas>
     </Grid>
 </Window>
