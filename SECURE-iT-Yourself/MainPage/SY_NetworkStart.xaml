@@ -8,22 +8,28 @@
         Title="SECURe-It-Yourself" Height="600" Width="900" Background="{x:Null}">
     <Grid Background="#404A56">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Width="120" HorizontalAlignment="Left">
             <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Image Width="30" Height="30"  Source="Resources/img/black_arrow.png"/>
-                    <Label FontSize="15" Foreground="White">Back</Label>
+                    <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
+                    <Label FontSize="20" Foreground="White">Back</Label>
                 </StackPanel>
             </Button>
         </StackPanel>
         <Canvas Grid.Column="1">
-            <Label FontSize="30" Foreground="White" Canvas.Top="45" Canvas.Right="340">Network Forensic</Label>
-            <Button>
-                
+            <Label FontSize="50" Foreground="White" Canvas.Top="43" Canvas.Left="130">Network Forensic</Label>
+            <Button Canvas.Right="570" Canvas.Top="150" Cursor="Hand" Background="Transparent" BorderBrush="Transparent">
+                <Image Height="230" Width="230" Source="pack://application:,,,/Resources/img/new_icon.png" >
+                </Image>
             </Button>
+            <Label FontSize="40" Canvas.Bottom="120" Canvas.Left="-70" Foreground="White">Create New Case</Label>
+            <Button BorderBrush="Transparent" Cursor="Hand" Canvas.Left="450" Canvas.Top="150" Background="Transparent" Foreground="Transparent">
+                <Image Height="230" Width="230" Source="pack://application:,,,/Resources/img/research_icon.png"></Image>
+            </Button>
+            <Label FontSize="40" Canvas.Bottom="120" Canvas.Right="50" Foreground="White" >Continue Existing</Label>
         </Canvas>
     </Grid>
 </Window>

@@ -100,8 +100,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\img\" />
+    <Resource Include="Resources\img\BackButton.png" />
+    <Resource Include="Resources\img\black_arrow.png" />
+    <Resource Include="Resources\img\new_icon.png" />
+    <Resource Include="Resources\img\research_icon.png" />
+    <Resource Include="Resources\img\white_arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
