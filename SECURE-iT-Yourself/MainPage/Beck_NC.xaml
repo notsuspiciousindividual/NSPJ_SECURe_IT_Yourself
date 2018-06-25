@@ -1,0 +1,13 @@
+﻿<Window x:Class="MainPage.Beck_NC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainPage"
+        mc:Ignorable="d"
+        Title="SECURe_IT_Yourself" Height="450" Width="800">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
+
+    </Grid>
+</Window>
