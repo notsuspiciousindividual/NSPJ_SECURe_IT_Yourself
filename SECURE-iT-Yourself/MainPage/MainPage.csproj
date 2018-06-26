@@ -100,7 +100,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\img\background_forensic.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img\BackButton.png" />
     <Resource Include="Resources\img\black_arrow.png" />

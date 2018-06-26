@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="SECURe-It-Yourself" Height="600" Width="900" Background="{x:Null}">
-    <Grid Background="#404A56">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Opacity="0.4" ImageSource="pack://application:,,,/Resources/img/background_forensic.jpg" Stretch="UniformToFill" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*" />
