@@ -5,19 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SECURe_IT_Yourself" Height="900" Width="600">
-    <Grid Background="#39424D" Width="600" Margin="0,138,-6.667,-29.333">
-        <Grid Margin="10,155,193.333,26.667">
-            <DataGrid Background="black" Opacity="0.5" HorizontalAlignment="Left" Height="692" VerticalAlignment="Top" Width="423" SelectionChanged="DataGrid_SelectionChanged" Margin="10,-122,-36.333,0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn/>
-                    <DataGridTextColumn/>
-                    <DataGridTextColumn/>
-                </DataGrid.Columns>
-            </DataGrid>
+        Title="SECURe_IT_Yourself" Height="600" Width="900">
+    <Grid x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="93*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="128" Stroke="Black" VerticalAlignment="Top" Width="903" Margin="-2,-5,-1,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.122"/>
+                    <RotateTransform Angle="-0.278"/>
+                    <TranslateTransform X="0.005" Y="0.952"/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold" Grid.ColumnSpan="3"/>
+        <Grid Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,19" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Configuration Check" />
+            <Label Grid.Column="1" Content="Description" />
+            <Label Grid.Column="2" Content="How well is it configured?" />
         </Grid>
-        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="593" Margin="0,-139,0,0"/>
-        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="97,-109,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
-
     </Grid>
 </Window>
