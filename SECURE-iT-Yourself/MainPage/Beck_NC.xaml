@@ -1,21 +1,23 @@
-﻿<Window x:Class="MainPage.Beck_NC"
+﻿<Window x:Name="Background" x:Class="MainPage.Beck_NC"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SECURe_IT_Yourself" Height="450" Width="800">
-    <Grid Background="#39424D">
+        Title="SECURe_IT_Yourself" Height="900" Width="600">
+    <Grid Background="#39424D" Width="600" Margin="0,138,-6.667,-29.333">
         <Grid Margin="10,155,193.333,26.667">
-            <DataGrid Opacity="0.5" HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="590" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid Background="black" Opacity="0.5" HorizontalAlignment="Left" Height="692" VerticalAlignment="Top" Width="423" SelectionChanged="DataGrid_SelectionChanged" Margin="10,-122,-36.333,0">
                 <DataGrid.Columns>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn/>
                     <DataGridTextColumn/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
-        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="593" Margin="0,-139,0,0"/>
+        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="97,-109,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
 
     </Grid>
 </Window>
