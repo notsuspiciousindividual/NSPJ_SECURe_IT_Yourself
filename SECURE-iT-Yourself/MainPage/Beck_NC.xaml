@@ -7,34 +7,41 @@
         mc:Ignorable="d"
         Title="SECURe_IT_Yourself" Height="600" Width="900">
     <Grid x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="93*"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="128" Stroke="Black" VerticalAlignment="Top" Width="903" Margin="-2,-5,-1,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.122"/>
-                    <RotateTransform Angle="-0.278"/>
-                    <TranslateTransform X="0.005" Y="0.952"/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <Grid Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,19" Grid.ColumnSpan="3">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="TopContainer" Margin="0,0,0,9.111">
+            <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="128" Stroke="Black" VerticalAlignment="Top" Width="900" Margin="-1,4,0,0" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.122"/>
+                        <RotateTransform Angle="-0.278"/>
+                        <TranslateTransform X="0.005" Y="0.952"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
+
+        <Grid Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Configuration Check" />
-            <Label Grid.Column="1" Content="Description" />
-            <Label Grid.Column="2" Content="How well is it configured?" />
+            <Label Grid.Column="0" Name="lblConfig" Content="Configuration Check" Grid.ColumnSpan="2" Margin="0,0,232.333,388" FontSize="16"/>
+            <Label Grid.Column="1" Name="lblDesc" Content="Description" Margin="0.333,0,0.333,388" />
+            <Label Grid.Column="1" Name="lblStat" Content="Configuration Status" Grid.ColumnSpan="2" Margin="232.333,0,0.333,380" />
+            <DockPanel Grid.RowSpan="2">
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="582" Margin="0,0,0,-168" VerticalAlignment="Top" Width="233"/>
+            </DockPanel>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="0,0,0,380" Width="697" Grid.ColumnSpan="3"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="232.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="0.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.Column="1"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="390" Margin="6,191,0,0" VerticalAlignment="Top" Width="217"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="390" Margin="223,191,0,0" VerticalAlignment="Top" Width="249" Grid.ColumnSpan="2"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="390" Margin="172,191,0,0" VerticalAlignment="Top" Width="231" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
+
+
 </Window>
