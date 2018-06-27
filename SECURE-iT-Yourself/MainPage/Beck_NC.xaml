@@ -41,7 +41,7 @@
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="232.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.ColumnSpan="2" Grid.Column="1"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="0.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.Column="1"/>
         </Grid>
-        <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="29,77,230,132" Grid.Row="1">
+        <FlowDocumentReader Foreground="White" UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="45,23,214,186" Grid.Row="1">
             <FlowDocumentReader.Resources>
                 <Style TargetType="TableCell">
                     <Setter Property="TextAlignment" Value="Center"/>
@@ -58,44 +58,35 @@
                     <TableRowGroup>
                         <TableRow>
                             <TableCell BorderBrush="Black" BorderThickness="1">
-                                <Paragraph FontWeight="Bold">Category</Paragraph>
+                                <Paragraph FontWeight="Bold">Configuration Check</Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                <Paragraph FontWeight="Bold">A</Paragraph>
+                                <Paragraph FontWeight="Bold">Description</Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                <Paragraph FontWeight="Bold">B</Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                <Paragraph FontWeight="Bold">C</Paragraph>
+                                <Paragraph FontWeight="Bold">Configuration Status</Paragraph>
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
-                                <Paragraph FontWeight="Bold">Subscription</Paragraph>
+                                <Paragraph FontWeight="Bold"></Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>Monthly</Paragraph>
+                                <Paragraph></Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>Yearly</Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>Monthly</Paragraph>
+                                <Paragraph></Paragraph>
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
-                                <Paragraph FontWeight="Bold">Price</Paragraph>
+                                <Paragraph FontWeight="Bold"></Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>$120.00</Paragraph>
+                                <Paragraph></Paragraph>
                             </TableCell>
                             <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>$1000.00</Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph>$130.00</Paragraph>
+                                <Paragraph></Paragraph>
                             </TableCell>
                         </TableRow>
                     </TableRowGroup>
