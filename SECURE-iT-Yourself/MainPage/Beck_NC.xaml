@@ -25,7 +25,7 @@
             <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
         </Grid>
 
-        <Grid Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
+        <Grid Visibility="Hidden" Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -41,6 +41,58 @@
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="232.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.ColumnSpan="2" Grid.Column="1"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="0.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.Column="1"/>
         </Grid>
+        <FlowDocumentReader Foreground="White" UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="45,23,214,186" Grid.Row="1">
+            <FlowDocumentReader.Resources>
+                <Style TargetType="TableCell">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>
+            </FlowDocumentReader.Resources>
+            <FlowDocument>
+                <Table CellSpacing="0">
+                    <Table.Columns>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1">
+                                <Paragraph FontWeight="Bold">Configuration Check</Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                <Paragraph FontWeight="Bold">Description</Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                <Paragraph FontWeight="Bold">Configuration Status</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
+                                <Paragraph FontWeight="Bold"></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
+                                <Paragraph FontWeight="Bold"></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+            </FlowDocument>
+        </FlowDocumentReader>
     </Grid>
 
 
