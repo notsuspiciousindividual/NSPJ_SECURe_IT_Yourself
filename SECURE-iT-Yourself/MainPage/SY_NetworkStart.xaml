@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SECURe-It-Yourself" Height="600" Width="900" Background="{x:Null}">
+        Title="SECURe-It-Yourself" Height="600" Width="900" Background="{x:Null}" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush Opacity="0.4" ImageSource="pack://application:,,,/Resources/img/background_forensic.jpg" Stretch="UniformToFill" />
