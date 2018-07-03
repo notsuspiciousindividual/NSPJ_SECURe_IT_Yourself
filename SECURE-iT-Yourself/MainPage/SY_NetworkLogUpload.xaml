@@ -7,6 +7,33 @@
         mc:Ignorable="d"
         Title="SY_NetworkLogUpload" Height="450" Width="800">
     <Grid Background="#404A56">
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
+                        <Label FontSize="20" Foreground="White">Back</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Grid Margin="15" Grid.Column="1" Background="#9CCAE0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Canvas Grid.Row="1">
+                    <Rectangle Width="320" Height="50" Fill="#25315D" ></Rectangle>
+                    <Label Canvas.Left="125" FontSize="30" Foreground="White">Network Logs</Label>
+                </Canvas>
+                
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
