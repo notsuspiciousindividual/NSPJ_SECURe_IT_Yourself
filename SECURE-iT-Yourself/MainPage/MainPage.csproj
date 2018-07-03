@@ -54,19 +54,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
+    <Compile Include="SY_CreatedSuccessCase.xaml.cs">
+      <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_NetworkLogUpload.xaml.cs">
+      <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_NewCase.xaml.cs">
+      <DependentUpon>SY_NewCase.xaml</DependentUpon>
+    </Compile>
     <Page Include="Beck_NC.xaml">
-<<<<<<< HEAD
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-=======
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
->>>>>>> 416566b8639ce129e019a456bb959370a4000359
     </Page>
-=======
->>>>>>> parent of 21fcb0f... Just Update alittle
-    <Page Include="MainWindow.xaml">
+    <Page Include="SY_CreatedSuccessCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NetworkLogUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NetworkStart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,10 +83,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="SY_NetworkStart.xaml.cs">
+      <DependentUpon>SY_NetworkStart.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SY_NewCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -106,7 +119,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\img\" />
+    <Resource Include="Resources\img\background_forensic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img\BackButton.png" />
+    <Resource Include="Resources\img\black_arrow.png" />
+    <Resource Include="Resources\img\new_icon.png" />
+    <Resource Include="Resources\img\research_icon.png" />
+    <Resource Include="Resources\img\white_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img\success.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

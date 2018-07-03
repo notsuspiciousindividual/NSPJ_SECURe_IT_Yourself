@@ -1,13 +1,105 @@
-﻿<Window x:Class="MainPage.Beck_NC"
+﻿<Window x:Name="Background" x:Class="MainPage.Beck_NC"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="SECURe_IT_Yourself" Height="450" Width="800">
     <Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
+=======
+        Title="SECURe_IT_Yourself" Height="600" Width="900">
+    <Grid x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="TopContainer" Margin="0,0,0,9.111">
+            <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="128" Stroke="Black" VerticalAlignment="Top" Width="900" Margin="-1,4,0,0" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.122"/>
+                        <RotateTransform Angle="-0.278"/>
+                        <TranslateTransform X="0.005" Y="0.952"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
+>>>>>>> master
 
+        <Grid Visibility="Hidden" Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Name="lblConfig" Content="Configuration Check" Grid.ColumnSpan="2" Margin="0,0,232.333,388" FontSize="16"/>
+            <Label Grid.Column="1" Name="lblDesc" Content="Description" Margin="0.333,0,0.333,388" />
+            <Label Grid.Column="1" Name="lblStat" Content="Configuration Status" Grid.ColumnSpan="2" Margin="232.333,0,0.333,380" />
+            <DockPanel Grid.RowSpan="2">
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="582" Margin="0,0,0,-168" VerticalAlignment="Top" Width="233"/>
+            </DockPanel>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="0,0,0,380" Width="697" Grid.ColumnSpan="3"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="232.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="0.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.Column="1"/>
+        </Grid>
+        <FlowDocumentReader Foreground="White" UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="45,23,214,186" Grid.Row="1">
+            <FlowDocumentReader.Resources>
+                <Style TargetType="TableCell">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>
+            </FlowDocumentReader.Resources>
+            <FlowDocument>
+                <Table CellSpacing="0">
+                    <Table.Columns>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1">
+                                <Paragraph FontWeight="Bold">Configuration Check</Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                <Paragraph FontWeight="Bold">Description</Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                <Paragraph FontWeight="Bold">Configuration Status</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
+                                <Paragraph FontWeight="Bold"></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
+                                <Paragraph FontWeight="Bold"></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                <Paragraph></Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+            </FlowDocument>
+        </FlowDocumentReader>
     </Grid>
+
+
 </Window>
