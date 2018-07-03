@@ -5,101 +5,97 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-<<<<<<< HEAD
-        Title="SECURe_IT_Yourself" Height="450" Width="800">
-    <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
-=======
         Title="SECURe_IT_Yourself" Height="600" Width="900">
-    <Grid x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-        <Grid Name="TopContainer" Margin="0,0,0,9.111">
-            <Rectangle Fill="#A9D0E5" HorizontalAlignment="Left" Height="128" Stroke="Black" VerticalAlignment="Top" Width="900" Margin="-1,4,0,0" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0.122"/>
-                        <RotateTransform Angle="-0.278"/>
-                        <TranslateTransform X="0.005" Y="0.952"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
-        </Grid>
->>>>>>> master
 
-        <Grid Visibility="Hidden" Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Name="lblConfig" Content="Configuration Check" Grid.ColumnSpan="2" Margin="0,0,232.333,388" FontSize="16"/>
-            <Label Grid.Column="1" Name="lblDesc" Content="Description" Margin="0.333,0,0.333,388" />
-            <Label Grid.Column="1" Name="lblStat" Content="Configuration Status" Grid.ColumnSpan="2" Margin="232.333,0,0.333,380" />
-            <DockPanel Grid.RowSpan="2">
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="582" Margin="0,0,0,-168" VerticalAlignment="Top" Width="233"/>
-            </DockPanel>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="0,0,0,380" Width="697" Grid.ColumnSpan="3"/>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="232.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.ColumnSpan="2" Grid.Column="1"/>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="0.333,0,0,-4" VerticalAlignment="Top" Width="232" Grid.Column="1"/>
-        </Grid>
-        <FlowDocumentReader Foreground="White" UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="45,23,214,186" Grid.Row="1">
-            <FlowDocumentReader.Resources>
-                <Style TargetType="TableCell">
-                    <Setter Property="TextAlignment" Value="Center"/>
-                </Style>
-            </FlowDocumentReader.Resources>
-            <FlowDocument>
-                <Table CellSpacing="0">
-                    <Table.Columns>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                    </Table.Columns>
-                    <TableRowGroup>
-                        <TableRow>
-                            <TableCell BorderBrush="Black" BorderThickness="1">
-                                <Paragraph FontWeight="Bold">Configuration Check</Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                <Paragraph FontWeight="Bold">Description</Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                <Paragraph FontWeight="Bold">Configuration Status</Paragraph>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
-                                <Paragraph FontWeight="Bold"></Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph></Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph></Paragraph>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
-                                <Paragraph FontWeight="Bold"></Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph></Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                <Paragraph></Paragraph>
-                            </TableCell>
-                        </TableRow>
-                    </TableRowGroup>
-                </Table>
-            </FlowDocument>
-        </FlowDocumentReader>
-    </Grid>
+    <!--Top Blue area-->
+    <StackPanel x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
+        <StackPanel Name="TopContainer" Background="#A9D0E5" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="900" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,20">
+            <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="255,35,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+        </StackPanel>
+        <DockPanel x:Name="dockLowerInterface">
+            <!--Main table looking interface-->
+            <StackPanel Name="TableOfConfig" Background="White" HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="708" Margin="37,10,0,0" Grid.RowSpan="2">
+                <!--Title-->
+                <DockPanel Name="Titles"  Opacity="1" Height="60"  Margin="0,0,0.333,0">
+                    <TextBlock Name="TitleConfig" TextDecorations="Baseline" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,10" Text="Configuration" Width="223" FontWeight="Bold" FontStyle="Italic"/>
+                    <TextBlock Name="TitleDesc" TextDecorations="Baseline" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,10" Text="Description" Width="243" FontWeight="Bold" FontStyle="Italic"/>
+                    <TextBlock Name="TitleStats" TextDecorations="Baseline" Background="#B7B1B0" TextAlignment="Center" Margin="0,10,20,10" Text="Status" Width="158" FontWeight="Bold" FontStyle="Italic" />
+                </DockPanel>
+                <!--Rest of the table-->
+                <DockPanel>
+                    <ScrollViewer HorizontalAlignment="Right" Height="352" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
+                        <StackPanel>
+                            <DockPanel Name="Row1" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow1" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,0" Text="Open Unused Ports" Width="223" />
+                                <TextBlock Name="DescRow1" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,0" Text="Description of Unused ports" Width="243"/>
+                                <Button Name="StatsRow1" Background="#B7B1B0" Margin="0,10,0,0" Content="Good" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row2" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow2" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Proxy Server on/off" Width="223" />
+                                <TextBlock x:Name="DescRow2" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Width="243" ><Run Text="Description of proxy server"/><LineBreak/><Run/></TextBlock>
+                                <Button Name="StatsRow2" Background="#B7B1B0" Margin="0,0,0,0" Content="Average" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row3" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Firewall on/off" Width="223" />
+                                <TextBlock Name="DescRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Width="243" />
+                                <Button Name="StatsRow3" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row4" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP echo on/off" Width="223" />
+                                <TextBlock Name="DescRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow4" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row5" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP echo reply on/off" Width="223" />
+                                <TextBlock Name="DescRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow5" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row6" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow6" Background="#B7B1B0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row7" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow7" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row8" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow8" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow8" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow8" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row9" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow9" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow9" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow9" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row10" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow10" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow10" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow10" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row11" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow11" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow11" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button Name="StatsRow11" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                            <DockPanel Name="Row12" Height="60" Margin="0,0,0.333,0">
+                                <TextBlock Name="ConfigRow12" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
+                                <TextBlock Name="DescRow12" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <Button x:Name="StatsRow12" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" />
+                            </DockPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+            </StackPanel>
+            <StackPanel x:Name="DisplayCurrentStat" Width="135">
+                <Label Foreground="white" Content="How well configured&#xD;&#xA; is your device?" Height="78" Margin="0,0,9.667,0" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center"/>
+                <Image Height="55" Margin="40,0,39.667,0"/>
+                <ProgressBar Height="7" Margin="10,0,9.667,0"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
 
 
 </Window>
