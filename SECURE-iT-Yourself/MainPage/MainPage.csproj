@@ -57,6 +57,9 @@
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SY_NetworkLogUpload.xaml.cs">
+      <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_NewCase.xaml.cs">
       <DependentUpon>SY_NewCase.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SY_CreatedSuccessCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NetworkLogUpload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
