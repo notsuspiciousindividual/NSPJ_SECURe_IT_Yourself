@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Page Include="Beck_NC.xaml">
 <<<<<<< HEAD
       <SubType>Designer</SubType>
@@ -63,6 +64,8 @@
       <SubType>Designer</SubType>
 >>>>>>> 416566b8639ce129e019a456bb959370a4000359
     </Page>
+=======
+>>>>>>> parent of 21fcb0f... Just Update alittle
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,9 +73,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Beck_NC.xaml.cs">
-      <DependentUpon>Beck_NC.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
