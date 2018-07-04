@@ -1,4 +1,4 @@
-﻿<Window x:Name="Background" x:Class="MainPage.Beck_NC"
+﻿<Window x:Class="MainPage.Beck_NC"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
         Title="SECURe_IT_Yourself" Height="600" Width="900">
 
     <!--Top Blue area-->
-    <StackPanel x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
+    <StackPanel x:Name="HomeContainer" Background="white" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
         <StackPanel Name="TopContainer" Background="#A9D0E5" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="900" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,20">
             <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="255,35,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
         </StackPanel>
