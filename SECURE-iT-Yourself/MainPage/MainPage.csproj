@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Beck_Option.xaml.cs">
+      <DependentUpon>Beck_Option.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,10 @@
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Beck_Option.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SY_CreatedSuccessCase.xaml">
       <SubType>Designer</SubType>

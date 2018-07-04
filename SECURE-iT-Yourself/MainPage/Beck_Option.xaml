@@ -1,0 +1,33 @@
+﻿<Window x:Class="Beck_NC.Beck_Option"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Beck_NC"
+        mc:Ignorable="d"
+        Title="Beck_Option1" Height="600" Width="900">
+    <StackPanel Background="#39424D">
+        <Border BorderBrush="Black" BorderThickness="1" Height="142">
+            <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
+                <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" />
+                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" Width="335" FontSize="30" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="48"/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+            </DockPanel>
+        </Border>
+        <StackPanel Height="393" Background="white" Margin="119,20,119.333,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
+            <Grid Height="143" Margin="0,0,0.333,0">
+                <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" Width="70"/>
+                <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="306,10,0,0"/>
+            </Grid>
+        </StackPanel>
+
+    </StackPanel>
+</Window>
