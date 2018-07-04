@@ -37,7 +37,7 @@
 
                     <Canvas>
                         <Rectangle  Height="45" Width="300" Fill="#25315D" Panel.ZIndex="0" ></Rectangle>
-                        <Label Canvas.Left="80" Canvas.Top="5" Foreground="White" FontSize="20">Network Description</Label>
+                        <Label Canvas.Left="80" Canvas.Top="5" Foreground="White" FontSize="20">Case Name</Label>
                     </Canvas>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
@@ -61,8 +61,8 @@
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Case Name" />
-                            <DataGridTextColumn  Header="Case Description" />
+                            <DataGridTextColumn Header="Log Name" />
+                            <DataGridTextColumn  Header="Log Description" />
                             <DataGridTextColumn  Header="View" />
                             <DataGridTextColumn  Header="Options" />
                         </DataGrid.Columns>
