@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
+
 
 namespace MainPage
 {
@@ -22,6 +24,12 @@ namespace MainPage
         public Beck_NC()
         {
             InitializeComponent();
+        
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

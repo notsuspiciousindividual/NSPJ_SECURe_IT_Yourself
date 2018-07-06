@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Beck_NC.xaml.cs">
+      <DependentUpon>Beck_NC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Beck_Option.xaml.cs">
       <DependentUpon>Beck_Option.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img\success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Beck_Images\Background.jpg" />
+    <Resource Include="Resources\Beck_Images\Switch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
