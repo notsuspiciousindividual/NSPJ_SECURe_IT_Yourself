@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SY_ViewSpecificCase" Height="450" Width="800">
+        Title="SY_ViewSpecificCase" Height="600" Width="800">
     <Grid Background="#39424D">
         <Grid>
             <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="90"/>
                 </Grid.RowDefinitions>
 
                 <Grid>
@@ -33,6 +33,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="110" />
                         <ColumnDefinition Width="*" />
+                        
                     </Grid.ColumnDefinitions>
 
                     <Canvas>
@@ -57,7 +58,7 @@
                             <Setter Property="Margin" Value="0" />
                             <Setter Property="FontSize" Value="50"/>
                         </Style>
-
+                
 
                         <DataGrid.Columns>
 
@@ -68,6 +69,22 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" FontSize="25" Background="DarkSeaGreen" >Create Report</Button>
+                    
+                    
+                </Grid>
+                
             </Grid>
 
         </Grid>
