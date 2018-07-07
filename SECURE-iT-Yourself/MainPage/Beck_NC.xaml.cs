@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-
+using System.Net;
+using System.Runtime.InteropServices;
 
 namespace MainPage
 {
@@ -25,12 +26,13 @@ namespace MainPage
         {
 
             InitializeComponent();
-        
+
         }
         //Back
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Hi");
+            Initials();
         }
         
         //respective buttons to configure
@@ -90,6 +92,26 @@ namespace MainPage
         private void StatsRow12_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Hi");
+        }
+
+        private void Initials()
+        {
+            try
+            {
+                WebProxy proxy = (WebProxy)WebRequest.DefaultWebProxy;
+                if (proxy.Address.AbsoluteUri != string.Empty)
+                {
+                    Console.WriteLine("Proxy URL: " + proxy.Address.AbsoluteUri);
+                }
+                else
+                {
+                    Console.WriteLine("No proxy url");
+                }
+            }
+            catch (Exception e){
+                Console.WriteLine(e.StackTrace);
+                MessageBox.Show(e.StackTrace);
+            }
         }
     }
 }
