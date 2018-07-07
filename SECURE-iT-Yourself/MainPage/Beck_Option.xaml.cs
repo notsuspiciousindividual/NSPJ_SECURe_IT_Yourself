@@ -24,9 +24,9 @@ namespace MainPage
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Hello there");
         }
     }
 }
