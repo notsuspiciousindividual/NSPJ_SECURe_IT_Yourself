@@ -96,6 +96,10 @@ namespace MainPage
 
         private void Initials()
         {
+            //Check for ports that are not usually used
+
+
+            //Check for Web Proxy
             try
             {
                 WebProxy proxy = (WebProxy)WebRequest.DefaultWebProxy;
@@ -112,6 +116,8 @@ namespace MainPage
                 Console.WriteLine(e.StackTrace);
                 MessageBox.Show(e.StackTrace);
             }
+
+            //
         }
     }
 }
