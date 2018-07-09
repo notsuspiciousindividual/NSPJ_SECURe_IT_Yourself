@@ -14,7 +14,7 @@
             <Border BorderBrush="Black" BorderThickness="1" Height="142" Width="900" >
                 <DockPanel Name="TopContainer" Background="#A9D0E5" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="900" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,20" LastChildFill="False" >
                     <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="BackButton_Click" />
-                    <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,35,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
+                    <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,35,0,0" Height="59" Width="394" FontSize="20" FontFamily="Rage Italic" FontStyle="Italic" FontWeight="Bold"/>
                 </DockPanel>
             </Border>
             <DockPanel x:Name="dockLowerInterface">
