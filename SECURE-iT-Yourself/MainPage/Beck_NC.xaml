@@ -5,11 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-<<<<<<< HEAD
-        Title="SECURe_IT_Yourself" Height="450" Width="800">
-    <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Stroke="Black" VerticalAlignment="Top" Width="793"/>
-=======
         Title="SECURe_IT_Yourself" Height="600" Width="900">
     <Grid x:Name="HomeContainer" Background="#39424D" Margin="-4,-3,-2.667,-26.333" Width="900" Height="600">
         <Grid.RowDefinitions>
@@ -29,7 +24,6 @@
             </Rectangle>
             <Label x:Name="Titlelbl" Content="Network Configuration" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0" Height="59" Width="394" FontSize="36" FontFamily="Yu Gothic UI" FontStyle="Italic" FontWeight="Bold"/>
         </Grid>
->>>>>>> master
 
         <Grid Visibility="Hidden" Background="AliceBlue" x:Name="TableGrid" Margin="6,163,197,23" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
