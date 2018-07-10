@@ -124,6 +124,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Fonts\RenaultBQ-Light.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

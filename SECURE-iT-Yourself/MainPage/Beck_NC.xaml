@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="SECURe_IT_Yourself" Height="600" Width="900">
-    
+
     <!--Top Blue area-->
     <Grid Height="600" Width="900">
-        <Image Source="/Resources/Beck_Images/Background.jpg" Stretch="UniformToFill" Margin="-79,-75,-6,-180"/>
+        <Image Source="/Resources/Beck_Images/Background.jpg" Stretch="UniformToFill" Margin="-110,-75,-25,-50"/>
         <StackPanel x:Name="HomeContainer" Background="Transparent" Margin="-2,1,2,-1" Width="900" Height="600">
             <Border BorderBrush="Black" BorderThickness="1" Height="142" Width="900" >
                 <DockPanel Name="TopContainer" Background="#A9D0E5" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="900" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,20" LastChildFill="False" >
                     <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="BackButton_Click" />
-                    <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,35,0,0" Height="59" Width="394" FontSize="20" FontFamily="Rage Italic" FontStyle="Italic" FontWeight="Bold"/>
+                    <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,35,0,0" Height="64" Width="417" FontSize="36" FontFamily="./#Renault BQ" FontStyle="Italic" FontWeight="Bold"/>
                 </DockPanel>
             </Border>
             <DockPanel x:Name="dockLowerInterface">
@@ -30,62 +30,62 @@
                     <DockPanel>
                         <ScrollViewer HorizontalAlignment="Right" Height="341" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
                             <StackPanel>
-                                <DockPanel Name="Row1" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row1" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow1" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,0" Text="Open Unused Ports" Width="223" />
                                     <TextBlock Name="DescRow1" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,0" Text="Description of Unused ports" Width="243"/>
                                     <Button Name="StatsRow1" Background="#B7B1B0" Margin="0,10,0,0" Content="Good" Width="158" Click="StatsRow1_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row2" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row2" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow2" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Proxy Server on/off" Width="223" />
                                     <TextBlock x:Name="DescRow2" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Width="243" ><Run Text="Description of proxy server"/><LineBreak/><Run/></TextBlock>
                                     <Button Name="StatsRow2" Background="#B7B1B0" Margin="0,0,0,0" Content="Average" Width="158" Click="StatsRow2_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row3" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row3" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Firewall on/off" Width="223" />
                                     <TextBlock Name="DescRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Width="243" />
                                     <Button Name="StatsRow3" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow3_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row4" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row4" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP echo on/off" Width="223" />
                                     <TextBlock Name="DescRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow4" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow4_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row5" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row5" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP echo reply on/off" Width="223" />
                                     <TextBlock Name="DescRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow5" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow5_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row6" Height="60" Margin="0,0,0.333,0">
-                                    <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
-                                    <TextBlock Name="DescRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
+                                <DockPanel Name="Row6" MinHeight="60" Margin="0,0,0.333,0">
+                                    <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Updates" Width="223" Height="60" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
+                                    <TextBlock Name="DescRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="It is always important to keep your computer up date, allowing it to be at it's latest patch, hence reducing vulnerabilities it is exposed to." Width="243" TextWrapping="WrapWithOverflow" />
                                     <Button Name="StatsRow6" Background="#B7B1B0" Content="St" Width="158" Click="StatsRow6_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row7" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row7" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow7" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158"  Click="StatsRow7_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row8" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row8" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow8" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow8" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow8" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158"  Click="StatsRow8_Click" />
                                 </DockPanel>
-                                <DockPanel Name="Row9" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row9" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow9" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow9" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow9" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow9_Click"/>
                                 </DockPanel>
-                                <DockPanel Name="Row10" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row10" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow10" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow10" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow10" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow10_Click"/>
                                 </DockPanel>
-                                <DockPanel Name="Row11" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row11" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow11" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow11" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button Name="StatsRow11" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow11_Click"/>
                                 </DockPanel>
-                                <DockPanel Name="Row12" Height="60" Margin="0,0,0.333,0">
+                                <DockPanel Name="Row12" MinHeight="60" Margin="0,0,0.333,0">
                                     <TextBlock Name="ConfigRow12" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     <TextBlock Name="DescRow12" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" Width="243" />
                                     <Button x:Name="StatsRow12" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow12_Click"/>
