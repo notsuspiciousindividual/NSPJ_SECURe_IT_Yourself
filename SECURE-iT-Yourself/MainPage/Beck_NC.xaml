@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="SECURe_IT_Yourself" Height="600" Width="900">
-
     <!--Top Blue area-->
     <Grid Height="600" Width="900">
         <Image Source="/Resources/Beck_Images/Background.jpg" Stretch="UniformToFill" Margin="-110,-75,-25,-50"/>
