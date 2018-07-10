@@ -69,6 +69,9 @@
     <Compile Include="SY_ViewSpecificCase.xaml.cs">
       <DependentUpon>SY_ViewSpecificCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SY_ViewSpecificTeam.xaml.cs">
+      <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
+    </Compile>
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SY_ViewSpecificCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_ViewSpecificTeam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
