@@ -10,7 +10,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
             <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
                 <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="Button_Click" />
-                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" Width="335" FontSize="30" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
+                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" Width="335" FontSize="40" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" FontFamily="/MainPage;component/Fonts/#Renault BQ">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -22,11 +22,15 @@
                 </Label>
             </DockPanel>
         </Border>
-        <StackPanel Height="393" Background="white" Margin="119,20,119.333,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
+        <StackPanel Height="393" Name="Option_EditPanel" Background="white" Margin="119,20,119.333,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
             <Grid Height="143" Margin="0,0,0.333,0">
-                <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" Width="70"/>
-                <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="306,10,0,0"/>
+                <Label x:Name="lblStatus" Content="Status: " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" Width="75" FontFamily="Apex New Medium Italic" FontSize="20"/>
+                <Image x:Name="StatusImage" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="311,10,0,0"/>
             </Grid>
+            <DockPanel Name="Beck_Content">
+                
+            </DockPanel>
+            <Border BorderBrush="Black" BorderThickness="1" Height="250" Margin="0,0,0.333,0"/>
         </StackPanel>
 
     </StackPanel>

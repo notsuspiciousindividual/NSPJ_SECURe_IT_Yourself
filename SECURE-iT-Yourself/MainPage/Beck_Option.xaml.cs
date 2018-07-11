@@ -24,6 +24,13 @@ namespace MainPage
         public Beck_Option()
         {
             InitializeComponent();
+            
+            //Add in the Title
+            String OptionTitle = "Firewall Settings";
+            lblMisconfigType.Content = OptionTitle;
+            //Add in the Image
+            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
