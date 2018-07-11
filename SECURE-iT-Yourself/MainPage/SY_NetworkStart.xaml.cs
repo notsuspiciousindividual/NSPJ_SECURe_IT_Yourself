@@ -16,18 +16,22 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SY_NetworkStart.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SY_NetworkStart : Window
     {
-        public MainWindow()
+        public SY_NetworkStart()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void New_Case_Network(object sender, RoutedEventArgs e)
         {
 
+            SY_NewCase wnd = new SY_NewCase();
+            wnd.Show();
+            this.Close();
         }
     }
 }
