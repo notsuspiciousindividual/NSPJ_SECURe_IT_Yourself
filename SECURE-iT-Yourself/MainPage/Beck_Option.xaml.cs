@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -29,7 +30,12 @@ namespace MainPage
             String OptionTitle = "Firewall Settings";
             lblMisconfigType.Content = OptionTitle;
             //Add in the Image
-            
+           // Image setImage = new Image();
+            BitmapImage src = new BitmapImage();
+            src.BeginInit();
+            src.UriSource = new Uri("//Resource//Beck_Images//Background.jpg", UriKind.Absolute);
+            //setImage.Source = src;
+            StatusImage.Source = src;
 
         }
 
