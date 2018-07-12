@@ -23,13 +23,13 @@
                 <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
-                        <Label FontSize="20" >Back</Label>
+                        <Label FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Back</Label>
                     </StackPanel>
                 </Button>
 
                 <Canvas Grid.Row="1">
                     <Rectangle Fill="#25315D" Width="250" Height="50" />
-                    <Label  Canvas.Top="6" Canvas.Left="60" Foreground="White" FontSize="20" >Tagging Anomaly</Label>
+                    <Label FontFamily="/MainPage;component/Fonts/#Renault BQ"  Canvas.Top="8" Canvas.Left="60" Foreground="White" FontSize="20" >Tagging Anomaly</Label>
                 </Canvas>
 
                 <Grid Grid.Row="2" Margin="0,20,0,0">
@@ -48,9 +48,9 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label HorizontalAlignment="Right" FontSize="21">Classification:</Label>
+                    <Label HorizontalAlignment="Right" FontSize="21" FontFamily="/MainPage;component/Fonts/#Apex New Light">Classification:</Label>
                     <TextBox VerticalAlignment="Center" Grid.Column="1" Width="170" Height="30"></TextBox>
-                    <Label Grid.Row="2" HorizontalAlignment="Right" FontSize="21">Description:</Label>
+                    <Label Grid.Row="2" HorizontalAlignment="Right" FontSize="21" FontFamily="/MainPage;component/Fonts/#Apex New Light">Description:</Label>
                     <TextBox VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Width="170" Height="90"></TextBox>
 
                 </Grid>

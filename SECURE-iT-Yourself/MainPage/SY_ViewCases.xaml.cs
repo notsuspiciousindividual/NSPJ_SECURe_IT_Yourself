@@ -23,5 +23,14 @@ namespace MainPage
         {
             InitializeComponent();
         }
+
+        private void Go_Back(object sender, RoutedEventArgs e)
+        {
+            SY_NetworkStart wnd = new SY_NetworkStart();
+            wnd.Show();
+            this.Close();
+
+
+        }
     }
 }

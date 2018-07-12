@@ -23,5 +23,10 @@ namespace MainPage
         {
             InitializeComponent();
         }
+
+        private void Go_Back(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
