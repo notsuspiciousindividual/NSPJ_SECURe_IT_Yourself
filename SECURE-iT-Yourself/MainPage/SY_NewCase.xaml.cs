@@ -28,5 +28,37 @@ namespace MainPage
         {
 
         }
+
+        private void Verify_Next(object sender, RoutedEventArgs e)
+        {
+
+            //Validation
+            if (!(String.IsNullOrEmpty(case_name.Text)))
+            {
+                if (!(String.IsNullOrEmpty(case_desc.Text)))
+                {
+                    if (!(investigated_List.Items.Count==0))
+                    {
+                        //Push to next page and ask for network file
+
+
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Null or Empty");
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Null or Empty");
+                }
+            }
+            else {
+                Console.WriteLine("Null or Empty");
+            }
+
+        }
     }
 }

@@ -28,7 +28,7 @@
                 <Image Cursor="Hand" Height="230" Width="230" Source="pack://application:,,,/Resources/img/new_icon.png" >
                 </Image>
             </Button>
-            <Label FontSize="40" Canvas.Bottom="120" Canvas.Left="-70" Foreground="White" FontFamily="/MainPage;component/Fonts/#Apex New Light">Create New Case</Label>
+            <Label FontSize="40" Canvas.Bottom="120" Canvas.Left="-63" Foreground="White" FontFamily="/MainPage;component/Fonts/#Apex New Light">Create New Case</Label>
             <Button Click="Continue_Exist" BorderBrush="Transparent" Cursor="Hand" Canvas.Left="450" Canvas.Top="150" Background="Transparent" Foreground="Transparent">
                 <Image Height="230" Width="230" Source="pack://application:,,,/Resources/img/research_icon.png"></Image>
             </Button>

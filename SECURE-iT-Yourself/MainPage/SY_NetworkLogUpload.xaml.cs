@@ -19,6 +19,7 @@ namespace MainPage
     /// </summary>
     public partial class SY_NetworkLogUpload : Window
     {
+
         public SY_NetworkLogUpload()
         {
             InitializeComponent();

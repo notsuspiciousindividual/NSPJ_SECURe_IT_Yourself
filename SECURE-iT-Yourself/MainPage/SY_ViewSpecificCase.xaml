@@ -17,7 +17,7 @@
             <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
-                    <Label FontSize="20" Foreground="White">Back</Label>
+                    <Label FontSize="20" Foreground="White" FontFamily="/MainPage;component/Fonts/#Apex New Light">Back</Label>
                 </StackPanel>
             </Button>
 
@@ -38,11 +38,11 @@
 
                     <Canvas>
                         <Rectangle  Height="45" Width="300" Fill="#25315D" Panel.ZIndex="0" ></Rectangle>
-                        <Label Canvas.Left="80" Canvas.Top="5" Foreground="White" FontSize="20">Case Name</Label>
+                        <Label Canvas.Left="80" Canvas.Top="7" Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Case Name</Label>
                     </Canvas>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
-                        <Button Cursor="Hand" Height="40" Width="100" Background="ForestGreen" FontSize="20">Search</Button>
+                        <Button Cursor="Hand" Height="40" Width="100" Background="ForestGreen" FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
                         <TextBox Height="40" Width="235"></TextBox>
                     </StackPanel>
                 </Grid>
@@ -80,7 +80,7 @@
                         <ColumnDefinition Width="180" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Margin="0,0,10,0" Grid.Column="1" FontSize="25" Background="DarkSeaGreen" >Create Report</Button>
+                    <Button Margin="0,0,10,0" Grid.Column="1" FontSize="25" Background="DarkSeaGreen" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Create Report</Button>
                     
                     
                 </Grid>
