@@ -13,7 +13,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Background="" >
+            <StackPanel Orientation="Horizontal">
                 <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>

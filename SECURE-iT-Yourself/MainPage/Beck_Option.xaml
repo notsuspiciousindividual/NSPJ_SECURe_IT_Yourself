@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="Beck_Option1" Height="600" Width="900">
+
+    
     <StackPanel Background="#39424D">
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
             <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
