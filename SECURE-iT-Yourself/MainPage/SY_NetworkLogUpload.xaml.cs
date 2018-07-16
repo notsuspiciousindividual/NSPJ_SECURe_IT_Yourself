@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,27 @@ namespace MainPage
     /// </summary>
     public partial class SY_NetworkLogUpload : Window
     {
+        private String c_name;
+        private String c_desc;
+        private ArrayList investList;
 
-        public SY_NetworkLogUpload()
+
+        public SY_NetworkLogUpload(String c_name, String c_desc, ArrayList investList)
         {
+            this.c_name = c_name;
+            this.c_desc = c_desc;
+            this.investList = investList;
+
             InitializeComponent();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            SY_NewCase wnd = new SY_NewCase();
+            wnd.Show();
+            this.Close();
+
+
         }
     }
 }

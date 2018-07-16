@@ -75,6 +75,7 @@
     <Compile Include="Beck_Option.xaml.cs">
       <DependentUpon>Beck_Option.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Case.cs" />
     <Compile Include="SY_AddTagReport.xaml.cs">
       <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
     </Compile>
