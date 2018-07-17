@@ -23,6 +23,7 @@ namespace MainPage
         private String c_name;
         private String c_desc;
         private ArrayList investList;
+        private String filePath = "";
 
 
         public SY_NetworkLogUpload(String c_name, String c_desc, ArrayList investList)
@@ -42,5 +43,20 @@ namespace MainPage
 
 
         }
+
+
+        private void upload_button(object sender, RoutedEventArgs e)
+        {
+            
+
+
+        }
+
+        private void validation_button(object sender, RoutedEventArgs e) {
+
+
+        }
+
+
     }
 }
