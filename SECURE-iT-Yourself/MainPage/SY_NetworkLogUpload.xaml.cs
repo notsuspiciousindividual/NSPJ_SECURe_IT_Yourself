@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,13 +48,63 @@ namespace MainPage
 
         private void upload_button(object sender, RoutedEventArgs e)
         {
-            
+            OpenFileDialog open = new OpenFileDialog();
+            open.InitialDirectory = @"c:\temp\";
+            open.Title = "Select file to be upload";
+            open.Filter = "Log Files(*.log)|*.logText|Files(*.txt)|*.txt|Csv Files(*.csv)|*.csv";
+           
+            try
+            {
+
+                if (open.ShowDialog() == true)
+                {
+                    if (open.CheckFileExists)
+                    {
+                        string path = System.IO.Path.GetFullPath(open.FileName);
+                        filePath = path;
+                        ShowPath.Text = path;
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Please upload document.");
+
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+
+            }
 
 
         }
 
         private void validation_button(object sender, RoutedEventArgs e) {
+            //Validation
+            if (!(String.IsNullOrEmpty(Log_Name.Text)))
+            {
+                if (!(String.IsNullOrEmpty(Log_Desc.Text)))
+                {
+                    if (!(String.IsNullOrEmpty(filePath)))
+                    {
 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please upload a path to load into");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please fill up the Log Description");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please fill up in the Log Name");
+            }
 
         }
 
