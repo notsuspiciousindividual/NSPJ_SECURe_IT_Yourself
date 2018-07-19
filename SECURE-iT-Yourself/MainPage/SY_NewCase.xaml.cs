@@ -43,20 +43,29 @@ namespace MainPage
                 {
                     if (!(investList.Items.Count==0))
                     {
+                        CaseDAO db = new CaseDAO();
+
+                        
                         //Push to next page and ask for network file
                         String CName = case_name.Text;
                         String CDesc = case_desc.Text;
+                        if (db.checkIfCaseName(CName))
+                        {
+                            ArrayList aList = new ArrayList();
+                            for (int i = 0; i < investList.Items.Count; i++)
+                            {
+                                ListBoxItem item = (ListBoxItem)(investList.ItemContainerGenerator.ContainerFromIndex(i));
+                                aList.Add(item.Content.ToString());
+                            }
 
-                        ArrayList aList = new ArrayList();
-                        for (int i = 0; i < investList.Items.Count; i++) {
-                            ListBoxItem item = (ListBoxItem)(investList.ItemContainerGenerator.ContainerFromIndex(i));
-                            aList.Add(item.Content.ToString());
+                            SY_NetworkLogUpload wnd = new SY_NetworkLogUpload(CName, CDesc, aList);
+                            wnd.Show();
+                            this.Close();
                         }
+                        else {
+                            MessageBox.Show("Case Name Has Already Existed!");
 
-                        SY_NetworkLogUpload wnd = new SY_NetworkLogUpload(CName, CDesc, aList);
-                        wnd.Show();
-                        this.Close();
-
+                        }
                     }
                     else
                     {

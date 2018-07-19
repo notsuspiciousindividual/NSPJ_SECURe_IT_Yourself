@@ -49,8 +49,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Author.cs" />
     <Compile Include="Beck_NC.xaml.cs">
       <DependentUpon>Beck_NC.xaml</DependentUpon>
     </Compile>
@@ -76,6 +82,12 @@
       <DependentUpon>Beck_Option.xaml</DependentUpon>
     </Compile>
     <Compile Include="Case.cs" />
+    <Compile Include="CaseDAO.cs" />
+    <Compile Include="LocalDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SY_AddTagReport.xaml.cs">
       <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
     </Compile>
@@ -165,6 +177,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\ufonts.com_apexnew-light-opentype.otf" />
+    <None Include="LocalDBDataSet.xsc">
+      <DependentUpon>LocalDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LocalDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocalDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LocalDBDataSet.xss">
+      <DependentUpon>LocalDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -195,10 +219,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LocalDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="LocalDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
@@ -216,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Log_Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
