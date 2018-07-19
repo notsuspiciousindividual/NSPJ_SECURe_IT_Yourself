@@ -88,7 +88,11 @@ namespace MainPage
                 {
                     if (!(String.IsNullOrEmpty(filePath)))
                     {
+                        CaseDAO db = new CaseDAO();
 
+                        Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
+
+                        
 
                     }
                     else

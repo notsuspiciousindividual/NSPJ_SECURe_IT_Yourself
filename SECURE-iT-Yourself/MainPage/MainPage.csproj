@@ -88,6 +88,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Logs.cs" />
+    <Compile Include="LogsDAO.cs" />
     <Compile Include="SY_AddTagReport.xaml.cs">
       <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
     </Compile>

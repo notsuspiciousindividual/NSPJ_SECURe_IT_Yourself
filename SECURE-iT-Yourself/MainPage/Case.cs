@@ -9,10 +9,10 @@ namespace MainPage
 {
     class Case
     {
-        private String C_Name { get; }
-        private String C_Id { get; }
-        private String C_Desc { get; }
-        private ArrayList C_Authors { get; }
+        public String C_Name { get; }
+        public String C_Id { get; }
+        public String C_Desc { get; }
+        public ArrayList C_Authors { get; }
 
         public Case(String C_Name, String C_Id, String C_Desc, ArrayList C_Authors) {
             this.C_Name = C_Name;
