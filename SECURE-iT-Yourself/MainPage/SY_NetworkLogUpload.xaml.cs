@@ -29,11 +29,14 @@ namespace MainPage
 
         public SY_NetworkLogUpload(String c_name, String c_desc, ArrayList investList)
         {
+
+            InitializeComponent();
+
             this.c_name = c_name;
             this.c_desc = c_desc;
             this.investList = investList;
 
-            InitializeComponent();
+            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -51,7 +54,7 @@ namespace MainPage
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"c:\temp\";
             open.Title = "Select file to be upload";
-            open.Filter = "Log Files(*.log)|*.logText|Files(*.txt)|*.txt|Csv Files(*.csv)|*.csv";
+            open.Filter = "Log Files (*.log)|*.log|Text Files (*.txt)|*.txt|Csv Files(*.csv)|*.csv|SysLog Files (*.syslog)|*.syslog";
            
             try
             {
@@ -92,6 +95,13 @@ namespace MainPage
 
                         Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
 
+                        if (checker)
+                        {
+                            Console.WriteLine("WE DID IT!");
+                        }
+                        else {
+                            Console.WriteLine("Its not there");
+                        }
                         
 
                     }

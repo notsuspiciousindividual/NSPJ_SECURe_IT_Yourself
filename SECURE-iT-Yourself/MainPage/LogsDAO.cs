@@ -54,10 +54,9 @@ namespace MainPage
 
 
 
-        public Boolean addLogToTable(String caseName, String caseDesc)
+        public Boolean addLogToTable(String LogName, String LogDesc)
         {
             Boolean checker = false;
-
             Random rnd = new Random();
             int number = rnd.Next(1, 9999);
             String APath = "C:\\Users\\Public]Documents\\S" + number + ".txt";
@@ -67,11 +66,11 @@ namespace MainPage
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             {
 
-                string query = "INSERT INTO Cases (C_Name,C_Authors_Path,C_Description) VALUES (@CaseName,@CAuthors,@CaseDesc)";
+                string query = "INSERT INTO Network_Log (Log_Name,Log_Desc,Case_Id) VALUES (@LogName,@Log_Desc,@CaseDesc)";
                 SqlCommand cmd = new SqlCommand(query, myConnection);
-                cmd.Parameters.AddWithValue("@CaseName", caseName);
-                cmd.Parameters.AddWithValue("@CAuthors", APath);
-                cmd.Parameters.AddWithValue("@CaseDesc", caseDesc);
+                //cmd.Parameters.AddWithValue("@CaseName", caseName);
+                //cmd.Parameters.AddWithValue("@CAuthors", APath);
+                //cmd.Parameters.AddWithValue("@CaseDesc", caseDesc);
 
                 myConnection.Open();
                 cmd.ExecuteScalar();

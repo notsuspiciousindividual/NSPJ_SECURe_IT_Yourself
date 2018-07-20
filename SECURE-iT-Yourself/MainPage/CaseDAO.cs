@@ -27,21 +27,27 @@ namespace MainPage
         public Boolean checkIfCaseName(String caseName) {
             Boolean checker = false;
 
-            using (SqlConnection myConnection = new SqlConnection(connectionString)) {
-                string query = "SELECT COUNT(*) from Cases where C_Name=@caseName";
-                SqlCommand cmd = new SqlCommand(query, myConnection);
-                cmd.Parameters.AddWithValue("@caseName", caseName);
-                myConnection.Open();
 
+
+            using (SqlConnection myConnection = new SqlConnection(connectionString)) {
+                string query = "SELECT COUNT(*) from Cases where C_Name= @CaseName";
+                SqlCommand cmd = new SqlCommand(query, myConnection);
+                cmd.Parameters.AddWithValue("@CaseName", caseName);
+                myConnection.Open();
                 int CaseNameExist = (int)cmd.ExecuteScalar();
+                myConnection.Close();
 
                 if (CaseNameExist > 0)
                 {
                     checker = false;
+                    Console.WriteLine("Case Existed Already");
                 }
                 else {
                     checker = true;
+                    Console.WriteLine("Case Does Not Exist");
                 }
+
+                
 
             }
 
