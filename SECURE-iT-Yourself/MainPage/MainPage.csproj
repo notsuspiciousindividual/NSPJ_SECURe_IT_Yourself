@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
@@ -63,9 +66,9 @@
     <Compile Include="SY_NewCase.xaml.cs">
       <DependentUpon>SY_NewCase.xaml</DependentUpon>
     </Compile>
-    <Page Include="Beck_NC.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SY_CreatedSuccessCase.xaml">
       <SubType>Designer</SubType>
@@ -130,6 +133,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img\success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\agent-icon.png" />
+    <Resource Include="Images\arrow_circle_left.png" />
+    <Resource Include="Images\background-security.jpg" />
+    <Resource Include="Images\encryption-icon-11.png" />
+    <Resource Include="Images\exclamation_mark.png" />
+    <Resource Include="Images\home-icon-md.png" />
+    <Resource Include="Images\home-icon.png" />
+    <Resource Include="Images\ohno - Copy.png" />
+    <Resource Include="Images\ohno.png" />
+    <Resource Include="Images\picture.jpg" />
+    <Resource Include="Images\pineapple.jpg" />
+    <Resource Include="Images\security.jpg" />
+    <Resource Include="Images\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

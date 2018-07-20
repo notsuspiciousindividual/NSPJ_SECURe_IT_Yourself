@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for Beck_NC.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Beck_NC : Window
+    public partial class Login : Window
     {
-        public Beck_NC()
+        public Login()
         {
             InitializeComponent();
         }
