@@ -29,25 +29,29 @@ namespace MainPage
 
 
 
-            using (SqlConnection myConnection = new SqlConnection(connectionString)) {
-                string query = "SELECT COUNT(*) from Cases where C_Name= @CaseName";
-                SqlCommand cmd = new SqlCommand(query, myConnection);
-                cmd.Parameters.AddWithValue("@CaseName", caseName);
+            string query = "SELECT COUNT(*) from Cases where C_Name = @CaseName";
+
+            using (SqlConnection myConnection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, myConnection))
+            {
                 myConnection.Open();
+                cmd.Parameters.AddWithValue("@CaseName", caseName);
                 int CaseNameExist = (int)cmd.ExecuteScalar();
                 myConnection.Close();
+
 
                 if (CaseNameExist > 0)
                 {
                     checker = false;
                     Console.WriteLine("Case Existed Already");
                 }
-                else {
+                else
+                {
                     checker = true;
                     Console.WriteLine("Case Does Not Exist");
                 }
 
-                
+
 
             }
 
@@ -74,22 +78,23 @@ namespace MainPage
                     
              }
 
-            using (SqlConnection myConnection = new SqlConnection(connectionString))
-            {
-
             string query = "INSERT INTO Cases (C_Name,C_Authors_Path,C_Description) VALUES (@CaseName,@CAuthors,@CaseDesc)";
-            SqlCommand cmd = new SqlCommand(query, myConnection);
-            cmd.Parameters.AddWithValue("@CaseName", caseName);
-            cmd.Parameters.AddWithValue("@CAuthors", APath);
-            cmd.Parameters.AddWithValue("@CaseDesc", caseDesc);
-                   
-             myConnection.Open();
-             cmd.ExecuteScalar();
-             myConnection.Close();
 
-             checker = true;
+            using (SqlConnection myConnection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, myConnection))
+            {
+                myConnection.Open();
 
-             }
+                cmd.Parameters.AddWithValue("@CaseName", caseName);
+                cmd.Parameters.AddWithValue("@CAuthors", APath);
+                cmd.Parameters.AddWithValue("@CaseDesc", caseDesc);
+
+                cmd.ExecuteScalar();
+                myConnection.Close();
+
+                checker = true;
+
+            }
 
             
             
@@ -103,10 +108,12 @@ namespace MainPage
 
             try
             {
-                using (SqlConnection myConnection = new SqlConnection(connectionString)) {
+                string query = "DELETE FROM Cases WHERE C_Name = @cName";
 
-                    string query = "DELETE FROM Cases WHERE C_Name = @cName";
-                    SqlCommand cmd = new SqlCommand(query, myConnection);
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query,myConnection))
+                {
+
                     cmd.Parameters.AddWithValue("@cName", caseName);
 
                     myConnection.Open();
@@ -149,8 +156,6 @@ namespace MainPage
                     checker = true;
 
                 }
-
-
 
             }
             catch (Exception ex) {

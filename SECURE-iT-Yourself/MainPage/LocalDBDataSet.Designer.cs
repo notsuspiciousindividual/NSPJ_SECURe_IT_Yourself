@@ -718,6 +718,8 @@ namespace MainPage {
             
             private global::System.Data.DataColumn columnLog_Name;
             
+            private global::System.Data.DataColumn columnLog_Format;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Network_LogDataTable() {
@@ -793,6 +795,14 @@ namespace MainPage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Log_FormatColumn {
+                get {
+                    return this.columnLog_Format;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -828,14 +838,15 @@ namespace MainPage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Network_LogRow AddNetwork_LogRow(string Log_Desc, CasesRow parentCasesRowByFK_Network_Log_To_Case, string File_Path, string Log_Name) {
+            public Network_LogRow AddNetwork_LogRow(string Log_Desc, CasesRow parentCasesRowByFK_Network_Log_To_Case, string File_Path, string Log_Name, string Log_Format) {
                 Network_LogRow rowNetwork_LogRow = ((Network_LogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Log_Desc,
                         null,
                         File_Path,
-                        Log_Name};
+                        Log_Name,
+                        Log_Format};
                 if ((parentCasesRowByFK_Network_Log_To_Case != null)) {
                     columnValuesArray[2] = parentCasesRowByFK_Network_Log_To_Case[0];
                 }
@@ -873,6 +884,7 @@ namespace MainPage {
                 this.columnCase_Id = base.Columns["Case_Id"];
                 this.columnFile_Path = base.Columns["File_Path"];
                 this.columnLog_Name = base.Columns["Log_Name"];
+                this.columnLog_Format = base.Columns["Log_Format"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -888,6 +900,8 @@ namespace MainPage {
                 base.Columns.Add(this.columnFile_Path);
                 this.columnLog_Name = new global::System.Data.DataColumn("Log_Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLog_Name);
+                this.columnLog_Format = new global::System.Data.DataColumn("Log_Format", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLog_Format);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnLog_ID}, true));
                 this.columnLog_ID.AutoIncrement = true;
@@ -903,6 +917,8 @@ namespace MainPage {
                 this.columnFile_Path.MaxLength = 2147483647;
                 this.columnLog_Name.AllowDBNull = false;
                 this.columnLog_Name.MaxLength = 2147483647;
+                this.columnLog_Format.AllowDBNull = false;
+                this.columnLog_Format.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1823,6 +1839,17 @@ namespace MainPage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Log_Format {
+                get {
+                    return ((string)(this[this.tableNetwork_Log.Log_FormatColumn]));
+                }
+                set {
+                    this[this.tableNetwork_Log.Log_FormatColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CasesRow CasesRow {
                 get {
                     return ((CasesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Network_Log_To_Case"])));
@@ -2609,6 +2636,7 @@ SELECT Case_Id, C_Name, C_Authors_Path, C_Description FROM Cases WHERE (Case_Id 
             tableMapping.ColumnMappings.Add("Case_Id", "Case_Id");
             tableMapping.ColumnMappings.Add("File_Path", "File_Path");
             tableMapping.ColumnMappings.Add("Log_Name", "Log_Name");
+            tableMapping.ColumnMappings.Add("Log_Format", "Log_Format");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -2619,23 +2647,24 @@ SELECT Case_Id, C_Name, C_Authors_Path, C_Description FROM Cases WHERE (Case_Id 
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Case_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Case_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Network_Log] ([Log_Desc], [Case_Id], [File_Path], [Log_Name]) " +
-                "VALUES (@Log_Desc, @Case_Id, @File_Path, @Log_Name);\r\nSELECT Log_ID, Log_Desc, C" +
-                "ase_Id, File_Path, Log_Name FROM Network_Log WHERE (Log_ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Network_Log] ([Log_Desc], [Case_Id], [File_Path], [Log_Name], [Log_Format]) VALUES (@Log_Desc, @Case_Id, @File_Path, @Log_Name, @Log_Format);
+SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name, Log_Format FROM Network_Log WHERE (Log_ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Desc", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Case_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Case_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@File_Path", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "File_Path", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Name", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Format", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Format", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Network_Log] SET [Log_Desc] = @Log_Desc, [Case_Id] = @Case_Id, [File_Path] = @File_Path, [Log_Name] = @Log_Name WHERE (([Log_ID] = @Original_Log_ID) AND ([Case_Id] = @Original_Case_Id));
-SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Log_ID = @Log_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Network_Log] SET [Log_Desc] = @Log_Desc, [Case_Id] = @Case_Id, [File_Path] = @File_Path, [Log_Name] = @Log_Name, [Log_Format] = @Log_Format WHERE (([Log_ID] = @Original_Log_ID) AND ([Case_Id] = @Original_Case_Id));
+SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name, Log_Format FROM Network_Log WHERE (Log_ID = @Log_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Desc", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Case_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Case_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@File_Path", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "File_Path", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Name", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_Format", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_Format", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Log_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Log_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Case_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Case_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Log_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Log_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2654,7 +2683,8 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM dbo.Network_Log";
+            this._commandCollection[0].CommandText = "SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name, Log_Format FROM dbo.Networ" +
+                "k_Log";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2738,7 +2768,7 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Log_Desc, int Case_Id, string File_Path, string Log_Name) {
+        public virtual int Insert(string Log_Desc, int Case_Id, string File_Path, string Log_Name, string Log_Format) {
             if ((Log_Desc == null)) {
                 throw new global::System.ArgumentNullException("Log_Desc");
             }
@@ -2757,6 +2787,12 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Log_Name));
+            }
+            if ((Log_Format == null)) {
+                throw new global::System.ArgumentNullException("Log_Format");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Log_Format));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2778,7 +2814,7 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Log_Desc, int Case_Id, string File_Path, string Log_Name, int Original_Log_ID, int Original_Case_Id, int Log_ID) {
+        public virtual int Update(string Log_Desc, int Case_Id, string File_Path, string Log_Name, string Log_Format, int Original_Log_ID, int Original_Case_Id, int Log_ID) {
             if ((Log_Desc == null)) {
                 throw new global::System.ArgumentNullException("Log_Desc");
             }
@@ -2798,9 +2834,15 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Log_Name));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Log_ID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Case_Id));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Log_ID));
+            if ((Log_Format == null)) {
+                throw new global::System.ArgumentNullException("Log_Format");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Log_Format));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Log_ID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Case_Id));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Log_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2821,8 +2863,8 @@ SELECT Log_ID, Log_Desc, Case_Id, File_Path, Log_Name FROM Network_Log WHERE (Lo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Log_Desc, int Case_Id, string File_Path, string Log_Name, int Original_Log_ID, int Original_Case_Id) {
-            return this.Update(Log_Desc, Case_Id, File_Path, Log_Name, Original_Log_ID, Original_Case_Id, Original_Log_ID);
+        public virtual int Update(string Log_Desc, int Case_Id, string File_Path, string Log_Name, string Log_Format, int Original_Log_ID, int Original_Case_Id) {
+            return this.Update(Log_Desc, Case_Id, File_Path, Log_Name, Log_Format, Original_Log_ID, Original_Case_Id, Original_Log_ID);
         }
     }
     

@@ -27,10 +27,12 @@ namespace MainPage
         {
             Boolean checker = false;
 
+            string query = "SELECT COUNT(*) from Network_Log where Log_Name=@logName";
+
+
             using (SqlConnection myConnection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query,myConnection))
             {
-                string query = "SELECT COUNT(*) from Network_Log where Log_Name=@logName";
-                SqlCommand cmd = new SqlCommand(query, myConnection);
                 cmd.Parameters.AddWithValue("@logName", LogName);
                 myConnection.Open();
 
@@ -54,23 +56,21 @@ namespace MainPage
 
 
 
-        public Boolean addLogToTable(String LogName, String LogDesc)
+        public Boolean addLogToTable(String LogName, String LogDesc,String File_Path, String File_Format)
         {
             Boolean checker = false;
-            Random rnd = new Random();
-            int number = rnd.Next(1, 9999);
-            String APath = "C:\\Users\\Public]Documents\\S" + number + ".txt";
 
 
+            string query = "INSERT INTO Network_Log (Log_Name,Log_Desc,File_Path,File_Format) VALUES (@LogName,@LogDesc,@filePath,@fileFormat)";
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, myConnection))
             {
 
-                string query = "INSERT INTO Network_Log (Log_Name,Log_Desc,Case_Id) VALUES (@LogName,@Log_Desc,@CaseDesc)";
-                SqlCommand cmd = new SqlCommand(query, myConnection);
-                //cmd.Parameters.AddWithValue("@CaseName", caseName);
-                //cmd.Parameters.AddWithValue("@CAuthors", APath);
-                //cmd.Parameters.AddWithValue("@CaseDesc", caseDesc);
+                cmd.Parameters.AddWithValue("@LogName", LogName);
+                cmd.Parameters.AddWithValue("@LogDesc", LogDesc);
+                cmd.Parameters.AddWithValue("@filePath", File_Path);
+                cmd.Parameters.AddWithValue("@fileFormat", File_Format);
 
                 myConnection.Open();
                 cmd.ExecuteScalar();
@@ -87,18 +87,19 @@ namespace MainPage
             return checker;
         }
 
-        public Boolean deleteCaseFromTable(String caseName)
+        public Boolean deleteLogFromTable(String logName)
         {
             Boolean checker = false;
 
             try
             {
+
+                string query = "DELETE FROM Network_Log WHERE Log_Name = @logName";
                 using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
 
-                    string query = "DELETE FROM Cases WHERE C_Name = @cName";
-                    SqlCommand cmd = new SqlCommand(query, myConnection);
-                    cmd.Parameters.AddWithValue("@cName", caseName);
+                    cmd.Parameters.AddWithValue("@logName", logName);
 
                     myConnection.Open();
                     cmd.ExecuteScalar();
@@ -120,7 +121,7 @@ namespace MainPage
 
         }
 
-        public Boolean updateToTable(Case cName, String PrevName)
+        public Boolean UpdateToTable(Case cName, String PrevName)
         {
             Boolean checker = false;
 

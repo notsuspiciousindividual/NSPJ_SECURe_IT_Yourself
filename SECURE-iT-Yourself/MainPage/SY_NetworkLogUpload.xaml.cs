@@ -25,6 +25,7 @@ namespace MainPage
         private String c_desc;
         private ArrayList investList;
         private String filePath = "";
+       
 
 
         public SY_NetworkLogUpload(String c_name, String c_desc, ArrayList investList)
@@ -54,7 +55,7 @@ namespace MainPage
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"c:\temp\";
             open.Title = "Select file to be upload";
-            open.Filter = "Log Files (*.log)|*.log|Text Files (*.txt)|*.txt|Csv Files(*.csv)|*.csv|SysLog Files (*.syslog)|*.syslog";
+            open.Filter = "Log Files (*.log)|*.log";
            
             try
             {
@@ -91,17 +92,37 @@ namespace MainPage
                 {
                     if (!(String.IsNullOrEmpty(filePath)))
                     {
-                        CaseDAO db = new CaseDAO();
-
-                        Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
-
-                        if (checker)
+                        if (formatBox.SelectedIndex > -1 && formatBox.SelectedIndex == 0)
                         {
-                            Console.WriteLine("WE DID IT!");
+                            LogsDAO logDb = new LogsDAO();
+
+                            if (logDb.checkIfLogs(Log_Name.Text))
+                            {
+                                CaseDAO db = new CaseDAO();
+
+                                Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
+                                Boolean checker2 = logDb.addLogToTable(Log_Name.Text, Log_Desc.Text, filePath, formatBox.Text);
+
+
+                                if (checker && checker2)
+                                {
+                                    Console.WriteLine("WE DID IT!");
+                                    SY_CreatedSuccessCase wnd = new SY_CreatedSuccessCase();
+                                    wnd.Show();
+                                    this.Close();
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Its not there");
+                                }
+                            }
                         }
-                        else {
-                            Console.WriteLine("Its not there");
+                        else
+                        {
+                            MessageBox.Show("Please select a file format");
                         }
+                        
                         
 
                     }

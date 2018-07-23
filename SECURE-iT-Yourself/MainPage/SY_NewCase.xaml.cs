@@ -91,6 +91,7 @@ namespace MainPage
 
             {
                 investList.Items.Add(insertName.Text);
+                
 
             }
             else {
