@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Beck_Option1" Height="600" Width="900">
 
-    
+
     <StackPanel Background="#39424D">
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
             <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
@@ -29,11 +29,47 @@
                 <Label x:Name="lblStatus" Content="Status: " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" Width="75" FontFamily="Apex New Medium Italic" FontSize="20"/>
                 <Image x:Name="StatusImage" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="311,10,0,0"/>
             </Grid>
-            <DockPanel Name="Beck_Content">
-                
-            </DockPanel>
-            <Border BorderBrush="Black" BorderThickness="1" Height="250" Margin="0,0,0.333,0"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Height="1" Margin="0,0,0.333,0"/>
+            <ScrollViewer x:Name="Scroller" HorizontalAlignment="Right" Height="240" Margin="0,0,-0.333,0" Grid.Row="1" VerticalAlignment="Top" Width="655">
+                <StackPanel Name="Beck_Content" Height="240">
+                    <DockPanel Name="PortCheckDP" Visibility="Collapsed">
+                        <Label Content="Scan from port 1 ~ " Margin="60, 0, 0, 0" />
+                        <TextBox Text="" Width="60" Name="SpecificPortRange" IsReadOnly="false" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99,0" />
+                        <Button Content="Check" Name="ActivateCheck" Margin="0, 0, 20, 0" Click="Check_Click"/>
+                    </DockPanel>
+                    <TextBlock Name="ReturnActCheck" Text="" Visibility="Collapsed" MinHeight="60" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel Name="PortCheckDP2" Visibility="Collapsed">
+                        <Label Content="Scan Specific Port:  " Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" Name="SpecificPort" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99.5,0"/>
+                        <Button Content="Check" Name="ActivateCheck2" Click="Check_Click2" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <TextBlock Name="ReturnActCheck2" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel Name="PortCheckDP3" Visibility="Collapsed">
+                        <Label Content="Scan Ports from" Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" Name="PortStart" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="103,0,0,0"/>
+                        <Label Content=" ~ " Margin="0, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" Name="PortEnd" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="0, 0, 14.5, 0"/>
+                        <Button Content="Check" Name="ActivateCheck3" Click="Check_Click3" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <TextBlock Name="ReturnActCheck3" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel Name="PortCloseDP" Visibility="Collapsed">
+                        <Label Content="Close Port" Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" Name="PortToClose" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="132.5,0,99.5,0"/>
+                        <Button Content="Confirm" Name="ActivateClose" Click="ClosePortRule_Click" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <DockPanel Name="PortOpenDP" Visibility="Collapsed">
+                        <Label Content="Open Ports you previously closed" Margin="60,0,0,0"></Label>
+                        <TextBox Text="" Width="60" Name="PortToOpen" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="10,0,99.5,0"/>
+                        <Button Content="Confirm" Name="ActivateOpen" Click="OpenPortRule_Click" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    
+                    
+                </StackPanel>
+            </ScrollViewer>
+            <Border BorderBrush="Black" BorderThickness="1" Height="260" Margin="0,0,0.667,0"/>
         </StackPanel>
+        <ComboBox Visibility="Collapsed"/>
 
     </StackPanel>
 </Window>
