@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SY_ViewCases" Height="600" Width="900">
+        Title="SECURe-It-Yourself" Height="600" Width="900">
+    <Window.Resources>
+        <Style x:Key="CenterAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="/MainPage;component/Fonts/#Apex New Light" />
+            <Setter Property="Background" Value="#25315D" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+
+    </Window.Resources>
     <Grid Background="#39424D">
         <Grid>
             <Grid.RowDefinitions>
@@ -37,7 +49,7 @@
 
                     <Canvas>
                         <Rectangle  Height="45" Width="300" Fill="#25315D" Panel.ZIndex="0" ></Rectangle>
-                        <Label  Canvas.Left="80" Canvas.Top="6" Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Network Description</Label>
+                        <Label  Canvas.Left="210" Canvas.Top="6" Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Cases</Label>
                     </Canvas>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
@@ -47,24 +59,42 @@
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="20,10,20,10">
-                    <DataGrid Background="#A9D0E5">
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Stretch" />
-                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                            <Setter Property="Height" Value="60" />
-                            <Setter Property="Width" Value="Auto" />
-                            <Setter Property="Margin" Value="0" />
-                            <Setter Property="FontSize" Value="50"/>
-                        </Style>
-
-
+                    <DataGrid Background="#A9D0E5" Name="CaseTable" IsReadOnly="True" AutoGenerateColumns="False" Margin="0,28,-0.4,-27.8">
                         <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="Case Name" />
-                            <DataGridTextColumn  Header="Case Description" />
-                            <DataGridTextColumn  Header="View" />
-                            <DataGridTextColumn  Header="Options" />
+                            <DataGridTextColumn Binding="{Binding C_Name}" Width="250" Header="Case Name" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        
+                                        <Setter Property="FontSize" Value="21" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding C_Description}" Width="300" Header="Case Description" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Width="170" Header="View"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="View_Case" FontSize="18">View</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="130" Header="Options"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button >
+                                            <Image Width="30" Height="30" Source="pack://application:,,,/Resources/img/GearsFile.png"></Image>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

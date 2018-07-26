@@ -29,7 +29,7 @@ namespace MainPage
 
 
 
-            string query = "SELECT COUNT(*) from Cases where C_Name = @CaseName";
+            string query = "SELECT count(*) from Cases where C_Name = @CaseName";
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, myConnection))
@@ -132,6 +132,40 @@ namespace MainPage
 
 
             return checker;
+
+        }
+
+        public int getCaseId(String cName) {
+            int caseId = 0;
+
+            try
+            {
+
+                string query = "SELECT Case_Id FROM Cases WHERE C_Name like @caseName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+
+                    cmd.Parameters.AddWithValue("@caseName", cName);
+
+                    myConnection.Open();
+                    caseId = (int) cmd.ExecuteScalar();
+                    myConnection.Close();
+
+                    
+
+                }
+
+
+
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            return caseId;
 
         }
 

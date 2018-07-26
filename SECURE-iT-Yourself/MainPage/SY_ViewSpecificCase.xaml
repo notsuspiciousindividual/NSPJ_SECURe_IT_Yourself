@@ -38,7 +38,7 @@
 
                     <Canvas>
                         <Rectangle  Height="45" Width="300" Fill="#25315D" Panel.ZIndex="0" ></Rectangle>
-                        <Label Canvas.Left="80" Canvas.Top="7" Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Case Name</Label>
+                        <Label Name="Case_Label" Canvas.Left="80" Canvas.Top="7" Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Case Name</Label>
                     </Canvas>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">

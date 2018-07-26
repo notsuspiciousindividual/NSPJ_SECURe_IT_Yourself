@@ -49,7 +49,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Background="#9CCAE0" Cursor="Hand" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="30">Home</Button>
+                    <Button Background="#9CCAE0" Cursor="Hand" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="30" Click="ToHome">Home</Button>
                                        
                 </Grid>
 
@@ -63,7 +63,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Background="#9CCAE0" Cursor="Hand" HorizontalContentAlignment="Center" FontSize="20">Forensic Page</Button>
+                    <Button Background="#9CCAE0"  Cursor="Hand" HorizontalContentAlignment="Center" FontSize="20" Click="ToForensics">Forensic Page</Button>
 
                 </Grid>
 

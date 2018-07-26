@@ -27,7 +27,7 @@ namespace MainPage
         {
             Boolean checker = false;
 
-            string query = "SELECT COUNT(*) from Network_Log where Log_Name=@logName";
+            string query = "SELECT COUNT(*) FROM Network_Log WHERE Log_Name = @logName";
 
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
@@ -36,9 +36,11 @@ namespace MainPage
                 cmd.Parameters.AddWithValue("@logName", LogName);
                 myConnection.Open();
 
-                int CaseNameExist = (int)cmd.ExecuteScalar();
+                int LogExist = (int)cmd.ExecuteScalar();
 
-                if (CaseNameExist > 0)
+                myConnection.Close();
+
+                if (LogExist > 0)
                 {
                     checker = false;
                 }
@@ -56,12 +58,12 @@ namespace MainPage
 
 
 
-        public Boolean addLogToTable(String LogName, String LogDesc,String File_Path, String File_Format)
+        public Boolean addLogToTable(String LogName, String LogDesc, int caseId, String File_Path, String File_Format)
         {
             Boolean checker = false;
 
 
-            string query = "INSERT INTO Network_Log (Log_Name,Log_Desc,File_Path,File_Format) VALUES (@LogName,@LogDesc,@filePath,@fileFormat)";
+            string query = "INSERT INTO Network_Log (Log_Name,Log_Desc,Case_Id,File_Path,Log_Format) VALUES (@LogName,@LogDesc,@Id,@filePath,@fileFormat)";
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, myConnection))
@@ -69,6 +71,7 @@ namespace MainPage
 
                 cmd.Parameters.AddWithValue("@LogName", LogName);
                 cmd.Parameters.AddWithValue("@LogDesc", LogDesc);
+                cmd.Parameters.AddWithValue("@Id", caseId);
                 cmd.Parameters.AddWithValue("@filePath", File_Path);
                 cmd.Parameters.AddWithValue("@fileFormat", File_Format);
 

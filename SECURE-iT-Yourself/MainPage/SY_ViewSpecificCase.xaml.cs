@@ -19,9 +19,14 @@ namespace MainPage
     /// </summary>
     public partial class SY_ViewSpecificCase : Window
     {
-        public SY_ViewSpecificCase()
+
+        private String C_Name="";
+
+        public SY_ViewSpecificCase(String C_Name)
         {
+            this.C_Name = C_Name;
             InitializeComponent();
+            this.Case_Label.Content = C_Name;
         }
     }
 }

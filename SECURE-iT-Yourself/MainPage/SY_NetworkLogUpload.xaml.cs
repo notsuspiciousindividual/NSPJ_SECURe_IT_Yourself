@@ -101,12 +101,23 @@ namespace MainPage
                                 CaseDAO db = new CaseDAO();
 
                                 Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
-                                Boolean checker2 = logDb.addLogToTable(Log_Name.Text, Log_Desc.Text, filePath, formatBox.Text);
+
+                                Boolean checker2 = false;
 
 
-                                if (checker && checker2)
+                                if (checker)
+                                {
+                                    int caseId = db.getCaseId(c_name);
+                                    checker2 = logDb.addLogToTable(Log_Name.Text, Log_Desc.Text, caseId, filePath, formatBox.Text);
+                                }
+                                
+
+
+                                if (checker2)
                                 {
                                     Console.WriteLine("WE DID IT!");
+                                    
+                                    
                                     SY_CreatedSuccessCase wnd = new SY_CreatedSuccessCase();
                                     wnd.Show();
                                     this.Close();

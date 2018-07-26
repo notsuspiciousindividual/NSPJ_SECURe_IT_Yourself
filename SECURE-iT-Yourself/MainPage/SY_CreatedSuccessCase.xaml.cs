@@ -23,5 +23,19 @@ namespace MainPage
         {
             InitializeComponent();
         }
+
+        private void ToHome(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ToForensics(object sender, RoutedEventArgs e)
+        {
+            SY_NetworkStart wnd = new SY_NetworkStart();
+
+            wnd.Show();
+
+            this.Close();
+        }
     }
 }

@@ -23,6 +23,11 @@ namespace MainPage
 
         }
 
+        public Case(String C_Name, String C_Desc) {
+            this.C_Name = C_Name;
+            this.C_Desc = C_Desc;
+        }
+
 
         
 
