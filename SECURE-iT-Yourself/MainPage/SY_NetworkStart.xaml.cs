@@ -31,14 +31,14 @@ namespace MainPage
 
             SY_NewCase wnd = new SY_NewCase();
             wnd.Show();
-            this.Close();
+            Close();
         }
 
         private void Continue_Exist(object sender, RoutedEventArgs e)
         {
             SY_ViewCases wnd = new SY_ViewCases();
             wnd.Show();
-            this.Close();
+            Close();
 
         }
     }

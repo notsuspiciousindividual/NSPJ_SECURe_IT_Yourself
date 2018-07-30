@@ -124,6 +124,33 @@ namespace MainPage
 
         }
 
+        public Boolean deleteThroughIdFromTable(int caseId) {
+            Boolean checker = false;
+
+            try
+            {
+                string query = "DELETE FROM Network_Log WHERE Case_Id = @id";
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@id", caseId);
+
+                    myConnection.Open();
+                    cmd.ExecuteScalar();
+                    myConnection.Close();
+
+                    checker = true;
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
+            return checker;
+
+        }
+
+
         public Boolean UpdateToTable(Case cName, String PrevName)
         {
             Boolean checker = false;
@@ -133,7 +160,7 @@ namespace MainPage
                 using (SqlConnection myConnection = new SqlConnection(connectionString))
                 {
 
-                    string query = "UPDATE Cases SET C_Name = @newName, C_Description = @newDesc where C_Name = @prevName";
+                    string query = "UPDATE Network_Log SET Log_Name = @newName, C_Description = @newDesc where C_Name = @prevName";
                     SqlCommand cmd = new SqlCommand(query, myConnection);
                     cmd.Parameters.AddWithValue("@newName", cName.C_Name);
                     cmd.Parameters.AddWithValue("@newDEsc", cName.C_Desc);

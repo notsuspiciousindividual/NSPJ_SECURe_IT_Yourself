@@ -19,8 +19,11 @@ namespace MainPage
     /// </summary>
     public partial class SY_ViewSpecificTeam : Window
     {
-        public SY_ViewSpecificTeam()
+        private String logfile = "";
+        
+        public SY_ViewSpecificTeam(string logfile)
         {
+            this.logfile = logfile;
             InitializeComponent();
         }
     }

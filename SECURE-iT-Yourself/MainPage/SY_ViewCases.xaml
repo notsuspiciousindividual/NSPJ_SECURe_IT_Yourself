@@ -61,10 +61,10 @@
                 <Grid Grid.Row="1" Margin="20,10,20,10">
                     <DataGrid Background="#A9D0E5" Name="CaseTable" IsReadOnly="True" AutoGenerateColumns="False" Margin="0,28,-0.4,-27.8">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding C_Name}" Width="250" Header="Case Name" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
+                            <DataGridTextColumn Binding="{Binding C_Name}" Width="245" Header="Case Name" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
-                                        
+
                                         <Setter Property="FontSize" Value="21" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
@@ -72,34 +72,34 @@
                             <DataGridTextColumn Binding="{Binding C_Description}" Width="300" Header="Case Description" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
-                                        
+
                                         <Setter Property="FontSize" Value="18" />
                                         <Setter Property="TextWrapping" Value="Wrap" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTemplateColumn Width="170" Header="View"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                            <DataGridTemplateColumn Width="138" Header="View"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Click="View_Case" FontSize="18">View</Button>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="130" Header="Options"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                            <DataGridTemplateColumn Width="153" Header="Options"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button >
-                                            <Image Width="30" Height="30" Source="pack://application:,,,/Resources/img/GearsFile.png"></Image>
-                                        </Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            
+                                            <Button Click="Remove_Row" Width="50" Content="Remove" />
+                                            <Button Click="Edit_Row" Width="50" Content="Edit" />
+                                        </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </Grid>
-            
         </Grid>
     </Grid>
 </Window>

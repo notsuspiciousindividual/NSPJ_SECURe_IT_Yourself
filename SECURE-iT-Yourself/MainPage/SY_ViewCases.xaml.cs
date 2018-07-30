@@ -28,14 +28,15 @@ namespace MainPage
         {
             InitializeComponent();
             FillDataGrid();
+
         }
 
         private void Go_Back(object sender, RoutedEventArgs e)
         {
             SY_NetworkStart wnd = new SY_NetworkStart();
             wnd.Show();
-            this.Close();
-
+            Close();
+            
 
         }
 
@@ -52,8 +53,6 @@ namespace MainPage
                 adapt.Fill(table);
                 CaseTable.ItemsSource = table.DefaultView;
             }
-
-            Button btn = new Button();
         }
 
         private void View_Case(object sender, RoutedEventArgs e)
@@ -68,51 +67,51 @@ namespace MainPage
             {
                 Console.WriteLine("YESH");
                 DataGridRow cell = button as DataGridRow;
-                
-                
                 TextBlock potatoe = CaseTable.Columns[0].GetCellContent(cell) as TextBlock;
 
                 SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(potatoe.Text);
                 wnd.Show();
-                this.Close();
-
-                
-                
-                
-
-               
-
+                Close(); 
             }
             
 
 
         }
 
-        //private void DataGridTemplateColumn_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    DependencyObject dep = (DependencyObject)e.OriginalSource;
+        private void Remove_Row(object sender, RoutedEventArgs e)
+        {
+            var button = sender as DependencyObject;
 
-        //    while ((dep != null))
-        //    {
-        //        dep = VisualTreeHelper.GetParent(dep);
+            while ((button != null) && !(button is DataGridRow)) {
+                button = VisualTreeHelper.GetParent(button);
+            }
+
+            if (button is DataGridRow)
+            {
+                Console.WriteLine("YOSH");
+                DataGridRow cell = button as DataGridRow;
+                TextBlock potatoe = CaseTable.Columns[0].GetCellContent(cell) as TextBlock;
+                CaseDAO Case = new CaseDAO();
+                int caseId = Case.getCaseId(potatoe.Text);
+                LogsDAO logs = new LogsDAO();
+                Boolean checker = logs.deleteThroughIdFromTable(caseId);
+                Boolean checker2 = Case.deleteCaseFromTable(potatoe.Text);
+
+                if (checker && checker2) {
+                    Console.WriteLine("WORKS");
+                    FillDataGrid();
+                }
+            }
+            else {
+                Console.WriteLine("No Works");
+            }
 
 
+        }
 
-        //    }
+        private void Edit_Row(object sender, RoutedEventArgs e)
+        {
 
-
-
-
-        //    if (dep is DataGridCell)
-        //    {
-        //        Console.WriteLine("DEEZ NUTS AHAH");
-
-        //    }
-        //    else {
-        //        Console.WriteLine("No detect, ahhh");
-
-        //    }
-
-        //}
+        }
     }
 }
