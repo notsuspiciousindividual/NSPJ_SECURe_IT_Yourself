@@ -27,6 +27,7 @@
                     <DockPanel>
                         <ScrollViewer HorizontalAlignment="Right" Height="341" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
                             <StackPanel>
+                                <!--Row 1: Port checking-->
                                 <DockPanel Name="Row1" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,10,0,0" Width="223">
                                         <TextBlock Name="ConfigRow1" Background="#B7B1B0" TextAlignment="Center" Text="Check on Ports" Width="223" />
@@ -40,6 +41,7 @@
                                         <Image x:Name="PortCheckImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
+                                <!--Row 2: Proxy Server Checking-->
                                 <DockPanel Name="Row2" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
                                         <TextBlock x:Name="ConfigRow2" Background="#B7B1B0" TextAlignment="Center" Text="Proxy Server on/off" Width="223" />
@@ -53,6 +55,7 @@
                                         <Image x:Name="ProxyCheckingImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
+                                <!--Row 3: Firewall Checking-->
                                 <DockPanel Name="Row3" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
                                         <TextBlock Name="ConfigRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Firewall on/off" Width="223" />
@@ -66,9 +69,10 @@
                                         <Image x:Name="FireWallImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
+                                <!--Row 4: ICMP Checking-->
                                 <DockPanel Name="Row4" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
-                                        <TextBlock Name="ConfigRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP Echo on/off" Width="223" />
+                                        <TextBlock Name="ConfigRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP on/off" Width="223" />
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn4" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn4_Click"></Button>
@@ -79,30 +83,35 @@
                                         <Image x:Name="ICMPEchoImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
+                                <!--Row 5: Updates Checking-->
                                 <DockPanel Name="Row5" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
-                                        <TextBlock Name="ConfigRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="ICMP echo reply on/off" Width="223" />
+                                        <TextBlock Name="ConfigRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Updates" Width="223" />
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn5" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn5_Click"></Button>
-                                        <TextBlock Name="DescRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="" MaxWidth="243" Visibility="Collapsed"/>
+                                        <TextBlock Name="DescRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="It is always important to keep your computer up date, allowing it to be at it's latest patch, hence reducing vulnerabilities it is exposed to." MaxWidth="243" Visibility="Collapsed"/>
                                     </StackPanel>
                                     <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
                                         <Button Name="StatsRow5" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow5_Click" />
                                         <Image x:Name="UpdatesImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
-                                <!--Dont config below first-->
+                                <!--Row 6: Configuration Serverity Checking-->
                                 <DockPanel Name="Row6" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
-                                        <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Updates" Width="223" Height="60" VerticalAlignment="Bottom" FontStretch="ExtraExpanded"/>
+                                        <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Configuration Serverity" Width="223" Height="60" VerticalAlignment="Bottom" FontStretch="ExtraExpanded"/>
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn6" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn6_Click"></Button>
-                                        <TextBlock Name="DescRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="It is always important to keep your computer up date, allowing it to be at it's latest patch, hence reducing vulnerabilities it is exposed to." MaxWidth="243" TextWrapping="WrapWithOverflow" Visibility="Collapsed" />
+                                        <TextBlock Name="DescRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="" MaxWidth="243" TextWrapping="WrapWithOverflow" Visibility="Collapsed" />
                                     </StackPanel>
-                                    <Button Name="StatsRow6" Background="#B7B1B0" Content="St" Width="158" Click="StatsRow6_Click" />
+                                    <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
+                                        <Button Name="StatsRow6" Background="#B7B1B0" Content="St" Width="158" Click="StatsRow6_Click" />
+                                        <Image x:Name="SeverityCheckImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
+                                    </Grid>
                                 </DockPanel>
+                                <!--Dont config below first-->
                                 <DockPanel Name="Row7" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
                                         <TextBlock Name="ConfigRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />

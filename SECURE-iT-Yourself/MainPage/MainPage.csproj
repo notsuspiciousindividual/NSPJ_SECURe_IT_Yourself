@@ -65,6 +65,9 @@
     <Compile Include="Beck_Option.xaml.cs">
       <DependentUpon>Beck_Option.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Beck_Pass.xaml.cs">
+      <DependentUpon>Beck_Pass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Beck_Option.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Beck_Pass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +189,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Beck_Text\proxy.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Beck_Text\fw.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

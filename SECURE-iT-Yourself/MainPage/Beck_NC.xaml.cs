@@ -33,37 +33,140 @@ namespace MainPage
         {
 
             InitializeComponent();
+            //get the open ports first
+            openedPort.Clear();
+            closedPort.Clear();
+
+            //get port number first
+            String GPN = "";
+            //Int32.TryParse(PortToClose.Text, out int z);
+            GetAvailablePort(443);
+
+            if (443 > 0)
+            {
+                if (openedPort.Contains(443))
+                {
+                    GPN = "443";
+                    //run netstat
+                    try
+                    {
+                        String netStatArgs = "/C netstat -ao | find \"" + GPN + "\"";
+                        Process netStatRun = new Process();
+                        netStatRun.StartInfo = new ProcessStartInfo()
+                        {
+                            UseShellExecute = false,
+                            CreateNoWindow = true,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            FileName = "cmd.exe",
+                            Arguments = netStatArgs,
+                            RedirectStandardError = true,
+                            RedirectStandardOutput = true
+                        };
+                        netStatRun.Start();
+                        String NetstatOutput = netStatRun.StandardOutput.ReadToEnd();
+                        netStatRun.WaitForExit(2000);
+                        MessageBox.Show(NetstatOutput);
+                        List<String> nsOut = NetstatOutput.Split('\n').ToList();
+                        MessageBox.Show("\"" + nsOut.FirstOrDefault() + "\"");
+                        String nsFirst = nsOut.FirstOrDefault();
+                        List<String> nsOut2 = nsFirst.Split(' ').ToList();
+                        ArrayList nsAL = new ArrayList();
+                        for (int ns = 0; ns < nsOut2.Count; ns++)
+                        {
+                            nsAL.Add(nsOut2.ElementAt(ns));
+                        }
+                        //String toDis = "";
+                        //foreach ( String dis in nsAL)
+                        //{
+                        //    toDis += "\n\""+dis+"\"";
+                        //}
+                        String getPosition6 = nsAL[6].ToString(); //the ip + port
+                        String getPosition29 = nsAL[29].ToString(); //the pid
+
+                        List<String> furtherSplit = getPosition6.Split(':').ToList();
+                        getPosition6 = furtherSplit.ElementAt(1); // just port
+                        if (getPosition6 != GPN)
+                        {
+                            MessageBox.Show("The port you are requesting to close is not open! ");
+                        }
+                        else if (getPosition6 == GPN)
+                        {
+                            
+                            //netsh advfirewall firewall add rule name = \"Close Port getPosition6\" dir =in action = block protocol = TCP localport = getPostion6
+                            String CPPArgs = "netsh advfirewall firewall add rule name = \"Close Port " + getPosition6 + "\" dir=in action=block protocol=TCP localport=" + getPosition6;
+                            ProcessStartInfo closePortProc = new ProcessStartInfo
+                            {
+                                CreateNoWindow = true,
+                                UseShellExecute = false,
+                                FileName = "cmd.exe",
+                                WindowStyle = ProcessWindowStyle.Normal,
+                                Arguments = "/Ninjarku D Legend:A \"cmd /K " + CPPArgs + "\"",
+                                RedirectStandardOutput = true,
+                                Verb = "runas"
+                            };
+                            Process p1 = Process.Start(closePortProc);
+                            String closePortProcOut = p1.StandardOutput.ReadToEnd();
+                            p1.WaitForExit(2000);
+                            MessageBox.Show("output: " + closePortProcOut + "\n" + "Port " + getPosition6 + " has been closed");
+
+                            String KCPArgs = "/C taskkill /PID " + getPosition29 + " /F";
+                            ProcessStartInfo KillcurrentProcess = new ProcessStartInfo
+                            {
+                                CreateNoWindow = false,
+                                UseShellExecute = false,
+                                FileName = "cmd.exe",
+                                WindowStyle = ProcessWindowStyle.Normal,
+                                Arguments = KCPArgs,
+                                RedirectStandardOutput = true,
+                                Verb = "runas"
+                            };
+                            Process p2 = Process.Start(KillcurrentProcess);
+                            String killTaskOut = p2.StandardOutput.ReadToEnd();
+                            p2.WaitForExit(2000);
+                            MessageBox.Show("output: " + closePortProcOut + "\n" + "Taskkill done on process " + getPosition29);
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("The port you are requesting to close is not open! ");
+                        }
+                        //MessageBox.Show(getPosition6+"\n"+getPosition29+"\n"+nsOut2.Count);
+                    }
+                    catch (Exception ve)
+                    {
+                        Console.WriteLine(ve.StackTrace);
+                        MessageBox.Show("The port you are requesting to close is not open! ");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The value you entered is already closed!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The port cannot be negative");
+            }
 
             //image set
             int stat = -1;
             ImageSet(stat, CurrentOverallStatImg);
             LoadProgBar();
             //checks
-            ICMPCheck();
-            openedPort.Clear();
-            closedPort.Clear();
+            
             PortscanTrigger(2000);
-            if (openedPort.Count >= 20)
-            {
-                stat = 1;
-                ImageSet(stat, PortCheckImg);
-            }
-            else if (openedPort.Count >= 10)
-            {
-                stat = 0;
-                ImageSet(stat, PortCheckImg);
-            }
-            else
-            {
-                stat = -1;
-                ImageSet(stat, PortCheckImg);
-            }
-            this.storedStat = stat;
+            FirewallCheck();
             ProxyCheck();
+           
+            ICMPCheck();
 
         }
 
-        private int storedStat = 0;
+        private int storedStatPort = 0;
+        private int storedStatProxy = 0;
+        private int storedStatFirewall = 0;
+        private int storedStatICMP = 0;
+        private int storedStatUpdate = 0;
 
         //Back clicked
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -275,7 +378,7 @@ namespace MainPage
             MessageBox.Show("Showing "+ConfigRow1.Text.ToString());
             Beck_Option wnd = new Beck_Option();
             PortscanTrigger(2000);
-            int stat = this.storedStat;
+            int stat = this.storedStatPort;
             ImageSet(stat, PortCheckImg);
             
             wnd.Transfer(ConfigRow1.Text.ToString(), stat);
@@ -288,32 +391,43 @@ namespace MainPage
         {
             MessageBox.Show("Showing " + ConfigRow2.Text.ToString());
             Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+            int stat = this.storedStatProxy;
+            ImageSet(stat, ProxyCheckingImg);
 
+            wnd.Transfer(ConfigRow2.Text.ToString(), stat);
+            wnd.Show();
             this.Close();
         }
         private void StatsRow3_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Showing " + ConfigRow3.Text.ToString());
             Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+            int stat = this.storedStatFirewall;
+            ImageSet(stat, FireWallImg);
 
+            wnd.Transfer(ConfigRow3.Text.ToString(), stat);
+            wnd.Show();
             this.Close();
         }
         private void StatsRow4_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Showing " + ConfigRow4.Text.ToString());
             Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+            int stat = this.storedStatICMP;
+            ImageSet(stat, ICMPEchoImg);
 
+            wnd.Transfer(ConfigRow4.Text.ToString(), stat);
+            wnd.Show();
             this.Close();
         }
         private void StatsRow5_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Showing " + ConfigRow5.Text.ToString());
             Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+            //ImageSet(stat, ICMPEchoImg);
 
+            //wnd.Transfer(ConfigRow4.Text.ToString(), stat);
+            wnd.Show();
             this.Close();
         }
         private void StatsRow6_Click(object sender, RoutedEventArgs e)
@@ -381,34 +495,15 @@ namespace MainPage
 
             //Check for ports that are open
         }
-        //Check for Web Proxy
-        private void CheckWebProxy()
-        {
-            try
-            {
-                WebProxy proxy = (WebProxy)WebRequest.DefaultWebProxy;
-                if (proxy.Address.AbsoluteUri != string.Empty)
-                {
-                    Console.WriteLine("Proxy URL: " + proxy.Address.AbsoluteUri);
-                }
-                else
-                {
-                    Console.WriteLine("No proxy url");
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                MessageBox.Show(e.StackTrace);
-            }
-        }
-       
-        //Arraylist for Open and Closed ports
+       //Arraylist for Open and Closed ports
         private static ArrayList closedPort = new ArrayList();
         private static ArrayList openedPort = new ArrayList();
-        //Get Port Status
+        //Get Port Status UEV: User Enterable Value
         private void PortscanTrigger(int UEV)
         {
+            //clear list first
+            openedPort.Clear();
+            closedPort.Clear();
             //User Entered Value
             for (int i = 1; i < UEV; i++)
             {
@@ -423,6 +518,19 @@ namespace MainPage
             {
                 Console.WriteLine("Not Available: " + i);
             }
+            if (openedPort.Count >= 20)
+            {
+                this.storedStatPort = 1;
+            }
+            else if (openedPort.Count >= 10)
+            {
+                storedStatPort = 0;
+            }
+            else
+            {
+                storedStatPort = -1;
+            }
+            ImageSet(storedStatPort, PortCheckImg);
             Console.ReadLine();
         }
         private static int GetAvailablePort(int startingPort)
@@ -462,96 +570,82 @@ namespace MainPage
             return 0;
         }
 
-        // Update on click settings
-        //private void installupdatesyncwithinfo()
-        //{
-        //    updatecheckinfo info = null;
+        private void FirewallCheck()
+        {
+            try
+            {
+                String FWCheckArgs = "/C netsh advfirewall show allprofiles";
+                Process FWCheck = new Process
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                        FileName = "cmd.exe",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        Arguments = FWCheckArgs,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        Verb = "runas"
+                    }
+                };
+                FWCheck.Start();
+                String FWOutput = FWCheck.StandardOutput.ReadToEnd();
 
-        //  if (applicationdeployment.isnetworkdeployed)
-        //  {
-        //      applicationdeployment ad = applicationdeployment.currentdeployment;
+                FWCheck.WaitForExit(2000);
+                //MessageBox.Show(FWOutput);
 
-        //      try
-        //      {
-        //          info = ad.checkfordetailedupdate();
+                List<String> FWOut = FWOutput.Split('\n').ToList();
+                String FWString1 = FWOut.ElementAt(3);
+                String FWString2 = FWOut.ElementAt(20);
+                String FWString3 = FWOut.ElementAt(37);
+                //MessageBox.Show("Check: " + FWString1);
+                //MessageBox.Show("Check: " + FWString2);
+                //MessageBox.Show("Check: " + FWString3);
 
-        //      }
-        //      catch (deploymentdownloadexception dde)
-        //      {
-        //          messagebox.show("the new version of the application cannot be downloaded at this time. \n\nplease check your network connection, or try again later. error: " + dde.message);
-        //          return;
-        //      }
-        //      catch (invaliddeploymentexception ide)
-        //      {
-        //          messagebox.show("cannot check for a new version of the application. the clickonce deployment is corrupt. please redeploy the application and try again. error: " + ide.message);
-        //          return;
-        //      }
-        //      catch (invalidoperationexception ioe)
-        //      {
-        //          messagebox.show("this application cannot be updated. it is likely not a clickonce application. error: " + ioe.message);
-        //          return;
-        //      }
+                List<String> FWOut1 = FWString1.Split(' ').ToList();
 
-        //      if (info.updateavailable)
-        //      {
-        //          boolean doupdate = true;
+                string text = File.ReadAllText("../../Resources\\Beck_Text/fw.txt");
+                List<String> stext = text.Split('\n').ToList();
+                String CompileVal = stext.ElementAt(3);
 
-        //          if (!info.isupdaterequired)
-        //          {
-        //              dialogresult dr = messagebox.show("an update is available. would you like to update the application now?", "update available", messageboxbuttons.okcancel);
-        //              if (!(dialogresult.ok == dr))
-        //              {
-        //                  doupdate = false;
-        //              }
-        //          }
-        //          else
-        //          {
-        //              // display a message that the app must reboot. display the minimum required version.
-        //              messagebox.show("this application has detected a mandatory update from your current " +
-        //                  "version to version " + info.minimumrequiredversion.tostring() +
-        //                  ". the application will now install the update and restart.",
-        //                  "update available", messageboxbuttons.ok,
-        //                  messageboxicon.information);
-        //          }
+                //MessageBox.Show("Check: " + CompileVal);
 
-        //          if (doupdate)
-        //          {
-        //              try
-        //              {
-        //                  ad.update();
-        //                  messagebox.show("the application has been upgraded, and will now restart.");
-        //                  application.restart();
-        //              }
-        //              catch (deploymentdownloadexception dde)
-        //              {
-        //                  messagebox.show("cannot install the latest version of the application. \n\nplease check your network connection, or try again later. error: " + dde);
-        //                  return;
-        //              }
-        //          }
-        //      }
-        //  }
+                int counter = 0;
+                if (FWString1.Equals(CompileVal))
+                {
+                    counter++;
+                }
 
-        //protected override void (eventargs e)
-        //{
-        //    base.onload(e);
-        //    updatesession usession = new updatesession();
-        //    iupdatesearcher usearcher = usession.createupdatesearcher();
-        //    usearcher.online = false;
-        //    try
-        //    {
-        //        isearchresult sresult = usearcher.search("isinstalled=1 and ishidden=0");
-        //        textbox1.text = "found " + sresult.updates.count + " updates" + environment.newline;
-        //        foreach (iupdate update in sresult.updates)
-        //        {
-        //            textbox1.appendtext(update.title + environment.newline);
-        //        }
-        //    }
-        //    catch (exception ex)
-        //    {
-        //        console.writeline("something went wrong: " + ex.message);
-        //    }
-        //}
-        //Proxy Check
+                if (FWString2.Equals(CompileVal))
+                {
+                    counter++;
+                }
+
+                if (FWString3.Equals(CompileVal))
+                {
+                    counter++;
+                }
+
+                if (counter == 3)
+                {
+                    storedStatFirewall = 1;
+                }
+                else if (counter == 2)
+                {
+                    storedStatFirewall = 0;
+                }
+                else
+                {
+                    storedStatFirewall = -1;
+                }
+            }
+            catch (Exception s)
+            {
+                MessageBox.Show("Error: " + s.StackTrace);
+            }
+            
+        }
         private void ProxyCheck()
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -570,76 +664,163 @@ namespace MainPage
                 StreamReader ProxyOutput = proc.StandardOutput;
                 proc.WaitForExit(2000);
                 string output = "";
-                MessageBox.Show("process proc sucess");
-
+                //MessageBox.Show("process proc sucess");
                 if (proc.HasExited)
                 {
                     output = ProxyOutput.ReadToEnd();
-                    MessageBox.Show("process output update sucess");
-
+                    //MessageBox.Show("process output update sucess");
                 }
                 ProxyOutput.Close();
-                MessageBox.Show(output);
+                string text = File.ReadAllText("../../Resources\\Beck_Text/proxy.txt");
+                //MessageBox.Show("\""+output+"\"");
+                if (output.Equals(text))
+                {
+                    //MessageBox.Show("No web proxy");
+                    this.storedStatProxy = 0;
+                }
+                else 
+                {
+                    this.storedStatProxy = 1;
+                }
+                ImageSet(this.storedStatProxy, ProxyCheckingImg);
             }
             catch (Exception pe)
             {
                 MessageBox.Show("Error: " + pe.Message);
             }
-
-
-            //ProcessStartInfo startInfo = new ProcessStartInfo
-            //{
-            //    CreateNoWindow = false,
-            //    UseShellExecute = false,
-            //    WindowStyle = ProcessWindowStyle.Hidden,
-            //    FileName = "netsh",
-            //    Arguments = "winhttp show proxy",
-            //    RedirectStandardOutput = true
-            //};
-            //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            //Process.Start(startInfo);
-
         }
+        //Check for Web Proxy
+        //private void CheckWebProxy()
+        //{
+        //    try
+        //    {
+        //        WebProxy proxy = (WebProxy)WebRequest.DefaultWebProxy;
+        //        if (proxy.Address.AbsoluteUri != string.Empty)
+        //        {
+        //            Console.WriteLine("Proxy URL: " + proxy.Address.AbsoluteUri);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("No proxy url");
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.StackTrace);
+        //        MessageBox.Show(e.StackTrace);
+        //    }
+        //}
 
         //ICMP Echo Check
         private void ICMPCheck()
         {
-            String Text = "";
+            //ICMP checking portion
             IPStatus iPStatus = new IPStatus();
-            Text += "IP status: " + iPStatus;
             if (iPStatus.ToString() == "Success")
             {
-                //Not Ideal
-                Text += "\nICMP Echo is on";
+                //ICMP Echo is on: Not Ideal
+                this.storedStatICMP = 0;
             }
             else
             {
-                //Ideal
-                Text += "\nICMP Echo is off";
+                //ICMP Echo is off: Ideal
+                this.storedStatICMP = 1;
             }
-
-
-            String strHostName = "";
-            // Get the host name of local machine.
-            strHostName = Dns.GetHostName();
-            String Printable = "Local Machine's Host Name: " + strHostName;
-
-            // Then using host name, get the IP address list..
-            IPHostEntry ipEntry = Dns.GetHostByName(strHostName);
-            IPAddress[] addr = ipEntry.AddressList;
-            String IPAdd = addr[addr.Length - 1].ToString();
-
-            Printable += "\nIP Address: "+IPAdd;
-
-            //for (int i = 0; i < addr.Length; i++)
-            //{
-            //    Printable += "\nIP Address "+i+": "+addr[i].ToString();
-            //}
-            MessageBox.Show(Printable);
-            //IPAddress iPAddress = new IPAddress();
-            //IPEndPoint iPEndPoint = new IPEndPoint();
+            ImageSet(this.storedStatICMP, ICMPEchoImg);
         }
-       
-    }
+
+        //Update on click settings
+        //private void installupdatesyncwithinfo()
+        //{
+        //     updatecheckinfo info = null;
+
+        //    if (applicationdeployment.isnetworkdeployed)
+        //    {
+        //        applicationdeployment ad = applicationdeployment.currentdeployment;
+
+        //        try
+        //        {
+        //            info = ad.checkfordetailedupdate();
+
+        //        }
+        //        catch (deploymentdownloadexception dde)
+        //        {
+        //            messagebox.show("the new version of the application cannot be downloaded at this time. \n\nplease check your network connection, or try again later. error: " + dde.message);
+        //            return;
+        //        }
+        //        catch (invaliddeploymentexception ide)
+        //        {
+        //            messagebox.show("cannot check for a new version of the application. the clickonce deployment is corrupt. please redeploy the application and try again. error: " + ide.message);
+        //            return;
+        //        }
+        //        catch (invalidoperationexception ioe)
+        //        {
+        //            messagebox.show("this application cannot be updated. it is likely not a clickonce application. error: " + ioe.message);
+        //            return;
+        //        }
+
+        //        if (info.updateavailable)
+        //        {
+        //            boolean doupdate = true;
+
+        //            if (!info.isupdaterequired)
+        //            {
+        //                dialogresult dr = messagebox.show("an update is available. would you like to update the application now?", "update available", messageboxbuttons.okcancel);
+        //                if (!(dialogresult.ok == dr))
+        //                {
+        //                    doupdate = false;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // display a message that the app must reboot. display the minimum required version.
+        //                messagebox.show("this application has detected a mandatory update from your current " +
+        //                    "version to version " + info.minimumrequiredversion.tostring() +
+        //                    ". the application will now install the update and restart.",
+        //                    "update available", messageboxbuttons.ok,
+        //                    messageboxicon.information);
+        //            }
+
+        //            if (doupdate)
+        //            {
+        //                try
+        //                {
+        //                    ad.update();
+        //                    messagebox.show("the application has been upgraded, and will now restart.");
+        //                    application.restart();
+        //                }
+        //                catch (deploymentdownloadexception dde)
+        //                {
+        //                    messagebox.show("cannot install the latest version of the application. \n\nplease check your network connection, or try again later. error: " + dde);
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+
+            //protected override void (eventargs e)
+            //{
+            //    base.onload(e);
+            //    updatesession usession = new updatesession();
+            //    iupdatesearcher usearcher = usession.createupdatesearcher();
+            //    usearcher.online = false;
+            //    try
+            //    {
+            //        isearchresult sresult = usearcher.search("isinstalled=1 and ishidden=0");
+            //        textbox1.text = "found " + sresult.updates.count + " updates" + environment.newline;
+            //        foreach (iupdate update in sresult.updates)
+            //        {
+            //            textbox1.appendtext(update.title + environment.newline);
+            //        }
+            //    }
+            //    catch (exception ex)
+            //    {
+            //        console.writeline("something went wrong: " + ex.message);
+            //    }
+            //}
+            //Proxy Check
+
+            /*Severity Check*/
+
+        }
 }

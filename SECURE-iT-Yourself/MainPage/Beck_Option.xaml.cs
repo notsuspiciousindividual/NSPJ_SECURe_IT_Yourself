@@ -29,7 +29,6 @@ namespace MainPage
         public Beck_Option()
         {
             InitializeComponent();
-            Scroller.Content = Beck_Content;
 
         }
         public void ImageSet(int Status, Image img)
@@ -93,16 +92,17 @@ namespace MainPage
         //some vars
         private static ArrayList openedPort = new ArrayList();
         private static ArrayList closedPort = new ArrayList();
-        public void ContentToLoad()
+//*************************************************************************************************************************************************//
+        public void ContentToLoad() 
         {
             if (lblMisconfigType.Content.Equals("Check on Ports"))
             {
+
                 //first row
                 //DockPanel PortCheckDP = new DockPanel
                 //{
                 //    Name = "PortCheckDP"
                 //};
-
                 //Label lblTextPort = new Label
                 //{
                 //    Content = "Scan from port 1 ~ "
@@ -110,8 +110,6 @@ namespace MainPage
                 //Thickness marginlbl1 = lblTextPort.Margin;
                 //marginlbl1.Left = 20;
                 //lblTextPort.Margin = marginlbl1;
-
-
                 //TextBox PortSpecific = new TextBox
                 //{
                 //    Text = "",
@@ -136,7 +134,6 @@ namespace MainPage
                 //marginbtn1.Right = 20;
                 //btnActivate.Margin = marginbtn1;
 
-
                 //PortCheckDP.Children.Add(lblTextPort);
                 //PortCheckDP.Children.Add(PortSpecific);
                 //PortCheckDP.Children.Add(btnActivate);
@@ -151,7 +148,6 @@ namespace MainPage
                 //Thickness marginlbl2 = lblTextPort2.Margin;
                 //marginlbl2.Left = 20;
                 //lblTextPort2.Margin = marginlbl2;
-
 
                 //TextBox PortSpecific2 = new TextBox
                 //{
@@ -183,15 +179,40 @@ namespace MainPage
                 //Beck_Content.Children.Add(PortCheckDP);
                 //Beck_Content.Children.Add(PortCheckDP2);
 
-                PortCheckDP.Visibility = System.Windows.Visibility.Visible;
-                PortCheckDP2.Visibility = System.Windows.Visibility.Visible;
-                PortCheckDP3.Visibility = System.Windows.Visibility.Visible;
-                PortOpenDP.Visibility = System.Windows.Visibility.Visible;
-                PortCloseDP.Visibility = System.Windows.Visibility.Visible;
+                PortCheckDP.Visibility = Visibility.Visible;
+                PortCheckDP2.Visibility = Visibility.Visible;
+                PortCheckDP3.Visibility = Visibility.Visible;
+                PortOpenDP.Visibility = Visibility.Visible;
+                PortCloseDP.Visibility = Visibility.Visible;
             }
-            else if(lblMisconfigType.Content.Equals("Proxy Server on/off"))
+            else if (lblMisconfigType.Content.Equals("Proxy Server on/off"))
             {
-                MessageBox.Show("Something else");
+                ProxyCheckDisplay();
+                ProxyDP.Visibility = Visibility.Visible;
+            }
+            else if (lblMisconfigType.Content.Equals("Firewall on/off"))
+            {
+                Firewall_CheckSet();
+                FirewallDP.Visibility = Visibility.Visible;
+                FirewallStat.Visibility = Visibility.Visible;
+            }
+            else if (lblMisconfigType.Content.Equals("ICMP on/off"))
+            {
+                ICMPCheckSet();
+                DisplayIPInfo.Visibility = Visibility.Visible;
+                ICMPDP.Visibility = Visibility.Visible;
+            }
+            else if (lblMisconfigType.Content.Equals("Updates"))
+            {
+
+            }
+            else if (lblMisconfigType.Content.Equals("Configuration Severity"))
+            {
+
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("You typed the name wrongly!");
             }
         }
         //Check Port
@@ -200,8 +221,8 @@ namespace MainPage
             //ReturnActCheck
             if (ReturnActCheck2.IsVisible || ReturnActCheck3.IsVisible)
             {
-                ReturnActCheck2.Visibility = System.Windows.Visibility.Collapsed;
-                ReturnActCheck3.Visibility = System.Windows.Visibility.Collapsed;
+                ReturnActCheck2.Visibility = Visibility.Collapsed;
+                ReturnActCheck3.Visibility = Visibility.Collapsed;
             }
             Int32.TryParse(SpecificPortRange.Text, out int x);
             if (x != 0)
@@ -372,66 +393,106 @@ namespace MainPage
             //get the open ports first
             openedPort.Clear();
             closedPort.Clear();
-            for (int r = 1; r < 50000; r++)
-            {
-                GetAvailablePort(r);
-            }
+            
            //get port number first
-           String GPN = "";
-           Int32.TryParse(PortToClose.Text, out int z);
+            String GPN = "";
+            Int32.TryParse(PortToClose.Text, out int z);
+            GetAvailablePort(z);
 
             if (z > 0)
             {
                 if (openedPort.Contains(z))
                 {
                     GPN = PortToClose.Text;
-                    String ArgsIn = "advfirewall firewall delete rule name =\"Close Port " + GPN + "\" dir=in action=block protocol=TCP localport=" + GPN;
-                    ProcessStartInfo addRule = new ProcessStartInfo
-                    {
-                        CreateNoWindow = false,
-                        UseShellExecute = false,
-                        FileName = "netsh",
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Arguments = ArgsIn,
-                        RedirectStandardOutput = true
-                    };
-                    addRule.Verb = "runas";
-                    Process proc = Process.Start(addRule);
-
+                    //run netstat
                     try
                     {
-                        StreamReader ProxyOutput = proc.StandardOutput;
-                        proc.WaitForExit(2000);
-                        string output = "";
-                        //MessageBox.Show("stream read success");
-
-                        if (proc.HasExited)
+                        String netStatArgs = "/C netstat -ao | find \""+GPN+"\"";
+                        Process netStatRun = new Process();
+                        netStatRun.StartInfo = new ProcessStartInfo()
                         {
-                            output = ProxyOutput.ReadToEnd();
-                            //MessageBox.Show("process output update sucess");
+                            UseShellExecute = false,
+                            CreateNoWindow = true,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            FileName = "cmd.exe",
+                            Arguments = netStatArgs,
+                            RedirectStandardError = true,
+                            RedirectStandardOutput = true
+                        };
+                        netStatRun.Start();
+                        String NetstatOutput = netStatRun.StandardOutput.ReadToEnd();
+                        netStatRun.WaitForExit(2000);
+                        MessageBox.Show(NetstatOutput);
+                        List<String> nsOut = NetstatOutput.Split('\n').ToList();
+                        MessageBox.Show("\"" + nsOut.FirstOrDefault() + "\"");
+                        String nsFirst = nsOut.FirstOrDefault();
+                        List<String> nsOut2 = nsFirst.Split(' ').ToList();
+                        ArrayList nsAL = new ArrayList();
+                        for (int ns = 0; ns < nsOut2.Count; ns++)
+                        {
+                            nsAL.Add(nsOut2.ElementAt(ns));
+                        }
+                        //String toDis = "";
+                        //foreach ( String dis in nsAL)
+                        //{
+                        //    toDis += "\n\""+dis+"\"";
+                        //}
+                        String getPosition6 = nsAL[6].ToString(); //the ip + port
+                        String getPosition29 = nsAL[29].ToString(); //the pid
+
+                        List<String> furtherSplit = getPosition6.Split(':').ToList();
+                        getPosition6 = furtherSplit.ElementAt(1); // just port
+                        if (getPosition6 != GPN)
+                        {
+                            MessageBox.Show("The port you are requesting to close is not open! ");
+                        }
+                        else if (getPosition6 == GPN)
+                        {
+                            //netsh advfirewall firewall add rule name = \"Close Port getPosition6\" dir =in action = block protocol = TCP localport = getPostion6
+                            String CPPArgs = "/C netsh advfirewall firewall add rule name = \"Close Port " + getPosition6 + "\" dir=in action=block protocol=TCP localport=" + getPosition6;
+                            ProcessStartInfo closePortProc = new ProcessStartInfo
+                            {
+                                CreateNoWindow = false,
+                                UseShellExecute = false,
+                                FileName = "cmd.exe",
+                                WindowStyle = ProcessWindowStyle.Normal,
+                                Arguments = "/Ninjarku D Legend:A \"cmd /K " + CPPArgs + "\"",
+                                RedirectStandardOutput = true,
+                                Verb = "runas"
+                            };
+                            Process p1 = Process.Start(closePortProc);
+                            String closePortProcOut = p1.StandardOutput.ReadToEnd();
+                            p1.WaitForExit(2000);
+                            MessageBox.Show("output: "+closePortProcOut+"\n"+"Port " + getPosition6 + " has been closed");
+
+                            String KCPArgs = "/C taskkill /PID " + getPosition29 + " /F";
+                            ProcessStartInfo KillcurrentProcess = new ProcessStartInfo
+                            {
+                                CreateNoWindow = false,
+                                UseShellExecute = false,
+                                FileName = "cmd.exe",
+                                WindowStyle = ProcessWindowStyle.Normal,
+                                Arguments = KCPArgs,
+                                RedirectStandardOutput = true,
+                                Verb = "runas"
+                            };
+                            Process p2 = Process.Start(KillcurrentProcess);
+                            String killTaskOut = p2.StandardOutput.ReadToEnd();
+                            p2.WaitForExit(2000);
+                            MessageBox.Show("output: " + closePortProcOut + "\n" + "Taskkill done on process " + getPosition29);
 
                         }
-                        ProxyOutput.Close();
-                        MessageBox.Show(output);
+                        else
+                        {
+                            MessageBox.Show("The port you are requesting to close is not open! ");
+                        }
+                        //MessageBox.Show(getPosition6+"\n"+getPosition29+"\n"+nsOut2.Count);
                     }
-                    catch (Exception pe)
+                    catch (Exception ve)
                     {
-                        MessageBox.Show("Error: " + pe.Message);
+                        Console.WriteLine(ve.StackTrace);
+                        MessageBox.Show("The port you are requesting to close is not open! ");
                     }
-                    //run netstat
-                    String netStatArgs = "-ano | find /"443/"";
-                    ProcessStartInfo netstatRun = new ProcessStartInfo
-                    {
-                        CreateNoWindow = false,
-                        UseShellExecute = false,
-                        FileName = "netstat",
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Arguments = ArgsIn,
-                        RedirectStandardOutput = true
-                    };
-                    //get values from netstat
-                    //split it up
-                    //
                 }
                 else
                 {
@@ -452,19 +513,19 @@ namespace MainPage
             if (z > 0)
             {
                 GPN = PortToOpen.Text;
-                String ArgsIn = "advfirewall firewall add rule name =\"Open Port " + GPN + "\" dir=in action=allow protocol=TCP localport=" + GPN;
+                String ArgsIn = "advfirewall firewall delete rule name =\"Close Port " + GPN + "\" protocol=TCP localport=" + GPN;
 
-                ProcessStartInfo addRule = new ProcessStartInfo
+                ProcessStartInfo reOpenPort = new ProcessStartInfo
                 {
                     CreateNoWindow = false,
                     UseShellExecute = false,
                     FileName = "netsh",
                     WindowStyle = ProcessWindowStyle.Hidden,
                     Arguments = ArgsIn,
-                    RedirectStandardOutput = true
+                    RedirectStandardOutput = true,
+                    Verb = "runas"
                 };
-                addRule.Verb = "runas";
-                Process proc = Process.Start(addRule);
+                Process proc = Process.Start(reOpenPort);
 
                 try
                 {
@@ -489,9 +550,234 @@ namespace MainPage
             }
         }
 
-
         //Check Proxy
+        private void ProxyCheckDisplay()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                CreateNoWindow = false,
+                UseShellExecute = false,
+                FileName = "netsh",
+                WindowStyle = ProcessWindowStyle.Normal,
+                Arguments = "winhttp show proxy",
+                RedirectStandardOutput = true
+            };
+            Process proc = Process.Start(startInfo);
 
-        //Check 
+            try
+            {
+                StreamReader ProxyOutput = proc.StandardOutput;
+                proc.WaitForExit(2000);
+                string output = "";
+                //MessageBox.Show("process proc sucess");
+                if (proc.HasExited)
+                {
+                    output = ProxyOutput.ReadToEnd();
+                    //MessageBox.Show("process output update sucess");
+                }
+                ProxyOutput.Close();
+                ProxyTxt.Text = output;
+                string text = File.ReadAllText("../../Resources\\Beck_Text/proxy.txt");
+                //MessageBox.Show("\""+output+"\"");
+                int stat;
+                if (output.Equals(text))
+                {
+                    //MessageBox.Show("No web proxy");
+                    stat = 0;
+                }
+                else
+                {
+                    stat = 1;
+                }
+                ImageSet(stat, StatusImage);
+                System.Windows.Forms.MessageBox.Show("output "+output);
+                ProxyTxt.Text = output;
+
+            }
+            catch (Exception pe)
+            {
+                MessageBox.Show("Error: " + pe.Message);
+            }
+        }
+        //Check Firewall
+        private void Firewall_CheckSet()
+        {
+            try
+            {
+                String FWCheckArgs = "/C netsh advfirewall show allprofiles";
+                Process FWCheck = new Process
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                        FileName = "cmd.exe",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        Arguments = FWCheckArgs,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        Verb = "runas"
+                    }
+                };
+                FWCheck.Start();
+                String FWOutput = FWCheck.StandardOutput.ReadToEnd();
+
+                FWCheck.WaitForExit(2000);
+                MessageBox.Show(FWOutput);
+
+                List<String> FWOut = FWOutput.Split('\n').ToList();
+                String FWString1 = FWOut.ElementAt(3);
+                String FWString2 = FWOut.ElementAt(20);
+                String FWString3 = FWOut.ElementAt(37);
+                MessageBox.Show("Check: " + FWString1);
+                List<String> FWOut1 = FWString1.Split(' ').ToList();
+
+                string text = File.ReadAllText("../../Resources\\Beck_Text/fw.txt");
+                List<String> stext = text.Split('\n').ToList();
+                String CompileVal = stext.ElementAt(3);
+
+                int counter = 0;
+                if (FWString1.Equals(CompileVal))
+                {
+                    //MessageBox.Show("Try 1: "+FWString1); 
+                    counter++;
+                }
+
+                if (FWString2.Equals(CompileVal))
+                {
+                    //MessageBox.Show("Try 2: " + FWString2);
+                    counter++;
+                }
+
+                if (FWString3.Equals(CompileVal))
+                {
+                    //MessageBox.Show("Try 3: " + FWString3);
+                    counter++;
+                }
+
+                if (counter == 3)
+                {
+                    FWOnOffCombo.SelectedIndex = 0;
+                }
+                else
+                {
+                    FWOnOffCombo.SelectedIndex = 1;
+                }
+                FirewallStat.Text = FWOutput;
+            }
+            catch (Exception s)
+            {
+                MessageBox.Show("Error: " + s.StackTrace);
+            }
+            
+        }
+        private void FWApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            String comboSelected = FWOnOffCombo.SelectionBoxItem.ToString();
+            if (comboSelected == "On")
+            {
+                String OnArg = "/C netsh advfirewall set allprofiles state off";
+                ProcessStartInfo FirewallChange = new ProcessStartInfo
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    FileName = "cmd.exe",
+                    WindowStyle = ProcessWindowStyle.Maximized,
+                    Arguments = OnArg,
+                    RedirectStandardOutput = true,
+                    Verb = "runas"
+                };
+                MessageBox.Show("Process Ran");
+                Process ChangeRun = Process.Start(FirewallChange);
+
+                ImageSet(1, StatusImage);
+            }
+            else if (comboSelected == "Off")
+            {
+                String OffArg = "/C netsh advfirewall set allprofiles state on";
+                ProcessStartInfo FirewallChange = new ProcessStartInfo
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    FileName = "cmd.exe",
+                    WindowStyle = ProcessWindowStyle.Maximized,
+                    Arguments = OffArg,
+                    RedirectStandardOutput = true,
+                    Verb = "runas"
+                };
+                MessageBox.Show("Process Ran");
+                Process ChangeRun = Process.Start(FirewallChange);
+
+                ImageSet(-1, StatusImage);
+
+            }
+        }
+        //Check ICMP 
+        private void ICMPCheckSet()
+        {
+            String Printable = "";
+            String strHostName = "";
+            // Get the host name of local machine.
+            strHostName = Dns.GetHostName();
+            Printable += "\nLocal Machine's Host Name: " + strHostName;
+
+            // Use host name, get the IP address list
+            IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+            IPAddress[] addr = ipEntry.AddressList;
+            String IPAdd = addr[addr.Length - 1].ToString();
+
+            Printable += "\nIP Address: " + IPAdd;
+            //ICMP checking portion
+            IPStatus iPStatus = new IPStatus();
+            Printable += "\nIP status: " + iPStatus;
+            int stat = 0;
+            if (iPStatus.ToString() == "Success")
+            {
+                //Not Ideal
+                Printable += "\nICMP Echo is on";
+                stat = 0;
+            }
+            else
+            {
+                //Ideal
+                Printable += "\nICMP Echo is off";
+                stat = 1;
+            }
+            ICMPOnOffCombo.SelectedIndex = stat;
+            DisplayIPInfo.Text = Printable;
+
+            //ICMPOn.IsChecked = true;
+            //ICMPOff.IsChecked = false;
+        }
+        private void ICMPEditApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            String ICMPVal = ICMPOnOffCombo.SelectionBoxItem.ToString();
+            MessageBox.Show(ICMPVal);
+            if (ICMPVal.Equals("On"))
+            {
+                String ICMPChangeArgs = "";
+                ProcessStartInfo ICMPChange = new ProcessStartInfo
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    FileName = "cmd.exe",
+                    WindowStyle = ProcessWindowStyle.Maximized,
+                    Arguments = ICMPChangeArgs,
+                    RedirectStandardOutput = true,
+                    Verb = "runas"
+                };
+                MessageBox.Show("Process Ran");
+                Process ChangeRun = Process.Start(ICMPChange);
+
+            }
+            //else if(ICMPVal.Equals("Off"))
+            //{
+
+            //}
+            else
+            {
+
+            }
+        }
     }
  }
