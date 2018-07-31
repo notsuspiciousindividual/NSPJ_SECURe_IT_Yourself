@@ -151,7 +151,7 @@ namespace MainPage
         }
 
 
-        public Boolean UpdateToTable(Case cName, String PrevName)
+        public Boolean UpdateToTable(String logName, String logDesc, String PrevName)
         {
             Boolean checker = false;
 
@@ -160,10 +160,10 @@ namespace MainPage
                 using (SqlConnection myConnection = new SqlConnection(connectionString))
                 {
 
-                    string query = "UPDATE Network_Log SET Log_Name = @newName, C_Description = @newDesc where C_Name = @prevName";
+                    string query = "UPDATE Network_Log SET Log_Name = @newName, Log_Desc = @newDesc where Log_Name = @prevName";
                     SqlCommand cmd = new SqlCommand(query, myConnection);
-                    cmd.Parameters.AddWithValue("@newName", cName.C_Name);
-                    cmd.Parameters.AddWithValue("@newDEsc", cName.C_Desc);
+                    cmd.Parameters.AddWithValue("@newName", logName);
+                    cmd.Parameters.AddWithValue("@newDEsc", logDesc);
                     cmd.Parameters.AddWithValue("@prevName", PrevName);
 
                     myConnection.Open();

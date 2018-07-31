@@ -111,7 +111,21 @@ namespace MainPage
 
         private void Edit_Row(object sender, RoutedEventArgs e)
         {
+            var button = sender as DependencyObject;
 
+            while ((button != null) && !(button is DataGridRow)) {
+                button = VisualTreeHelper.GetParent(button);
+            }
+
+            if (button is DataGridRow)
+            {
+                Console.WriteLine("BANANAS");
+                DataGridRow cell = button as DataGridRow;
+                TextBlock potatoe = CaseTable.Columns[0].GetCellContent(cell) as TextBlock;
+                SY_EditCase editCase = new SY_EditCase(potatoe.Text);
+                editCase.Show();
+                Close();
+            }
         }
     }
 }

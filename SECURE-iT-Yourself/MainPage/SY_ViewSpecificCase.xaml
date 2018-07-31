@@ -88,9 +88,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Width="50" Content="Details" />
-                                            <Button Width="50" Content="Remove" />
-                                            <Button Width="50" Content="Edit" />
+                                            <Button Width="50" Click="Remove_Item" Content="Remove" />
+                                            <Button Width="50" Click="Edit_Item" Content="Edit" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -105,11 +104,14 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="180" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Margin="0,0,10,0" Grid.Column="1" FontSize="25" Background="DarkSeaGreen" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Create Report</Button>
+
+                    <Button Click="Upload_Log" FontSize="25" Background="ForestGreen" Margin="10,0,0,0" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Add New Log</Button>
+                    <Button Margin="0,0,10,0" Grid.Column="2" FontSize="25" Background="DarkSeaGreen" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Create Report</Button>
                 </Grid>
                 
             </Grid>

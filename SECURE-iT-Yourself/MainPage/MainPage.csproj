@@ -96,11 +96,22 @@
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SY_EditCase.xaml.cs">
+      <DependentUpon>SY_EditCase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_NetworkLogUpload.xaml.cs">
       <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
     </Compile>
     <Compile Include="SY_NewCase.xaml.cs">
       <DependentUpon>SY_NewCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_NewLogFile.xaml.cs">
+      <DependentUpon>SY_NewLogFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_Sort_PCap.cs" />
+    <Compile Include="SY_Sort_Windows.cs" />
+    <Compile Include="SY_UpdateLog.xaml.cs">
+      <DependentUpon>SY_UpdateLog.xaml</DependentUpon>
     </Compile>
     <Compile Include="SY_ViewCases.xaml.cs">
       <DependentUpon>SY_ViewCases.xaml</DependentUpon>
@@ -127,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SY_EditCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SY_NetworkLogUpload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +159,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SY_NewCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NewLogFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_UpdateLog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

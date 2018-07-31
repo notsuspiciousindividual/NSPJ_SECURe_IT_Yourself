@@ -79,5 +79,69 @@ namespace MainPage
 
         }
 
+        private void Remove_Item(object sender, RoutedEventArgs e)
+        {
+            var button = sender as DependencyObject;
+
+            while ((button != null) && !(button is DataGridRow))
+            {
+                button = VisualTreeHelper.GetParent(button);
+            }
+
+            if (button is DataGridRow)
+            {
+                Console.WriteLine("YESH");
+                DataGridRow cell = button as DataGridRow;
+                TextBlock potatoe = LogTable.Columns[0].GetCellContent(cell) as TextBlock;
+                LogsDAO logsdb = new LogsDAO();
+                Boolean checker = logsdb.deleteLogFromTable(potatoe.Text);
+
+                if (checker)
+                {
+                    Console.WriteLine("It works!");
+                    FillDataGrid();
+                }
+                else
+                {
+                    Console.WriteLine("It does not work");
+                }
+
+
+            }
+
+        }
+
+        private void Edit_Item(object sender, RoutedEventArgs e)
+        {
+            var button = sender as DependencyObject;
+
+            while ((button != null) && !(button is DataGridRow))
+            {
+                button = VisualTreeHelper.GetParent(button);
+            }
+
+            if(button is DataGridRow)
+            {
+                Console.WriteLine("YO!");
+                DataGridRow cell = button as DataGridRow;
+                TextBlock potatoe = LogTable.Columns[0].GetCellContent(cell) as TextBlock;
+                TextBlock potatoe2 = LogTable.Columns[1].GetCellContent(cell) as TextBlock;
+                String caseName = C_Name;
+
+                SY_UpdateLog wnd = new SY_UpdateLog(potatoe.Text, potatoe2.Text, caseName);
+                wnd.Show();
+                Close();
+
+
+            }
+        }
+
+        private void Upload_Log(object sender, RoutedEventArgs e)
+        {
+            SY_NewLogFile wnd = new SY_NewLogFile(C_Name);
+            wnd.Show();
+            Close();
+
+        }
     }
 }

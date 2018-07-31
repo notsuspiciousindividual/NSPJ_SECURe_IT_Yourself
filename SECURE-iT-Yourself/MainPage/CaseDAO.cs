@@ -67,7 +67,7 @@ namespace MainPage
 
             Random rnd = new Random();
             int number = rnd.Next(1, 9999);
-            String APath = "C:\\Users\\Public]Documents\\S" + number + ".txt";
+            String APath = "C:\\Users\\Public\\Documents\\S" + number + ".txt";
 
             
             using (StreamWriter write = File.CreateText(@"C:\Users\Public\Documents\S" + number + ".txt"))
@@ -132,6 +132,55 @@ namespace MainPage
 
 
             return checker;
+
+        }
+
+        public Case getCaseFromTable(String caseName) {
+            Case potatoe = new Case();
+
+            try
+            {
+                string query = "SELECT C_Name, C_Description, C_Authors_Path FROM Cases WHERE C_Name = @CaseName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+
+                    Console.WriteLine(caseName);
+
+                    cmd.Parameters.AddWithValue("@CaseName", caseName);
+                    
+                    myConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            potatoe.C_Name = reader["C_Name"].ToString();
+                            potatoe.C_Desc = reader["C_Description"].ToString();
+                            potatoe.pathAuthors = reader["C_Authors_Path"].ToString();
+
+                        }
+                        myConnection.Close();
+
+                       
+
+                    }
+                }
+
+                using (StreamReader r = new StreamReader(potatoe.pathAuthors))
+                {
+                    string json = r.ReadToEnd();
+                    List<String> items = JsonConvert.DeserializeObject<List<String>>(json);
+                    potatoe.C_Authors = items.ToList();
+                }
+
+
+
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
+            return potatoe;
+            
 
         }
 
