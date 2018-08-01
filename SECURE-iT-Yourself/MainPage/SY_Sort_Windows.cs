@@ -26,22 +26,25 @@ namespace MainPage
         public String Path { get; set; }
 
         public SY_Sort_Windows(String file) {
-            String[] splittedLine = file.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine(file);
+            String[] splittedLine = file.Split(new char[] { ' ' });
+            
             action = splittedLine[2];
             dateSpecific = dateComplete(splittedLine[0], splittedLine[1]);
-            SRCIP = splittedLine[3];
-            DSTIP = splittedLine[4];
-            SRCPort = splittedLine[5];
-            DSTPort = splittedLine[6];
-            SizePackage = splittedLine[7];
-            TCPFlag = splittedLine[8];
-            TCPSyn = splittedLine[9];
-            TCpack = splittedLine[10];
-            TCPwin = splittedLine[11];
-            ICMPType = splittedLine[12];
-            icmpinfo = splittedLine[13];
-            info = splittedLine[14];
-            Path = splittedLine[15];
+            protocol = splittedLine[3];
+            SRCIP = splittedLine[4];
+            DSTIP = splittedLine[5];
+            SRCPort = splittedLine[6];
+            DSTPort = splittedLine[7];
+            SizePackage = splittedLine[8];
+            TCPFlag = splittedLine[9];
+            TCPSyn = splittedLine[10];
+            TCpack = splittedLine[11];
+            TCPwin = splittedLine[12];
+            ICMPType = splittedLine[13];
+            icmpinfo = splittedLine[14];
+            info = splittedLine[15];
+            Path = splittedLine[16];
 
 
         }
@@ -54,6 +57,16 @@ namespace MainPage
             return organised;
 
         }
+
+        //public List<String> getData() {
+        //    List<String> list = new List<String>();
+
+        //    list[0] =  dateSpecific.Year.ToString() + "-" + dateSpecific.Month.ToString() + "-" + dateSpecific.Day.ToString();
+        //    list[1] = dateSpecific.Hour.ToString() + ":" + dateSpecific.Minute.ToString() + ":" + dateSpecific.Second.ToString();
+        //    list[2];
+        //    list[2];
+        //    list[2];
+        //}
 
 
     }

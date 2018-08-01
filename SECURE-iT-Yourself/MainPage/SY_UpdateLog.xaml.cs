@@ -57,6 +57,10 @@ namespace MainPage
                     Boolean checker = logdb.UpdateToTable(Log_Name.Text, Log_Desc.Text, oldName);
                     if (checker)
                     {
+                        SY_TagDAO tagdb = new SY_TagDAO();
+
+                        tagdb.UpdateLogName(Log_Name.Text, oldName);
+
                         Console.WriteLine("WE DID IT!");
                         SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(caseName);
                         wnd.Show();

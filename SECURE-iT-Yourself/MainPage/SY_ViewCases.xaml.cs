@@ -94,10 +94,15 @@ namespace MainPage
                 CaseDAO Case = new CaseDAO();
                 int caseId = Case.getCaseId(potatoe.Text);
                 LogsDAO logs = new LogsDAO();
+                SY_TagDAO tagdb = new SY_TagDAO();
+                String logName = logs.getLogName(caseId);
+                Boolean checker3 = tagdb.deleteTagFile(logName);
                 Boolean checker = logs.deleteThroughIdFromTable(caseId);
                 Boolean checker2 = Case.deleteCaseFromTable(potatoe.Text);
+                
+                
 
-                if (checker && checker2) {
+                if (checker && checker2 && checker3) {
                     Console.WriteLine("WORKS");
                     FillDataGrid();
                 }

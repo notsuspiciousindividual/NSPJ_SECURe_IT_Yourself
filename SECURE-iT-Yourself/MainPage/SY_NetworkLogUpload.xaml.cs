@@ -100,27 +100,37 @@ namespace MainPage
                             {
                                 CaseDAO db = new CaseDAO();
 
+                                SY_TagDAO tagdb = new SY_TagDAO();
+
                                 Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
 
                                 Boolean checker2 = false;
 
+                                Boolean checker3 = false;
+
+                                
 
                                 if (checker)
                                 {
                                     int caseId = db.getCaseId(c_name);
                                     checker2 = logDb.addLogToTable(Log_Name.Text, Log_Desc.Text, caseId, filePath, formatBox.Text);
+                                    
                                 }
                                 
 
 
                                 if (checker2)
                                 {
+
+                                    int logId = logDb.getLogId(Log_Name.Text);
+                                    checker3 = tagdb.addTagToTable(Log_Name.Text, logId);
+
                                     Console.WriteLine("WE DID IT!");
                                     
                                     
                                     SY_CreatedSuccessCase wnd = new SY_CreatedSuccessCase();
                                     wnd.Show();
-                                    this.Close();
+                                    Close();
 
                                 }
                                 else

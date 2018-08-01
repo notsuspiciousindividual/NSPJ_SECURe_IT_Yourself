@@ -188,5 +188,130 @@ namespace MainPage
         }
 
 
+        public int getLogId(String logName)
+        {
+            int number = 0;
+
+            try
+            {
+
+                String query = "SELECT Log_ID FROM Network_Log WHERE Log_Name = @logName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@logName", logName);
+
+                    myConnection.Open();
+                    number = (int) cmd.ExecuteScalar();
+                    myConnection.Close();
+
+                }
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            return number;
+
+        }
+
+        public String getLogName(int CaseId)
+        {
+            String name = "";
+
+            try
+            {
+
+                String query = "SELECT Log_Name FROM Network_Log WHERE Case_Id = @CaseId";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@CaseId", CaseId);
+
+                    myConnection.Open();
+                    name = (String)cmd.ExecuteScalar();
+                    myConnection.Close();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            return name;
+
+        }
+
+        public String getLogFilePath(String LogName)
+        {
+            String path = "";
+
+            try
+            {
+
+                String query = "SELECT File_Path FROM Network_Log WHERE Log_Name like @logName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@logName", LogName);
+
+                    myConnection.Open();
+                    path = (String)cmd.ExecuteScalar();
+                    myConnection.Close();
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return path;
+        }
+
+        public String getLogFormat(String LogName)
+        {
+            String format = "";
+
+            try
+            {
+
+                String query = "SELECT Log_Format FROM Network_Log WHERE Log_Name = @logName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@logName", LogName);
+
+                    myConnection.Open();
+                    format = (String)cmd.ExecuteScalar();
+                    myConnection.Close();
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return format;
+        }
+
+
+
+
     }
 }

@@ -98,6 +98,9 @@ namespace MainPage
 
                 if (checker)
                 {
+                    SY_TagDAO tagdb = new SY_TagDAO();
+                    tagdb.deleteTagFile(potatoe.Text);
+
                     Console.WriteLine("It works!");
                     FillDataGrid();
                 }

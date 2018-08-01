@@ -97,7 +97,15 @@ namespace MainPage
 
                             Boolean checker = logdb.addLogToTable(Log_Name.Text, Log_Desc.Text, caseId, filePath, formatBox.Text);
 
+
+
                             if (checker) {
+
+                                int logId = logdb.getLogId(Log_Name.Text);
+
+                                SY_TagDAO tagdb = new SY_TagDAO();
+                                tagdb.addTagToTable(Log_Name.Text, logId);
+
                                 Console.WriteLine("WE DID IT!");
                                 SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(c_name);
                                 wnd.Show();
