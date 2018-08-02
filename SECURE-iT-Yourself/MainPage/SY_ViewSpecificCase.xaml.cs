@@ -72,7 +72,7 @@ namespace MainPage
                 DataGridRow cell = button as DataGridRow;
                 TextBlock potatoe = LogTable.Columns[0].GetCellContent(cell) as TextBlock;
 
-                SY_ViewSpecificTeam wnd = new SY_ViewSpecificTeam(potatoe.Text);
+                SY_ViewSpecificTeam wnd = new SY_ViewSpecificTeam(potatoe.Text, C_Name);
                 wnd.Show();
                 Close();
             }

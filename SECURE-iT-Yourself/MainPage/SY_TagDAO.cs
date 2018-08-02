@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace MainPage
         {
             Boolean checker = false;
             String path = @"C:\Users\Public\Documents\" + LogName + "_Taggings.txt";
+            File.Create(path).Dispose();
 
 
             string query = "INSERT INTO Taggings (Log_Id, FilePath, Log_Name) VALUES (@LogId, @File, @LogName)";

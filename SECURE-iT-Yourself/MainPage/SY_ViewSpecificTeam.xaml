@@ -14,7 +14,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" Background="#404A56" >
-                <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+                <Button Click="Go_Back" Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
                         <Label FontFamily="/MainPage;component/Fonts/#Apex New Light" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Foreground="White">Back</Label>
@@ -50,7 +50,7 @@
                         </Grid>
                     </StackPanel>
 
-                    <ListView Name="AnomalyList" BorderBrush="Transparent" Grid.Row="1" Background="Transparent">
+                    <ListView HorizontalContentAlignment="Stretch" Name="AnomalyList" BorderBrush="Transparent" Grid.Row="1" Background="Transparent">
                         
                     </ListView>
                     

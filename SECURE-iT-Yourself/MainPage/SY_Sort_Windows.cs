@@ -26,7 +26,6 @@ namespace MainPage
         public String Path { get; set; }
 
         public SY_Sort_Windows(String file) {
-            Console.WriteLine(file);
             String[] splittedLine = file.Split(new char[] { ' ' });
             
             action = splittedLine[2];
