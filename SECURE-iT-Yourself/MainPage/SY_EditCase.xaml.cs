@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +17,44 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for SY_EditCase.xaml
     /// </summary>
-    public partial class SY_NewCase : Window
+    public partial class SY_EditCase : Window
     {
-        public SY_NewCase()
+        private String cName = "";
+        private String OldCase = "";
+        private String path = " ";
+
+        public SY_EditCase(String caseName)
         {
+
+            this.cName = caseName;
             InitializeComponent();
+            LoadData();
         }
 
         private void Go_Back(object sender, RoutedEventArgs e)
         {
-            SY_NetworkStart wnd = new SY_NetworkStart();
+            SY_ViewCases wnd = new SY_ViewCases();
             wnd.Show();
             this.Close();
+
+        }
+
+        private void LoadData() {
+            CaseDAO casedb = new CaseDAO();
+            Case data = casedb.getCaseFromTable(cName);
+            case_name.Text = data.C_Name;
+            case_desc.Text = data.C_Desc;
+            List<String> items = data.C_Authors.ToList();
+
+            foreach (var item in items)
+            {
+                investList.Items.Add(item);
+            }
+
+            OldCase = case_name.Text;
+            path = data.pathAuthors;
 
         }
 
@@ -41,28 +66,43 @@ namespace MainPage
             {
                 if (!(String.IsNullOrEmpty(case_desc.Text)))
                 {
-                    if (!(investList.Items.Count==0))
+                    if (!(investList.Items.Count == 0))
                     {
                         CaseDAO db = new CaseDAO();
 
-                        
+
                         //Push to next page and ask for network file
                         String CName = case_name.Text;
                         String CDesc = case_desc.Text;
-                        if (db.checkIfCaseName(CName))
+                        if ((CName.Equals(OldCase)) || (db.checkIfCaseName(CName)))
                         {
-                            ArrayList aList = new ArrayList();
+                            List<String> aList = new List<String>();
                             for (int i = 0; i < investList.Items.Count; i++)
                             {
                                 ListBoxItem item = (ListBoxItem)(investList.ItemContainerGenerator.ContainerFromIndex(i));
                                 aList.Add(item.Content.ToString());
                             }
 
-                            SY_NetworkLogUpload wnd = new SY_NetworkLogUpload(CName, CDesc, aList);
+                            Case newCase = new Case(CName, CDesc, path);
+
+                            CaseDAO casedb = new CaseDAO();
+                            Boolean checker = casedb.updateToTable(newCase, OldCase);
+                            if (checker)
+                            {
+                                string json = JsonConvert.SerializeObject(aList.ToArray());
+                                System.IO.File.WriteAllText(path, json);
+                            }
+                            else {
+                                System.Console.WriteLine("GAY SHIT");
+                            }
+
+                            SY_ViewCases wnd = new SY_ViewCases();
                             wnd.Show();
                             Close();
+
                         }
-                        else {
+                        else
+                        {
                             MessageBox.Show("Case Name Has Already Existed!");
 
                         }
@@ -78,7 +118,8 @@ namespace MainPage
                     Console.WriteLine("Null or Empty");
                 }
             }
-            else {
+            else
+            {
                 Console.WriteLine("Null or Empty");
             }
 
@@ -91,10 +132,11 @@ namespace MainPage
 
             {
                 investList.Items.Add(insertName.Text);
-                
+
 
             }
-            else {
+            else
+            {
                 Console.WriteLine("Null or Empty");
 
             }
@@ -109,8 +151,10 @@ namespace MainPage
                 investList.Items.RemoveAt(investList.Items.IndexOf(investList.SelectedItem));
 
             }
-            catch (Exception a) {
-                if (a.Source != null) {
+            catch (Exception a)
+            {
+                if (a.Source != null)
+                {
                     Console.WriteLine("ERROR: ", a.Source);
 
                 }

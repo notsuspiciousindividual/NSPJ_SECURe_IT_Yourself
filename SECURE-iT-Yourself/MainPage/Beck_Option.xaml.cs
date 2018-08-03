@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,27 +17,18 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for SY_CreatedSuccessCase.xaml
+    /// Interaction logic for Beck_Option.xaml
     /// </summary>
-    public partial class SY_CreatedSuccessCase : Window
+    public partial class Beck_Option : Window
     {
-        public SY_CreatedSuccessCase()
+        public Beck_Option()
         {
             InitializeComponent();
         }
 
-        private void ToHome(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void ToForensics(object sender, RoutedEventArgs e)
-        {
-            SY_NetworkStart wnd = new SY_NetworkStart();
-
-            wnd.Show();
-
-            this.Close();
+           
         }
     }
-}
+ }

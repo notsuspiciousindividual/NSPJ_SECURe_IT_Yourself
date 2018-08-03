@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="SECURe-It-Yourself" Height="450" Width="800">
+        Title="SECURe-It-Yourself" Height="600" Width="900">
     <Grid Background="#39424D">
         <Grid>
             <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Background="#9CCAE0" Cursor="Hand" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="30">Home</Button>
+                    <Button Background="#9CCAE0" Cursor="Hand" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="30" Click="ToHome">Home</Button>
                                        
                 </Grid>
 
@@ -63,7 +63,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Background="#9CCAE0" Cursor="Hand" HorizontalContentAlignment="Center" FontSize="20">Forensic Page</Button>
+                    <Button Background="#9CCAE0"  Cursor="Hand" HorizontalContentAlignment="Center" FontSize="20" Click="ToForensics">Forensic Page</Button>
 
                 </Grid>
 

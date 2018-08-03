@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,32 +16,27 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for SY_NetworkLogUpload.xaml
+    /// Interaction logic for SY_NewLogFile.xaml
     /// </summary>
-    public partial class SY_NetworkLogUpload : Window
+    public partial class SY_NewLogFile : Window
     {
         private String c_name;
-        private String c_desc;
-        private ArrayList investList;
         private String filePath = "";
-       
 
 
-        public SY_NetworkLogUpload(String c_name, String c_desc, ArrayList investList)
+        public SY_NewLogFile(String c_name)
         {
 
             InitializeComponent();
-
             this.c_name = c_name;
-            this.c_desc = c_desc;
-            this.investList = investList;
-
             
+
+
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            SY_NewCase wnd = new SY_NewCase();
+            SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(c_name);
             wnd.Show();
             this.Close();
 
@@ -56,7 +50,7 @@ namespace MainPage
             open.InitialDirectory = @"c:\temp\";
             open.Title = "Select file to be upload";
             open.Filter = "Log Files (*.log)|*.log";
-           
+
             try
             {
 
@@ -68,7 +62,7 @@ namespace MainPage
                         filePath = path;
                         ShowPath.Text = path;
                     }
-                    
+
                 }
                 else
                 {
@@ -76,7 +70,8 @@ namespace MainPage
 
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
 
             }
@@ -84,9 +79,11 @@ namespace MainPage
 
         }
 
-        private void validation_button(object sender, RoutedEventArgs e) {
+        private void validation_button(object sender, RoutedEventArgs e)
+        {
+            LogsDAO logdb = new LogsDAO();
             //Validation
-            if (!(String.IsNullOrEmpty(Log_Name.Text)))
+            if (!(String.IsNullOrEmpty(Log_Name.Text)) && (logdb.checkIfLogs(Log_Name.Text)))
             {
                 if (!(String.IsNullOrEmpty(Log_Desc.Text)))
                 {
@@ -94,57 +91,36 @@ namespace MainPage
                     {
                         if (formatBox.SelectedIndex > -1 && formatBox.SelectedIndex == 0)
                         {
-                            LogsDAO logDb = new LogsDAO();
+                            CaseDAO casedb = new CaseDAO();
+                            int caseId = casedb.getCaseId(c_name);
+                            
 
-                            if (logDb.checkIfLogs(Log_Name.Text))
-                            {
-                                CaseDAO db = new CaseDAO();
+                            Boolean checker = logdb.addLogToTable(Log_Name.Text, Log_Desc.Text, caseId, filePath, formatBox.Text);
+
+
+
+                            if (checker) {
+
+                                int logId = logdb.getLogId(Log_Name.Text);
 
                                 SY_TagDAO tagdb = new SY_TagDAO();
+                                tagdb.addTagToTable(Log_Name.Text, logId);
 
-                                Boolean checker = db.addCaseToTable(c_name, c_desc, investList);
-
-                                Boolean checker2 = false;
-
-                                Boolean checker3 = false;
-
-                                
-
-                                if (checker)
-                                {
-                                    int caseId = db.getCaseId(c_name);
-                                    checker2 = logDb.addLogToTable(Log_Name.Text, Log_Desc.Text, caseId, filePath, formatBox.Text);
-                                    
-                                }
-                                
-
-
-                                if (checker2)
-                                {
-
-                                    int logId = logDb.getLogId(Log_Name.Text);
-                                    checker3 = tagdb.addTagToTable(Log_Name.Text, logId);
-
-                                    Console.WriteLine("WE DID IT!");
-                                    
-                                    
-                                    SY_CreatedSuccessCase wnd = new SY_CreatedSuccessCase();
-                                    wnd.Show();
-                                    Close();
-
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Its not there");
-                                }
+                                Console.WriteLine("WE DID IT!");
+                                SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(c_name);
+                                wnd.Show();
+                                Close();
                             }
+
+
+
                         }
                         else
                         {
                             MessageBox.Show("Please select a file format");
                         }
-                        
-                        
+
+
 
                     }
                     else
@@ -163,7 +139,5 @@ namespace MainPage
             }
 
         }
-
-
     }
 }
