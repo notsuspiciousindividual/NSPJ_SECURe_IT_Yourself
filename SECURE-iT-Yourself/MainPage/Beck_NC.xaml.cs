@@ -35,8 +35,9 @@ namespace MainPage
         {
             InitializeComponent();
 
-            
-            
+            RunCheck();
+            //run_cmd();
+
             //image set
             int stat = -1;
             ImageSet(stat, CurrentOverallStatImg);
@@ -191,72 +192,72 @@ namespace MainPage
                 DescRow6.Visibility = System.Windows.Visibility.Visible;
             }
         }
-        private void DescRowBtn7_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow7.IsVisible == true)
-            {
-                DescRow7.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow7.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-        private void DescRowBtn8_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow8.IsVisible == true)
-            {
-                DescRow8.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow8.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-        private void DescRowBtn9_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow9.IsVisible == true)
-            {
-                DescRow9.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow9.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-        private void DescRowBtn10_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow10.IsVisible == true)
-            {
-                DescRow10.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow10.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-        private void DescRowBtn11_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow11.IsVisible == true)
-            {
-                DescRow11.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow11.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-        private void DescRowBtn12_Click(object sender, RoutedEventArgs e)
-        {
-            if (DescRow12.IsVisible == true)
-            {
-                DescRow12.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                DescRow12.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
+        //private void DescRowBtn7_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow7.IsVisible == true)
+        //    {
+        //        DescRow7.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow7.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
+        //private void DescRowBtn8_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow8.IsVisible == true)
+        //    {
+        //        DescRow8.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow8.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
+        //private void DescRowBtn9_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow9.IsVisible == true)
+        //    {
+        //        DescRow9.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow9.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
+        //private void DescRowBtn10_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow10.IsVisible == true)
+        //    {
+        //        DescRow10.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow10.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
+        //private void DescRowBtn11_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow11.IsVisible == true)
+        //    {
+        //        DescRow11.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow11.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
+        //private void DescRowBtn12_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (DescRow12.IsVisible == true)
+        //    {
+        //        DescRow12.Visibility = System.Windows.Visibility.Collapsed;
+        //    }
+        //    else
+        //    {
+        //        DescRow12.Visibility = System.Windows.Visibility.Visible;
+        //    }
+        //}
         //For Respective buttons to configure
         private void StatsRow1_Click(object sender, RoutedEventArgs e)
         {
@@ -323,57 +324,57 @@ namespace MainPage
 
             this.Close();
         }
-        private void StatsRow7_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow7.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //private void StatsRow7_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow7.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
-        private void StatsRow8_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow8.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //    this.Close();
+        //}
+        //private void StatsRow8_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow8.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
-        private void StatsRow9_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow9.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //    this.Close();
+        //}
+        //private void StatsRow9_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow9.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
-        private void StatsRow10_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow10.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //    this.Close();
+        //}
+        //private void StatsRow10_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow10.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
-        private void StatsRow11_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow11.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //    this.Close();
+        //}
+        //private void StatsRow11_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow11.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
-        private void StatsRow12_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Showing " + ConfigRow12.Text.ToString());
-            Beck_Option wnd = new Beck_Option();
-            wnd.Show();
+        //    this.Close();
+        //}
+        //private void StatsRow12_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("Showing " + ConfigRow12.Text.ToString());
+        //    Beck_Option wnd = new Beck_Option();
+        //    wnd.Show();
 
-            this.Close();
-        }
+        //    this.Close();
+        //}
       
 
-        private void Initials()
+        private void RunCheck()
         {
             //Port Check Run
             PortscanTrigger();
@@ -747,9 +748,27 @@ namespace MainPage
         //            }
         //        }
         //    }
-         
+
         /*Severity Check*/
-        
+        //public string run_cmd(string cmd, string args)
+        //{
+        //    ProcessStartInfo start = new ProcessStartInfo();
+        //    start.FileName = "PATH_TO_PYTHON_EXE";
+        //    start.Arguments = string.Format("\"{0}\" \"{1}\"", cmd, args);
+        //    start.UseShellExecute = false;// Do not use OS shell
+        //    start.CreateNoWindow = true; // We don't need new window
+        //    start.RedirectStandardOutput = true;// Any output, generated by application will be redirected back
+        //    start.RedirectStandardError = true; // Any error in standard output will be redirected back (for example exceptions)
+        //    using (Process process = Process.Start(start))
+        //    {
+        //        using (StreamReader reader = process.StandardOutput)
+        //        {
+        //            string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script
+        //            string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
+        //            return result;
+        //        }
+        //    }
+        //}
 
     }
 }
