@@ -324,6 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Log_Files\" />
+    <Folder Include="SY_ML\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
