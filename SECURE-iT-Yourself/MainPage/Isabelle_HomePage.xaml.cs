@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Isabelle_HomePage.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Isabelle_HomePage : Window
     {
-        public Login()
+        public Isabelle_HomePage()
         {
             InitializeComponent();
         }

@@ -1,0 +1,32 @@
+﻿<Window x:Class="MainPage.Isabelle_HomePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainPage"
+        mc:Ignorable="d"
+        Title="Isabelle_HomePage" Height="600" Width="900">
+
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Images/pineapple.jpg" Opacity="0.7"  />
+    </Window.Background>
+
+    <Grid>
+
+        <Image HorizontalAlignment="Left" Height="142" Margin="577,46,0,0" VerticalAlignment="Top" Width="149" Source="Images/data.png" Opacity="0.7"/>
+        <Image HorizontalAlignment="Left" Height="142" Margin="186,46,0,0" VerticalAlignment="Top" Width="149" Source="Images/configuration.png"/>
+
+        <Image HorizontalAlignment="Left" Height="119" Margin="186,306,0,0" VerticalAlignment="Top" Width="141" Source="Images/network.png"/>
+        <Image HorizontalAlignment="Left" Height="140" Margin="577,306,0,0" VerticalAlignment="Top" Width="135" Source="Images/Dashboard.png" Opacity="0.7"/>
+        <Button Content="Network Configuration" HorizontalAlignment="Left" Margin="186,213,0,0" VerticalAlignment="Top" Width="149" Height="33"/>
+        <Button Content="Hashes Data" HorizontalAlignment="Left" Margin="577,214,0,0" VerticalAlignment="Top" Width="149" Height="33"/>
+        <Button Content="Dashboard" HorizontalAlignment="Left" Margin="577,461,0,0" VerticalAlignment="Top" Width="149" Height="33"/>
+        <Button Content="Network Forensics" HorizontalAlignment="Left" Margin="178,461,0,0" VerticalAlignment="Top" Width="149" Height="33"/>
+
+
+
+
+
+
+    </Grid>
+</Window>
