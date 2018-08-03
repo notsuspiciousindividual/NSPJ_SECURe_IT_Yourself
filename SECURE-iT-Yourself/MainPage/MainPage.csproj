@@ -125,6 +125,7 @@
     </Compile>
     <Page Include="Isabelle_HomePage.xaml">
       <SubType>Designer</SubType>
+    </Page>
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,7 +153,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Isabelle_Welcome".xaml>
+    <Page Include="Isabelle_Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
