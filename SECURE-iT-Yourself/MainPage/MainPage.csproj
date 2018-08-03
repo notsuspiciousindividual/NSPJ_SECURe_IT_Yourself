@@ -75,6 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Beck_NC.xaml.cs">
+      <DependentUpon>Beck_NC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Beck_Option.xaml.cs">
+      <DependentUpon>Beck_Option.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_AddTagReport.xaml.cs">
+      <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Isabelle_DatabaseDataSet1.cs">
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </Compile>
@@ -105,7 +114,21 @@
     <Compile Include="SY_NewCase.xaml.cs">
       <DependentUpon>SY_NewCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SY_ViewCases.xaml.cs">
+      <DependentUpon>SY_ViewCases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_ViewSpecificCase.xaml.cs">
+      <DependentUpon>SY_ViewSpecificCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_ViewSpecificTeam.xaml.cs">
+      <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
+    </Compile>
     <Page Include="Isabelle_HomePage.xaml">
+      <SubType>Designer</SubType>
+    <Page Include="Beck_NC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Beck_Option.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,11 +144,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Isabelle_Welcome.xaml">
+    <Page Include="SY_CreatedSuccessCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SY_CreatedSuccessCase.xaml">
+    <Page Include="SY_AddTagReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Isabelle_Welcome".xaml>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +173,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SY_NewCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_ViewCases.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_ViewSpecificCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_ViewSpecificTeam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +222,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Fonts\RenaultBQ-Light.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -217,23 +257,16 @@
     <Resource Include="Images\warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logout-512.png" />
+    <Resource Include="Resources\Beck_Images\Switch.png" />
+    <Resource Include="Resources\Beck_Images\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\updates-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\newspaper.png" />
-    <Resource Include="Images\data.png" />
-    <Resource Include="Images\network.png" />
-    <Resource Include="Images\configuration.png" />
-    <Resource Include="Images\dashboard.png" />
-    <Content Include="Isabelle_Database.mdf">
+    <Content Include="LocalDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Isabelle_Database_log.ldf">
+    <Content Include="LocalDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Isabelle_Database.mdf</DependentUpon>
+      <DependentUpon>LocalDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

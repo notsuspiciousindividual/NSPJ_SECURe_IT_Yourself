@@ -1,0 +1,68 @@
+﻿<Window x:Class="MainPage.SY_ViewSpecificTeam"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainPage"
+        mc:Ignorable="d"
+        Title="SY_ViewSpecificTeam" Height="600" Width="900">
+    <Grid Background="#39424D">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Background="#404A56" >
+                <Button Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Foreground="White">Back</Label>
+                    </StackPanel>
+                </Button>
+                <Rectangle Width="110"></Rectangle>
+                <Label FontSize="20" Foreground="White" >Case Name</Label>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Background="#39424D">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Background="#25315D">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <Label HorizontalContentAlignment="Center" Foreground="White" FontSize="30" >Anormalies Detected</Label>
+                        <Grid Height="50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button VerticalContentAlignment="Center" Background="YellowGreen" Width="150" FontSize="20">Scan</Button>
+                            <Button Grid.Column="1" Width="150" FontSize="20" Background="DarkRed">Tag Anormaly</Button>
+                        </Grid>
+                    </StackPanel>
+
+                    <ListView BorderBrush="Transparent" Grid.Row="1" Background="Transparent">
+                        
+                    </ListView>
+                    
+                </Grid>
+
+                <GridSplitter Background="Gray" Cursor="Hand" Grid.Column="1" HorizontalAlignment="Center"></GridSplitter>
+
+                <ListView BorderBrush="Transparent" Background="Transparent" Grid.Column="2">
+                    
+                </ListView>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

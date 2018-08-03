@@ -10,28 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for SY_NetworkStart.xaml
+    /// Interaction logic for YH_p1.xaml
     /// </summary>
-    public partial class SY_NetworkStart : Window
+    public partial class YH_p1 : Window
     {
-        public SY_NetworkStart()
+        public YH_p1()
         {
             InitializeComponent();
-        }
-
-
-        private void New_Case_Network(object sender, RoutedEventArgs e)
-        {
-
-            SY_NewCase wnd = new SY_NewCase();
-            wnd.Show();
-            this.Close();
         }
     }
 }
