@@ -181,14 +181,15 @@ namespace MainPage
                 //Beck_Content.Children.Add(PortCheckDP);
                 //Beck_Content.Children.Add(PortCheckDP2);
                 Netstat_Set();
-                NetStatBox.Visibility = Visibility.Visible;
-                PortCheckDP.Visibility = Visibility.Visible;
-                PortCheckDP2.Visibility = Visibility.Visible;
-                PortCheckDP3.Visibility = Visibility.Visible;
-                PortOpenDP.Visibility = Visibility.Visible;
-                PortCloseDP.Visibility = Visibility.Visible;
-                ProcessKillDP.Visibility = Visibility.Visible;
-                NetworkResetDP.Visibility = Visibility.Visible;
+                NetStatBoxDP.Visibility = Visibility.Visible;
+                ScanShowHide.Visibility = Visibility.Visible;
+                PortEdits.Visibility = Visibility.Visible;
+
+
+                //NetStatBox.Visibility = Visibility.Visible;
+                //NetStatBoxBtn.Visibility = Visibility.Visible;
+
+
             }
             else if (lblMisconfigType.Content.Equals("Proxy Server on/off"))
             {
@@ -270,6 +271,50 @@ namespace MainPage
                         MessageBox.Show("Error: "+ve.StackTrace);
                     }
         }
+        private void ScanShowHide_Click(object sender, RoutedEventArgs e)
+        {
+            if (ScanShowHide.Content.Equals("Perform Port Scan ▼"))
+            {
+                ScanShowHide.Content = "Hide Port Scan ▲";
+                PortCheckDP.Visibility = Visibility.Visible;
+                PortCheckDP2.Visibility = Visibility.Visible;
+                PortCheckDP3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ScanShowHide.Content = "Perform Port Scan ▼";
+                PortCheckDP.Visibility = Visibility.Collapsed;
+                ReturnActCheck.Visibility = Visibility.Collapsed;
+                PortCheckDP2.Visibility = Visibility.Collapsed;
+                ReturnActCheck2.Visibility = Visibility.Collapsed;
+                PortCheckDP3.Visibility = Visibility.Collapsed;
+                ReturnActCheck3.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void PortEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (PortEdits.Content.Equals("Perform Port Edit ▼"))
+            {
+                PortEdits.Content = "Hide Port Edit ▲";
+                PortCloseDP.Visibility = Visibility.Visible;
+                ProcessKillDP.Visibility = Visibility.Visible;
+                PortOpenDP.Visibility = Visibility.Visible;
+                NetworkResetDP.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PortEdits.Content = "Perform Port Edit ▼";
+                PortCloseDP.Visibility = Visibility.Collapsed;
+                ProcessKillDP.Visibility = Visibility.Collapsed;
+                PortOpenDP.Visibility = Visibility.Collapsed;
+                NetworkResetDP.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void DisplayNSMB(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Netstat Information: " + NetStatBox.Text);
+
+        }
         private void Check_Click(object sender, RoutedEventArgs e)
         {
             //ReturnActCheck
@@ -302,6 +347,7 @@ namespace MainPage
                 }
                 ReturnActCheck.Text = "(Note, the larger your range, the longer the time taken to check)" + "\nOpened Ports: \n" + Opened /*+ "\nClosed Ports: \n" + Closed*/;
                 ReturnActCheck.Visibility = Visibility.Visible;
+                Scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             }
             else
             {
@@ -332,7 +378,7 @@ namespace MainPage
             {
                 MessageBox.Show("The value you have entered is not an integer!");
             }
-            ReturnActCheck2.Visibility = System.Windows.Visibility.Visible;
+            ReturnActCheck2.Visibility = Visibility.Visible;
 
         }
         private void Check_Click3(object sender, RoutedEventArgs e)
@@ -363,12 +409,12 @@ namespace MainPage
                     }
                     ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal
                         ;
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ReturnActCheck3.Text = "There are no ports opened in within the range you have specified";
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
             }
             else if (y > x)
@@ -386,19 +432,18 @@ namespace MainPage
                     {
                         portOpenVal += " " + openedPort[loop];
                     }
-                    ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal
-                        ;
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ReturnActCheck3.Text = "There are no ports opened in within the range you have specified";
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
             }
             else if (x <= 0 || y <= 0)
             {
-                MessageBox.Show("Your ports cannot be negative!");
+                MessageBox.Show("Your ports cannot be negative or empty!");
             }
             else
             {
@@ -498,7 +543,7 @@ namespace MainPage
                     MessageBox.Show("output: " + closePortProcOut + "\n" + "Port " + GPN + " has been closed");
 
 
-                    NSScrollViewer.Visibility = Visibility.Visible;
+                    //NSScrollViewer.Visibility = Visibility.Visible;
                     //NetstatStatus.Text = NetstatOutput;                    
                 }
                 else
@@ -641,6 +686,7 @@ namespace MainPage
                 MessageBox.Show("Error: "+ve.StackTrace);
             }
         }
+       
         //Check Proxy
         private void ProxyCheckDisplay()
         {
@@ -681,7 +727,7 @@ namespace MainPage
                     stat = 1;
                 }
                 ImageSet(stat, StatusImage);
-                System.Windows.Forms.MessageBox.Show("output "+output);
+                //MessageBox.Show("output "+output);
                 ProxyTxt.Text = output;
 
             }
@@ -876,7 +922,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun1 = Process.Start(ICMPRemove1);
 
                 String ICMPRemoveArgs2 = "/C netsh advfirewall firewall delete rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any";
@@ -890,7 +936,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun2 = Process.Start(ICMPRemove2);
 
                 String ICMPAddArgs1 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V6 echo request\" protocol=icmpv6:8,any dir=in action=allow enable=yes";
@@ -904,7 +950,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun3 = Process.Start(ICMPAdd1);
 
                 String ICMPAddArgs2 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any dir=in action=allow enable=yes";
@@ -918,7 +964,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                MessageBox.Show("Sucessfully On ICMP Echo");
                 Process ChangeRun4 = Process.Start(ICMPAdd2);
             }
             else if (ICMPVal.Equals("Off"))
@@ -934,7 +980,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun1 = Process.Start(ICMPRemove1);
 
                 String ICMPRemoveArgs2 = "/C netsh advfirewall firewall delete rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any";
@@ -948,7 +994,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun2 = Process.Start(ICMPRemove2);
 
                 String ICMPAddArgs1 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V6 echo request\" protocol=icmpv6:8,any dir=in action=block enable=yes";
@@ -962,7 +1008,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun3 = Process.Start(ICMPAdd1);
 
                 String ICMPAddArgs2 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any dir=in action=block enable=yes";
@@ -976,7 +1022,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                MessageBox.Show("Sucessfully Off ICMP Echo");
                 Process ChangeRun4 = Process.Start(ICMPAdd2);
             }
             else
@@ -987,10 +1033,11 @@ namespace MainPage
         //Check Vulnerabilities
         private void VulnerabilitiyCheck()
         {
-            NessusClient.NessusConnection NessusC;
-            
+
+                       
+
         }
 
-      
+        
     }
  }

@@ -130,17 +130,25 @@ namespace MainPage
         {
             if (DescRow1.IsVisible == true)
             {
-                DescRow1.Visibility = System.Windows.Visibility.Collapsed;
+                DescRow1.Text = "Performs port scanning, and determine which " +
+                    "ports to close aswell as the process to kill if there is a need. " +
+                    "Attackers may exploit vulnerabilities of various open ports " +
+                    "to listen on your host or insert their own scripts via.";
+                DescRow1.Visibility = Visibility.Collapsed;
             }
             else
             {
-                DescRow1.Visibility = System.Windows.Visibility.Visible;
+                DescRow1.Visibility = Visibility.Visible;
             }
         }
         private void DescRowBtn2_Click(object sender, RoutedEventArgs e)
         {
             if (DescRow2.IsVisible == true)
             {
+                DescRow2.Text = "Proxy Status to show if your machine is using a proxy or not. " +
+                    "Proxy Servers are good for prevent direct connections from external " +
+                    "machines to your local machine or server. " +
+                    "This is excluded from the overall severity status";
                 DescRow2.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
@@ -152,6 +160,9 @@ namespace MainPage
         {
             if (DescRow3.IsVisible == true)
             {
+                DescRow3.Text = "Firewall is an important part of defending your Machine's security," +
+                    " it filters out malicious packets and prevents the machine from various secuirty " +
+                    "incidents, if configured correctly.";
                 DescRow3.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
@@ -163,6 +174,7 @@ namespace MainPage
         {
             if (DescRow4.IsVisible == true)
             {
+                DescRow4.Text = "";
                 DescRow4.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
@@ -192,6 +204,7 @@ namespace MainPage
                 DescRow6.Visibility = System.Windows.Visibility.Visible;
             }
         }
+
         //private void DescRowBtn7_Click(object sender, RoutedEventArgs e)
         //{
         //    if (DescRow7.IsVisible == true)
@@ -258,6 +271,7 @@ namespace MainPage
         //        DescRow12.Visibility = System.Windows.Visibility.Visible;
         //    }
         //}
+
         //For Respective buttons to configure
         private void StatsRow1_Click(object sender, RoutedEventArgs e)
         {
@@ -269,7 +283,6 @@ namespace MainPage
             
             wnd.Transfer(ConfigRow1.Text.ToString(), stat);
             wnd.Show();
-
             
             this.Close();
         }
@@ -505,8 +518,8 @@ namespace MainPage
         private void FirewallCheck()
         {
             //To reference to windows firewall scripting
-            Type NetFwMgrType = Type.GetTypeFromProgID("HNetCfg.FwMgr", false);
-            INetFwMgr mgr = (INetFwMgr)Activator.CreateInstance(NetFwMgrType);
+            Type FwMgrType = Type.GetTypeFromProgID("HNetCfg.FwMgr", false);
+            INetFwMgr mgr = (INetFwMgr)Activator.CreateInstance(FwMgrType);
 
             //Checking part
             bool Firewallenabled = mgr.LocalPolicy.CurrentProfile.FirewallEnabled;
@@ -520,7 +533,7 @@ namespace MainPage
                 storedStatFirewall = -1;
             }
             ImageSet(storedStatFirewall, FireWallImg);
-            MessageBox.Show("FW Status: " + Firewallenabled);
+            //MessageBox.Show("FW Status: " + Firewallenabled);
             //try
             //{
             //    String FWCheckArgs = "/C netsh advfirewall show allprofiles";
