@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
         Title="Need Administrator Name and Password" Height="190.916" Width="333.333">
+    
     <Grid Background="Green">
         <Label Content="Username: " Height="30" Margin="60,33,201.667,98.333"/>
         <TextBox x:Name="UsernameInput" Margin="130,34,61.667,102.333"/>

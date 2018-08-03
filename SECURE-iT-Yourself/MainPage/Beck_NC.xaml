@@ -25,8 +25,8 @@
                     </DockPanel>
                     <!--Rest of the table-->
                     <DockPanel>
-                        <ScrollViewer HorizontalAlignment="Right" Height="341" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
-                            <StackPanel>
+                        <ScrollViewer HorizontalAlignment="Right" MinHeight="341" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
+                            <StackPanel MinHeight="20">
                                 <!--Row 1: Port checking-->
                                 <DockPanel Name="Row1" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,10,0,0" Width="223">
@@ -112,7 +112,7 @@
                                     </Grid>
                                 </DockPanel>
                                 <!--Dont config below first-->
-                                <DockPanel Name="Row7" MinHeight="60" Margin="0,0,0.333,0">
+                                <!--<DockPanel Name="Row7" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
                                         <TextBlock Name="ConfigRow7" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="stuff" Width="223" />
                                     </StackPanel>
@@ -171,7 +171,7 @@
                                         <TextBlock Name="DescRow12" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" MaxWidth="243" Visibility="Collapsed" />
                                     </StackPanel>
                                     <Button x:Name="StatsRow12" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow12_Click"/>
-                                </DockPanel>
+                                </DockPanel>-->
                             </StackPanel>
                         </ScrollViewer>
                     </DockPanel>

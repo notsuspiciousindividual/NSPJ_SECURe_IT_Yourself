@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title="Beck_Option1" Height="600" Width="900">
+        Title="Beck_Option" Height="600" Width="900">
 
-
-    <StackPanel Background="#39424D">
+    <StackPanel Background="#39424D" Width="891">
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
             <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
                 <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="Button_Click" />
@@ -25,86 +24,99 @@
             </DockPanel>
         </Border>
         <StackPanel Height="393" Name="Option_EditPanel" Background="white" Margin="119,20,119.333,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
-            <Grid Height="143" Margin="0,0,0.333,0">
+            <Grid Height="140" Margin="0,0,0.333,0">
                 <Label x:Name="lblStatus" Content="Status: " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" MinWidth="80" FontFamily="Apex New Medium Italic" FontSize="20"/>
                 <Image x:Name="StatusImage" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="311,10,0,0"/>
             </Grid>
-
             <Border BorderBrush="Black" BorderThickness="1" Height="1" Margin="0,0,0.333,0"/>
-            <!--<ScrollViewer x:Name="Scroller" HorizontalAlignment="Right" Height="240" Margin="0,0,-0.333,0" Grid.Row="1" VerticalAlignment="Top" Width="655">-->
-            <StackPanel Name="Beck_Content" Height="240">
-                <!--Port Check-->
-                <DockPanel Name="PortCheckDP" Visibility="Collapsed">
-                    <Label Content="Scan from port 1 ~ " Margin="60, 0, 0, 0" />
-                    <TextBox Text="" Width="60" Name="SpecificPortRange" IsReadOnly="false" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99,0" />
-                    <Button Content="Check" Name="ActivateCheck" Margin="0, 0, 20, 0" Click="Check_Click"/>
-                </DockPanel>
-                <ScrollViewer Name="ReturnActCheckScroller" Visibility="Collapsed">
-                    <TextBlock Name="ReturnActCheck" Text="" Visibility="Collapsed" MinHeight="60" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
-                </ScrollViewer>
-                <DockPanel Name="PortCheckDP2" Visibility="Collapsed">
-                    <Label Content="Scan Specific Port:  " Margin="60, 0, 0, 0"/>
-                    <TextBox Text="" Width="60" Name="SpecificPort" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99.5,0"/>
-                    <Button Content="Check" Name="ActivateCheck2" Click="Check_Click2" Margin="0, 0, 20, 0"/>
-                </DockPanel>
-                <TextBlock Name="ReturnActCheck2" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
-                <DockPanel Name="PortCheckDP3" Visibility="Collapsed">
-                    <Label Content="Scan Ports from" Margin="60, 0, 0, 0"/>
-                    <TextBox Text="" Width="60" Name="PortStart" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="103,0,0,0"/>
-                    <Label Content=" ~ " Margin="0, 0, 0, 0"/>
-                    <TextBox Text="" Width="60" Name="PortEnd" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="0, 0, 14.5, 0"/>
-                    <Button Content="Check" Name="ActivateCheck3" Click="Check_Click3" Margin="0, 0, 20, 0"/>
-                </DockPanel>
-                <TextBlock Name="ReturnActCheck3" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
-                <DockPanel Name="PortCloseDP" Visibility="Collapsed">
-                    <Label Content="Close Port" Margin="60, 0, 0, 0"/>
-                    <TextBox Text="" Width="60" Name="PortToClose" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="132.5,0,99.5,0"/>
-                    <Button Content="Confirm" Name="ActivateClose" Click="ClosePortRule_Click" Margin="0, 0, 20, 0"/>
-                </DockPanel>
-                <DockPanel Name="PortOpenDP" Visibility="Collapsed">
-                    <Label Content="Open Ports you previously closed" Margin="60,0,0,0"></Label>
-                    <TextBox Text="" Width="60" Name="PortToOpen" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="10,0,99.5,0"/>
-                    <Button Content="Confirm" Name="ActivateOpen" Click="OpenPortRule_Click" Margin="0, 0, 20, 0"/>
-                </DockPanel>
-                <!--Proxy Check-->
-                <DockPanel Name="ProxyDP" Visibility="Collapsed">
-                    <Label Content="Proxy server service: " Margin="60,0,0,0"></Label>
-                    <TextBox Text="" Width="213" Name="ProxyTxt" IsReadOnly="True" VerticalAlignment="Center" MaxLength="5" Margin="10,0" MinHeight="13" TextWrapping="WrapWithOverflow"/>
-                </DockPanel>
-                <!--Firewall Check-->
-                <DockPanel Name="FirewallDP" Visibility="Collapsed" Margin="0,0,0,10">
-                    <Label Content="Firewall On/Off: " Margin="60,0,0,0"></Label>
-                    <ComboBox x:Name="FWOnOffCombo" Visibility="Visible" Margin="100,10,0,10" Width="50">
-                        <ComboBoxItem>On</ComboBoxItem>
-                        <ComboBoxItem>Off</ComboBoxItem>
-                    </ComboBox>
-                    <Button x:Name="FWApplyBtn" Width="96" Margin="20,5,0,0" Content="Apply" Click="FWApplyBtn_Click"></Button>
-                </DockPanel>
-                <ScrollViewer x:Name="ScrollFW" HorizontalAlignment="Right" Height="240" Margin="0,0,-0.333,0" Grid.Row="1" VerticalAlignment="Top" Width="655">
-                    <TextBox Text="" Width="522" Name="FirewallStat" VerticalAlignment="Center" MaxLength="5" Margin="10,0" MinHeight="13" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                </ScrollViewer>
-                <!--ICMP Check-->
-                <TextBlock Name="DisplayIPInfo" IsEnabled="False" Width="487" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"/>
-                <DockPanel Name="ICMPDP" Visibility="Collapsed" Margin="10,0,10,10">
-                    <Label Content="ICMP Echo of/off: " Margin="60,0,0,10"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
-                    <StackPanel>
-                        <DockPanel MinHeight="20" Margin="10,0,0,10">
-                        <DockPanel>
-                            <ComboBox x:Name="ICMPOnOffCombo" Visibility="Visible" Margin="100,10,0,10" Width="50">
-                                <ComboBoxItem>On</ComboBoxItem>
-                                <ComboBoxItem>Off</ComboBoxItem>
-                            </ComboBox>
-                        </DockPanel>
-                            <Button x:Name="ICMPEditApplyBtn" Width="96" Margin="20,5,0,0" Content="Apply" Click="ICMPEditApplyBtn_Click"></Button>
-                        </DockPanel>
-                        <TextBox Text="" Width="450" Name="ICMPTxt" IsReadOnly="True" VerticalAlignment="Center" MaxLength="5" Margin="0,0" MinHeight="13" TextWrapping="WrapWithOverflow" Visibility="Collapsed"/>
-                    </StackPanel>
-                </DockPanel>
-                <!--Update Check-->
-                    
-                <!--Vunerability Scanner-->
-            </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="1" Height="19" Margin="-9,0,-6.333,0" RenderTransformOrigin="0.5,0.5">
+            <!--<ScrollViewer x:Name="Scroller" IsEnabled="True" Margin="0,0,-0.333,0">-->
+                <StackPanel x:Name="Beck_Content" Height="240" Width="655" CanVerticallyScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                   
+                    <!--Port Check-->
+                        <TextBox x:Name="NetStatBox" Text="" Height="40" IsReadOnly="True" Width="596" Visibility="Collapsed" VerticalScrollBarVisibility="Auto"/>
+                    <DockPanel x:Name="PortCheckDP" Visibility="Collapsed">
+                        <Label Content="Scan from port 1 ~ " Margin="60, 0, 0, 0" />
+                        <TextBox Text="" Width="60" x:Name="SpecificPortRange" IsReadOnly="false" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99,0" />
+                        <Button Content="Check" x:Name="ActivateCheck" Margin="0, 0, 20, 0" Click="Check_Click"/>
+                    </DockPanel>
+                        <TextBlock x:Name="ReturnActCheck" Text="" Visibility="Collapsed" MinHeight="60" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel x:Name="PortCheckDP2" Visibility="Collapsed">
+                        <Label Content="Scan Specific Port:  " Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" x:Name="SpecificPort" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99.5,0"/>
+                        <Button Content="Check" x:Name="ActivateCheck2" Click="Check_Click2" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <TextBlock x:Name="ReturnActCheck2" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel x:Name="PortCheckDP3" Visibility="Collapsed">
+                        <Label Content="Scan Ports from" Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" x:Name="PortStart" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="103,0,0,0"/>
+                        <Label Content=" ~ " Margin="0, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" x:Name="PortEnd" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="0, 0, 14.5, 0"/>
+                        <Button Content="Check" x:Name="ActivateCheck3" Click="Check_Click3" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <TextBlock x:Name="ReturnActCheck3" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <DockPanel x:Name="PortCloseDP" Visibility="Collapsed">
+                        <Label Content="Close Port" Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" x:Name="PortToClose" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="132.5,0,99.5,0"/>
+                        <Button Content="Confirm" x:Name="ActivateClose" Click="ClosePortRule_Click" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <ScrollViewer x:Name="NSScrollViewer" Visibility="Collapsed" MinHeight="50">
+                        <TextBox x:Name="NetstatStatus"  Text="" IsReadOnly="True"/>
+                    </ScrollViewer>
+                    <DockPanel x:Name="ProcessKillDP" Visibility="Collapsed">
+                        <Label Content="Enter PID of Process to Kill:" Margin="60, 0, 0, 0"/>
+                        <TextBox Text="" Width="60" x:Name="PIDIn" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="44,0,99.5,0"/>
+                        <Button Content="Confirm" x:Name="ProcessKillBtn" Click="ProcessKill_Click" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <DockPanel x:Name="PortOpenDP" Visibility="Collapsed">
+                        <Label Content="Open Ports you previously closed" Margin="60,0,0,0"/>
+                        <TextBox Text="" Width="60" x:Name="PortToOpen" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="10,0,99.5,0"/>
+                        <Button Content="Confirm" x:Name="ActivateOpen" Click="OpenPortRule_Click" Margin="0, 0, 20, 0"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NetworkResetDP" Visibility="Collapsed">
+                        <Label Margin="60,0,0,0" Content="Network Reset:"/>
+                        <Button x:Name="ResetBtn" Content="Reset" Margin="266,0,20,0" Click="ResetBtn_Click"/>
+                    </DockPanel>
+                    <!--Proxy Check-->
+                    <DockPanel x:Name="ProxyDP" Visibility="Collapsed">
+                        <Label Content="Proxy server service: " Margin="60,0,0,0"/>
+                        <TextBox Text="" Width="213" x:Name="ProxyTxt" IsReadOnly="True" VerticalAlignment="Center" MaxLength="5" Margin="10,0" MinHeight="13" TextWrapping="WrapWithOverflow"/>
+                    </DockPanel>
+                    <!--Firewall Check-->
+                    <DockPanel x:Name="FirewallDP" Visibility="Collapsed" Margin="0,0,0,10">
+                        <Label Content="Firewall On/Off: " Margin="60,0,0,0"/>
+                        <ComboBox x:Name="FWOnOffCombo" Visibility="Visible" Margin="100,10,0,10" Width="50">
+                            <ComboBoxItem Content="On"/>
+                            <ComboBoxItem Content="Off"/>
+                        </ComboBox>
+                        <Button x:Name="FWApplyBtn" Width="96" Margin="20,5,0,0" Content="Apply" Click="FWApplyBtn_Click"/>
+                    </DockPanel>
+                    <ScrollViewer x:Name="ScrollFW" HorizontalAlignment="Right" Height="240" Margin="0,0,-0.333,0" Grid.Row="1" VerticalAlignment="Top" Width="655" Visibility="Collapsed">
+                        <TextBox Text="" Width="522" x:Name="FirewallStat" VerticalAlignment="Center" MaxLength="5" Margin="10,0" MinHeight="13" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                    </ScrollViewer>
+                    <!--ICMP Check-->
+                    <TextBlock x:Name="DisplayIPInfo" IsEnabled="False" Width="487" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"/>
+                    <DockPanel x:Name="ICMPDP" Visibility="Collapsed" Margin="10,0,10,10">
+                        <Label Content="ICMP Echo on/off: " Margin="60,0,0,10"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel>
+                            <DockPanel MinHeight="20" Margin="10,0,0,10">
+                                <DockPanel>
+                                    <ComboBox x:Name="ICMPOnOffCombo" Visibility="Visible" Margin="100,10,0,10" Width="50">
+                                        <ComboBoxItem Content="On"/>
+                                        <ComboBoxItem Content="Off"/>
+                                    </ComboBox>
+                                </DockPanel>
+                                <Button x:Name="ICMPEditApplyBtn" Width="96" Margin="20,5,0,0" Content="Apply" Click="ICMPEditApplyBtn_Click"/>
+                            </DockPanel>
+                            <TextBox Text="" Width="450" x:Name="ICMPTxt" IsReadOnly="True" VerticalAlignment="Center" MaxLength="5" Margin="0,0" MinHeight="13" TextWrapping="WrapWithOverflow" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <!--Update Check-->
+
+                    <!--Vunerability Scanner-->
+                </StackPanel>
+            <!--</ScrollViewer>-->
+
+            <Border BorderBrush="Black" BorderThickness="1" Height="19" Margin="-9,0,-6.333,0" RenderTransformOrigin="0.5,0.5">
                 <Border.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>

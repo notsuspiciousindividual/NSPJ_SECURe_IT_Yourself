@@ -19,6 +19,8 @@ using System.Windows.Media.Animation;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using NetFwTypeLib;
+using NessusClient;
 //using WUApiLib;
 
 
@@ -31,141 +33,24 @@ namespace MainPage
     {
         public Beck_NC()
         {
-
             InitializeComponent();
-            //get the open ports first
-            openedPort.Clear();
-            closedPort.Clear();
 
-            //get port number first
-            String GPN = "";
-            //Int32.TryParse(PortToClose.Text, out int z);
-            GetAvailablePort(443);
-
-            if (443 > 0)
-            {
-                if (openedPort.Contains(443))
-                {
-                    GPN = "443";
-                    //run netstat
-                    try
-                    {
-                        String netStatArgs = "/C netstat -ao | find \"" + GPN + "\"";
-                        Process netStatRun = new Process();
-                        netStatRun.StartInfo = new ProcessStartInfo()
-                        {
-                            UseShellExecute = false,
-                            CreateNoWindow = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            FileName = "cmd.exe",
-                            Arguments = netStatArgs,
-                            RedirectStandardError = true,
-                            RedirectStandardOutput = true
-                        };
-                        netStatRun.Start();
-                        String NetstatOutput = netStatRun.StandardOutput.ReadToEnd();
-                        netStatRun.WaitForExit(2000);
-                        MessageBox.Show(NetstatOutput);
-                        List<String> nsOut = NetstatOutput.Split('\n').ToList();
-                        MessageBox.Show("\"" + nsOut.FirstOrDefault() + "\"");
-                        String nsFirst = nsOut.FirstOrDefault();
-                        List<String> nsOut2 = nsFirst.Split(' ').ToList();
-                        ArrayList nsAL = new ArrayList();
-                        for (int ns = 0; ns < nsOut2.Count; ns++)
-                        {
-                            nsAL.Add(nsOut2.ElementAt(ns));
-                        }
-                        //String toDis = "";
-                        //foreach ( String dis in nsAL)
-                        //{
-                        //    toDis += "\n\""+dis+"\"";
-                        //}
-                        String getPosition6 = nsAL[6].ToString(); //the ip + port
-                        String getPosition29 = nsAL[29].ToString(); //the pid
-
-                        List<String> furtherSplit = getPosition6.Split(':').ToList();
-                        getPosition6 = furtherSplit.ElementAt(1); // just port
-                        if (getPosition6 != GPN)
-                        {
-                            MessageBox.Show("The port you are requesting to close is not open! ");
-                        }
-                        else if (getPosition6 == GPN)
-                        {
-                            
-                            //netsh advfirewall firewall add rule name = \"Close Port getPosition6\" dir =in action = block protocol = TCP localport = getPostion6
-                            String CPPArgs = "netsh advfirewall firewall add rule name = \"Close Port " + getPosition6 + "\" dir=in action=block protocol=TCP localport=" + getPosition6;
-                            ProcessStartInfo closePortProc = new ProcessStartInfo
-                            {
-                                CreateNoWindow = true,
-                                UseShellExecute = false,
-                                FileName = "cmd.exe",
-                                WindowStyle = ProcessWindowStyle.Normal,
-                                Arguments = "/Ninjarku D Legend:A \"cmd /K " + CPPArgs + "\"",
-                                RedirectStandardOutput = true,
-                                Verb = "runas"
-                            };
-                            Process p1 = Process.Start(closePortProc);
-                            String closePortProcOut = p1.StandardOutput.ReadToEnd();
-                            p1.WaitForExit(2000);
-                            MessageBox.Show("output: " + closePortProcOut + "\n" + "Port " + getPosition6 + " has been closed");
-
-                            String KCPArgs = "/C taskkill /PID " + getPosition29 + " /F";
-                            ProcessStartInfo KillcurrentProcess = new ProcessStartInfo
-                            {
-                                CreateNoWindow = false,
-                                UseShellExecute = false,
-                                FileName = "cmd.exe",
-                                WindowStyle = ProcessWindowStyle.Normal,
-                                Arguments = KCPArgs,
-                                RedirectStandardOutput = true,
-                                Verb = "runas"
-                            };
-                            Process p2 = Process.Start(KillcurrentProcess);
-                            String killTaskOut = p2.StandardOutput.ReadToEnd();
-                            p2.WaitForExit(2000);
-                            MessageBox.Show("output: " + closePortProcOut + "\n" + "Taskkill done on process " + getPosition29);
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("The port you are requesting to close is not open! ");
-                        }
-                        //MessageBox.Show(getPosition6+"\n"+getPosition29+"\n"+nsOut2.Count);
-                    }
-                    catch (Exception ve)
-                    {
-                        Console.WriteLine(ve.StackTrace);
-                        MessageBox.Show("The port you are requesting to close is not open! ");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The value you entered is already closed!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("The port cannot be negative");
-            }
-
+            
+            
             //image set
             int stat = -1;
             ImageSet(stat, CurrentOverallStatImg);
             LoadProgBar();
             //checks
-            
-            PortscanTrigger(2000);
-            FirewallCheck();
-            ProxyCheck();
+
            
-            ICMPCheck();
 
         }
 
         private int storedStatPort = 0;
         private int storedStatProxy = 0;
         private int storedStatFirewall = 0;
-        private int storedStatICMP = 0;
+        private int storedStatICMP = 1;
         private int storedStatUpdate = 0;
 
         //Back clicked
@@ -377,7 +262,7 @@ namespace MainPage
         {
             MessageBox.Show("Showing "+ConfigRow1.Text.ToString());
             Beck_Option wnd = new Beck_Option();
-            PortscanTrigger(2000);
+            PortscanTrigger();
             int stat = this.storedStatPort;
             ImageSet(stat, PortCheckImg);
             
@@ -490,44 +375,90 @@ namespace MainPage
 
         private void Initials()
         {
-            //Check for Web Proxy
-            
+            //Port Check Run
+            PortscanTrigger();
+            //Firewall Check Run
+            FirewallCheck();
+            //Proxy Check Run
+            ProxyCheck();
+            //ICMP Check Run
+            ICMPCheck();
 
-            //Check for ports that are open
         }
        //Arraylist for Open and Closed ports
         private static ArrayList closedPort = new ArrayList();
         private static ArrayList openedPort = new ArrayList();
+       
+        //Port Check
         //Get Port Status UEV: User Enterable Value
-        private void PortscanTrigger(int UEV)
+        private void PortscanTrigger()
         {
             //clear list first
             openedPort.Clear();
             closedPort.Clear();
-            //User Entered Value
-            for (int i = 1; i < UEV; i++)
-            {
-                GetAvailablePort(i);
-            }
+            //Ports to check         
+            //Ports restricted by Online Armor Pro by default
+            //Both = 7      //Both - 9      //Both - 13     //Both - 17
+            //Both - 19     //TCP - 113     //UDP - 123     //TCP - 135
+            //Both - 137    //Both - 138    //TCP - 139     //Both - 389
+            //Both - 445    //UDP - 500     //UDP - 520     //TCP - 1002
+            //TCP - 1024    //TCP - 1025    //TCP - 1026    //TCP - 1027
+            //TCP - 1028    //TCP - 1029    //TCP - 1030    //TCP - 1433
+            //TCP - 1444    //UDP - 1701    //TCP - 1720    //TCP - 1723
+            //TCP - 2869    //UDP - 4500
+            GetAvailablePort(7);
+            GetAvailablePort(9);
+            GetAvailablePort(13);
+            GetAvailablePort(17);
+            GetAvailablePort(19);
+            GetAvailablePort(113);
+            GetAvailablePort(123);
+            GetAvailablePort(135);
+            GetAvailablePort(137);
+            GetAvailablePort(138);
+            GetAvailablePort(139);
+            GetAvailablePort(389);
+            GetAvailablePort(445);
+            GetAvailablePort(500);
+            GetAvailablePort(520);
+            GetAvailablePort(1002);
+            GetAvailablePort(1024);
+            GetAvailablePort(1025);
+            GetAvailablePort(1026);
+            GetAvailablePort(1027);
+            GetAvailablePort(1028);
+            GetAvailablePort(1029);
+            GetAvailablePort(1030);
+            GetAvailablePort(1433);
+            GetAvailablePort(1444);
+            GetAvailablePort(1701);
+            GetAvailablePort(1720);
+            GetAvailablePort(1723);
+            GetAvailablePort(2869);
+            GetAvailablePort(4500);
 
+            String PortStatReturn = "Checked and are Not Recommended to be Open: ";
             foreach (int i in openedPort)
             {
                 Console.WriteLine("Available: " + i);
+                PortStatReturn += " " + i;
             }
             foreach (int i in closedPort)
             {
                 Console.WriteLine("Not Available: " + i);
             }
-            if (openedPort.Count >= 20)
+            if (closedPort.Count == 30)
             {
                 this.storedStatPort = 1;
             }
-            else if (openedPort.Count >= 10)
+            else if (closedPort.Count >= 10)
             {
                 storedStatPort = 0;
+                MessageBox.Show(PortStatReturn);
             }
             else
             {
+                MessageBox.Show(PortStatReturn);
                 storedStatPort = -1;
             }
             ImageSet(storedStatPort, PortCheckImg);
@@ -569,83 +500,101 @@ namespace MainPage
 
             return 0;
         }
-
+        //FireWall Check
         private void FirewallCheck()
         {
-            try
+            //To reference to windows firewall scripting
+            Type NetFwMgrType = Type.GetTypeFromProgID("HNetCfg.FwMgr", false);
+            INetFwMgr mgr = (INetFwMgr)Activator.CreateInstance(NetFwMgrType);
+
+            //Checking part
+            bool Firewallenabled = mgr.LocalPolicy.CurrentProfile.FirewallEnabled;
+
+            if (Firewallenabled == true)
             {
-                String FWCheckArgs = "/C netsh advfirewall show allprofiles";
-                Process FWCheck = new Process
-                {
-                    StartInfo = new ProcessStartInfo()
-                    {
-                        CreateNoWindow = true,
-                        UseShellExecute = false,
-                        FileName = "cmd.exe",
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Arguments = FWCheckArgs,
-                        RedirectStandardOutput = true,
-                        RedirectStandardError = true,
-                        Verb = "runas"
-                    }
-                };
-                FWCheck.Start();
-                String FWOutput = FWCheck.StandardOutput.ReadToEnd();
-
-                FWCheck.WaitForExit(2000);
-                //MessageBox.Show(FWOutput);
-
-                List<String> FWOut = FWOutput.Split('\n').ToList();
-                String FWString1 = FWOut.ElementAt(3);
-                String FWString2 = FWOut.ElementAt(20);
-                String FWString3 = FWOut.ElementAt(37);
-                //MessageBox.Show("Check: " + FWString1);
-                //MessageBox.Show("Check: " + FWString2);
-                //MessageBox.Show("Check: " + FWString3);
-
-                List<String> FWOut1 = FWString1.Split(' ').ToList();
-
-                string text = File.ReadAllText("../../Resources\\Beck_Text/fw.txt");
-                List<String> stext = text.Split('\n').ToList();
-                String CompileVal = stext.ElementAt(3);
-
-                //MessageBox.Show("Check: " + CompileVal);
-
-                int counter = 0;
-                if (FWString1.Equals(CompileVal))
-                {
-                    counter++;
-                }
-
-                if (FWString2.Equals(CompileVal))
-                {
-                    counter++;
-                }
-
-                if (FWString3.Equals(CompileVal))
-                {
-                    counter++;
-                }
-
-                if (counter == 3)
-                {
-                    storedStatFirewall = 1;
-                }
-                else if (counter == 2)
-                {
-                    storedStatFirewall = 0;
-                }
-                else
-                {
-                    storedStatFirewall = -1;
-                }
+                storedStatFirewall = 1;
             }
-            catch (Exception s)
+            else
             {
-                MessageBox.Show("Error: " + s.StackTrace);
+                storedStatFirewall = -1;
             }
-            
+            ImageSet(storedStatFirewall, FireWallImg);
+            MessageBox.Show("FW Status: " + Firewallenabled);
+            //try
+            //{
+            //    String FWCheckArgs = "/C netsh advfirewall show allprofiles";
+            //    Process FWCheck = new Process
+            //    {
+            //        StartInfo = new ProcessStartInfo()
+            //        {
+            //            CreateNoWindow = true,
+            //            UseShellExecute = false,
+            //            FileName = "cmd.exe",
+            //            WindowStyle = ProcessWindowStyle.Hidden,
+            //            Arguments = FWCheckArgs,
+            //            RedirectStandardOutput = true,
+            //            RedirectStandardError = true,
+            //            Verb = "runas"
+            //        }
+            //    };
+            //    FWCheck.Start();
+            //    String FWOutput = FWCheck.StandardOutput.ReadToEnd();
+
+            //    FWCheck.WaitForExit(2000);
+            //    //MessageBox.Show(FWOutput);
+
+            //    List<String> FWOut = FWOutput.Split('\n').ToList();
+            //    String FWString1 = FWOut.ElementAt(3);
+            //    String FWString2 = FWOut.ElementAt(20);
+            //    String FWString3 = FWOut.ElementAt(37);
+            //    //MessageBox.Show("Check: " + FWString1);
+            //    //MessageBox.Show("Check: " + FWString2);
+            //    //MessageBox.Show("Check: " + FWString3);
+
+            //    List<String> FWOut1 = FWString1.Split(' ').ToList();
+
+            //    string text = File.ReadAllText("../../Resources\\Beck_Text/fw.txt");
+            //    List<String> stext = text.Split('\n').ToList();
+            //    String CompileVal = stext.ElementAt(3);
+
+            //    //MessageBox.Show("Check: " + CompileVal);
+
+            //    int counter = 0;
+            //    if (FWString1.Equals(CompileVal))
+            //    {
+            //        counter++;
+            //    }
+
+            //    if (FWString2.Equals(CompileVal))
+            //    {
+            //        counter++;
+            //    }
+
+            //    if (FWString3.Equals(CompileVal))
+            //    {
+            //        counter++;
+            //    }
+
+            //    if (counter == 3)
+            //    {
+            //        storedStatFirewall = 1;
+            //    }
+            //    else if (counter == 2)
+            //    {
+            //        storedStatFirewall = 0;
+            //    }
+            //    else
+            //    {
+            //        storedStatFirewall = -1;
+            //    }
+            //}
+            //catch (Exception s)
+            //{
+            //    MessageBox.Show("Error: " + s.StackTrace);
+            //}
+
         }
+        //Proxy Check
         private void ProxyCheck()
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -689,7 +638,7 @@ namespace MainPage
                 MessageBox.Show("Error: " + pe.Message);
             }
         }
-        //Check for Web Proxy
+        ////Check for Web Proxy
         //private void CheckWebProxy()
         //{
         //    try
@@ -697,11 +646,11 @@ namespace MainPage
         //        WebProxy proxy = (WebProxy)WebRequest.DefaultWebProxy;
         //        if (proxy.Address.AbsoluteUri != string.Empty)
         //        {
-        //            Console.WriteLine("Proxy URL: " + proxy.Address.AbsoluteUri);
+        //            MessageBox.Show("Proxy URL: " + proxy.Address.AbsoluteUri);
         //        }
         //        else
         //        {
-        //            Console.WriteLine("No proxy url");
+        //            MessageBox.Show("No proxy url");
         //        }
         //    }
         //    catch (Exception e)
@@ -715,24 +664,25 @@ namespace MainPage
         private void ICMPCheck()
         {
             //ICMP checking portion
-            IPStatus iPStatus = new IPStatus();
-            if (iPStatus.ToString() == "Success")
-            {
-                //ICMP Echo is on: Not Ideal
-                this.storedStatICMP = 0;
-            }
-            else
-            {
-                //ICMP Echo is off: Ideal
-                this.storedStatICMP = 1;
-            }
+            //IPStatus iPStatus = new IPStatus();
+            //if (iPStatus.ToString() == "Success")
+            //{
+            //    //ICMP Echo is on: Not Ideal
+            //    this.storedStatICMP = 1;
+            //}
+            //else
+            //{
+            //    //ICMP Echo is off: Ideal
+            //    this.storedStatICMP = 0;
+            //}
             ImageSet(this.storedStatICMP, ICMPEchoImg);
         }
 
         //Update on click settings
+
         //private void installupdatesyncwithinfo()
         //{
-        //     updatecheckinfo info = null;
+        //    Updatecheckinfo info = null;
 
         //    if (applicationdeployment.isnetworkdeployed)
         //    {
@@ -797,30 +747,9 @@ namespace MainPage
         //            }
         //        }
         //    }
+         
+        /*Severity Check*/
+        
 
-            //protected override void (eventargs e)
-            //{
-            //    base.onload(e);
-            //    updatesession usession = new updatesession();
-            //    iupdatesearcher usearcher = usession.createupdatesearcher();
-            //    usearcher.online = false;
-            //    try
-            //    {
-            //        isearchresult sresult = usearcher.search("isinstalled=1 and ishidden=0");
-            //        textbox1.text = "found " + sresult.updates.count + " updates" + environment.newline;
-            //        foreach (iupdate update in sresult.updates)
-            //        {
-            //            textbox1.appendtext(update.title + environment.newline);
-            //        }
-            //    }
-            //    catch (exception ex)
-            //    {
-            //        console.writeline("something went wrong: " + ex.message);
-            //    }
-            //}
-            //Proxy Check
-
-            /*Severity Check*/
-
-        }
+    }
 }
