@@ -75,15 +75,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Beck_NC.xaml.cs">
-      <DependentUpon>Beck_NC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Beck_Option.xaml.cs">
-      <DependentUpon>Beck_Option.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_AddTagReport.xaml.cs">
-      <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Isabelle_DatabaseDataSet1.cs">
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </Compile>
@@ -98,46 +89,19 @@
     <Compile Include="Isabelle_Login.xaml.cs">
       <DependentUpon>Isabelle_Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Isabelle_News.cs" />
+    <Compile Include="Isabelle_News.xaml.cs">
+      <DependentUpon>Isabelle_News.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Isabelle_SignUp.xaml.cs">
       <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_Welcome.xaml.cs">
       <DependentUpon>Isabelle_Welcome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SY_CreatedSuccessCase.xaml.cs">
-      <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_NetworkLogUpload.xaml.cs">
-      <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_NewCase.xaml.cs">
-      <DependentUpon>SY_NewCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewCases.xaml.cs">
-      <DependentUpon>SY_ViewCases.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewSpecificCase.xaml.cs">
-      <DependentUpon>SY_ViewSpecificCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewSpecificTeam.xaml.cs">
-      <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
-    </Compile>
     <Page Include="Isabelle_HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Beck_NC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Beck_Option.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Isabelle_Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Isabelle_SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,11 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SY_CreatedSuccessCase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_AddTagReport.xaml">
+    <Page Include="Isabelle_SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,38 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SY_NetworkLogUpload.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_NetworkStart.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SY_NetworkStart.xaml.cs">
-      <DependentUpon>SY_NetworkStart.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="SY_NewCase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_ViewCases.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_ViewSpecificCase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_ViewSpecificTeam.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -231,6 +163,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\agent-icon.png" />
+    <Resource Include="Images\background-security.jpg" />
+    <Resource Include="Images\encryption-icon.png" />
+    <Resource Include="Images\exclamation_mark.png" />
+    <Resource Include="Images\home-icon-md.png" />
+    <Resource Include="Images\home-icon.png" />
+    <Resource Include="Images\ohno - Copy.png" />
+    <Resource Include="Images\ohno.png" />
+    <Resource Include="Images\picture.jpg" />
+    <Resource Include="Images\pineapple.jpg" />
+    <Resource Include="Images\security.jpg" />
+    <Resource Include="Images\warning.png" />
     <Resource Include="Resources\img\background_forensic.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -244,24 +188,17 @@
     <Resource Include="Resources\img\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\agent-icon.png" />
-    <Resource Include="Images\background-security.jpg" />
-    <Resource Include="Images\encryption-icon-11.png" />
-    <Resource Include="Images\exclamation_mark.png" />
-    <Resource Include="Images\home-icon-md.png" />
-    <Resource Include="Images\home-icon.png" />
-    <Resource Include="Images\ohno - Copy.png" />
-    <Resource Include="Images\ohno.png" />
-    <Resource Include="Images\picture.jpg" />
-    <Resource Include="Images\pineapple.jpg" />
-    <Resource Include="Images\security.jpg" />
-    <Resource Include="Images\warning.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Beck_Images\Switch.png" />
     <Resource Include="Resources\Beck_Images\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\configuration.png" />
+    <Resource Include="Images\dashboard.png" />
+    <Resource Include="Images\data.png" />
+    <Resource Include="Images\logout-icon.png" />
+    <Resource Include="Images\network.png" />
+    <Resource Include="Images\newspaper.png" />
+    <Resource Include="Images\updates-icon.png" />
     <Content Include="LocalDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

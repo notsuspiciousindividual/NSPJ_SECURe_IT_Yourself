@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainPage"
         mc:Ignorable="d"
-        Title=" SECURe-IT Yourself" Height="250" Width="400">
+        Title=" SECURe-IT Yourself" Height="600" Width="900">
     <Grid>
         <TextBlock Height="48" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="WelcomeHeading"
                    Text="Welcome to SECURe-IT Yourself" VerticalAlignment="Top" FontSize="25" FontStretch="ExtraCondensed"/>

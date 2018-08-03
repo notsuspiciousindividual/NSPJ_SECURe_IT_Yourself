@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Xml;
 using System.ServiceModel.Syndication;
 using System.Windows.Controls.Primitives;
-//using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -22,7 +21,7 @@ namespace MainPage
         {
             InitializeComponent();
 
-         
+
 
         }
         string[,] rssDara = null;
@@ -32,12 +31,15 @@ namespace MainPage
             WebClient client = new WebClient();
             TextBox1.Text = client.DownloadString("https://www.straitstimes.com/tags/cyber-security");
         }
+
+        private void SearchButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
-//    private void SearchButton1_Click(object sender, EventArgs e)
-//{
 
-//}
 
 ////        public static string[] Tokenize(this string value)
 ////        {

@@ -13,13 +13,6 @@ namespace MainPage
     /// </summary>
     public partial class App : Application
     {
-        private void Application_StartUp(object sender, StartupEventArgs e) {
-            // Create the startup window
-            SY_NetworkStart wnd = new SY_NetworkStart();
-            // Do stuff here, e.g. to the window
-            wnd.Title = "Something else";
-            // Show the window
-            wnd.Show();
-        }
+        
     }
 }
