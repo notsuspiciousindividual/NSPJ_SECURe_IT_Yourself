@@ -19,11 +19,11 @@ using System.Net.NetworkInformation;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for Beck_NC.xaml
+    /// Interaction logic for Isabelle_Welcome.xaml
     /// </summary>
-    public partial class Beck_NC : Window
+    public partial class Isabelle_Welcome : Window
     {
-        public Beck_NC()
+        public Isabelle_Welcome()
         {
 
             InitializeComponent();

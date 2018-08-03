@@ -50,7 +50,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,6 +84,27 @@
     <Compile Include="SY_AddTagReport.xaml.cs">
       <DependentUpon>SY_AddTagReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Isabelle_DatabaseDataSet1.cs">
+      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Isabelle_DatabaseDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Isabelle_HomePage.xaml.cs">
+      <DependentUpon>Isabelle_HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Isabelle_Login.xaml.cs">
+      <DependentUpon>Isabelle_Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Isabelle_News.cs" />
+    <Compile Include="Isabelle_SignUp.xaml.cs">
+      <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Isabelle_Welcome.xaml.cs">
+      <DependentUpon>Isabelle_Welcome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SY_CreatedSuccessCase.xaml.cs">
       <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
     </Compile>
@@ -96,11 +123,28 @@
     <Compile Include="SY_ViewSpecificTeam.xaml.cs">
       <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
     </Compile>
+    <Page Include="Isabelle_HomePage.xaml">
+      <SubType>Designer</SubType>
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Beck_Option.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Isabelle_Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Isabelle_SignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Isabelle_News.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_CreatedSuccessCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,7 +152,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SY_CreatedSuccessCase.xaml">
+    <Page Include="Isabelle_Welcome".xaml>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +207,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Isabelle_DatabaseDataSet1.xsc">
+      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Isabelle_DatabaseDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Isabelle_DatabaseDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Isabelle_DatabaseDataSet1.xss">
+      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -170,7 +225,9 @@
     <Resource Include="Fonts\RenaultBQ-Light.otf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img\background_forensic.jpg" />
@@ -186,8 +243,22 @@
     <Resource Include="Resources\img\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Beck_Images\Background.jpg" />
+    <Resource Include="Images\agent-icon.png" />
+    <Resource Include="Images\background-security.jpg" />
+    <Resource Include="Images\encryption-icon-11.png" />
+    <Resource Include="Images\exclamation_mark.png" />
+    <Resource Include="Images\home-icon-md.png" />
+    <Resource Include="Images\home-icon.png" />
+    <Resource Include="Images\ohno - Copy.png" />
+    <Resource Include="Images\ohno.png" />
+    <Resource Include="Images\picture.jpg" />
+    <Resource Include="Images\pineapple.jpg" />
+    <Resource Include="Images\security.jpg" />
+    <Resource Include="Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Beck_Images\Switch.png" />
+    <Resource Include="Resources\Beck_Images\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LocalDB.mdf">
