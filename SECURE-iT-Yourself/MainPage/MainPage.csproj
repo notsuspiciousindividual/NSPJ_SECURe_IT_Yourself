@@ -63,6 +63,9 @@
     <Compile Include="SY_NewCase.xaml.cs">
       <DependentUpon>SY_NewCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YH_p1.xaml.cs">
+      <DependentUpon>YH_p1.xaml</DependentUpon>
+    </Compile>
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SY_NewCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YH_p1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
