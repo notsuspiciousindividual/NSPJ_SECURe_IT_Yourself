@@ -37,12 +37,17 @@ namespace MainPage
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MainPage.Properties.Settings.LocalDBConnectionString"].ConnectionString;
 
-            string query = "SELECT Log_Name, Log_Desc FROM Network_Log";
+            CaseDAO caseDb = new CaseDAO();
+            int case_id = caseDb.getCaseId(C_Name);
+
+            string query = "SELECT Log_Name, Log_Desc FROM Network_Log WHERE Case_Id = @cId";
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, myConnection))
             using (SqlDataAdapter adapt = new SqlDataAdapter(cmd))
             {
+                cmd.Parameters.AddWithValue("@cId", case_id);
+
                 DataTable table = new DataTable("Network_Log");
                 adapt.Fill(table);
                 LogTable.ItemsSource = table.DefaultView;

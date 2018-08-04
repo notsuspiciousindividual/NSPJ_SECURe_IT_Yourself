@@ -55,7 +55,7 @@ namespace MainPage
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"c:\temp\";
             open.Title = "Select file to be upload";
-            open.Filter = "Log Files (*.log)|*.log";
+            open.Filter = "Log Files (*.log)|*.log|Pcap Files (*.cap)|*.cap";
            
             try
             {
@@ -92,7 +92,7 @@ namespace MainPage
                 {
                     if (!(String.IsNullOrEmpty(filePath)))
                     {
-                        if (formatBox.SelectedIndex > -1 && formatBox.SelectedIndex == 0)
+                        if (formatBox.SelectedIndex > -1)
                         {
                             LogsDAO logDb = new LogsDAO();
 

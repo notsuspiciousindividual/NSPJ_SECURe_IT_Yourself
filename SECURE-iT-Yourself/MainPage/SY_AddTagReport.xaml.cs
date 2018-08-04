@@ -82,7 +82,6 @@ namespace MainPage
                                             }
 
                                            
-
                                             using (StreamWriter newTask = new StreamWriter(filepath, false))
                                                 {
                                                 JsonSerializer serializer = new JsonSerializer();

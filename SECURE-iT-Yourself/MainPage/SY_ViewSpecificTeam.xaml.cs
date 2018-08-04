@@ -63,7 +63,6 @@ namespace MainPage
                 foreach (SY_Tag line in items)
                 {
 
-
                     Grid DynamicGrid = new Grid();
 
                     DynamicGrid.Height = 150;
@@ -578,7 +577,7 @@ namespace MainPage
                         checker = false;
                         Console.WriteLine("checker is false!");
                     }
-                    else if (logFormat.Equals(".PCAP"))
+                    else if (logFormat.Equals(".CAP"))
                     {
 
 
@@ -792,9 +791,9 @@ namespace MainPage
 
 
             }
-            else if (logFormat.Equals(".PCAP"))
+            else if (logFormat.Equals(".CAP"))
             {
-
+                SY_Sort_PCap pcap = new SY_Sort_PCap(logPath);
 
             }
 
@@ -810,6 +809,15 @@ namespace MainPage
 
         private void ScanWithAi(object sender, RoutedEventArgs e)
         {
+            if (logFormat.Equals("Window Firewall"))
+            {
+                SY_ScanAnormalies potatoe = new SY_ScanAnormalies(windowItems, logName);
+                potatoe.ScanAnormalies();
+                AnomalyList.Items.Refresh();
+    }
+            else if (logFormat.Equals(".CAP")) {
+
+            }
 
         }
 
