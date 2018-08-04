@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for SY_CreatedSuccessCase.xaml
+    /// Interaction logic for YH_p1.xaml
     /// </summary>
-    public partial class SY_CreatedSuccessCase : Window
+    public partial class YH_p1 : Window
     {
-        public SY_CreatedSuccessCase()
+        public YH_p1()
         {
             InitializeComponent();
         }

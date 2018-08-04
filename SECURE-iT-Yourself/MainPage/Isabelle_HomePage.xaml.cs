@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MainPage
 {
     /// <summary>
-    /// Interaction logic for SY_NetworkLogUpload.xaml
+    /// Interaction logic for Isabelle_HomePage.xaml
     /// </summary>
-    public partial class SY_NetworkLogUpload : Window
+    public partial class Isabelle_HomePage : Window
     {
-        public SY_NetworkLogUpload()
+        public Isabelle_HomePage()
         {
             InitializeComponent();
         }

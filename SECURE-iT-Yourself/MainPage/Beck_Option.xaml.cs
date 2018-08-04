@@ -1033,9 +1033,7 @@ namespace MainPage
         //Check Vulnerabilities
         private void VulnerabilitiyCheck()
         {
-
-                       
-
+            
         }
 
         
