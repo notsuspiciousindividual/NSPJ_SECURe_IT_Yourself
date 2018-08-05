@@ -69,7 +69,7 @@
                     <Label Grid.Column="1" Width="144" Grid.Row="7" HorizontalContentAlignment="Right"  FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light">Log Format: </Label>
                     <ComboBox Name="formatBox" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" Height="40" >
                         <ComboBoxItem FontSize="20">Window Firewall</ComboBoxItem>
-                        <ComboBoxItem FontSize="20">.CAP</ComboBoxItem>
+                        <ComboBoxItem FontSize="20">.PCAP</ComboBoxItem>
                     </ComboBox>
                     
                 </Grid>

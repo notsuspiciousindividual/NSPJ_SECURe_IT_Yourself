@@ -49,7 +49,7 @@ namespace MainPage
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"c:\temp\";
             open.Title = "Select file to be upload";
-            open.Filter = "Log Files (*.log)|*.log";
+            open.Filter = "Log Files (*.log)|*.log|Pcap Files (*.pcap)|*.pcap";
 
             try
             {

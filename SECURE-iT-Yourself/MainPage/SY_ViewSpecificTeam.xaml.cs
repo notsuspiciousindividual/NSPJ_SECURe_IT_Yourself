@@ -791,7 +791,7 @@ namespace MainPage
 
 
             }
-            else if (logFormat.Equals(".CAP"))
+            else if (logFormat.Equals(".PCAP"))
             {
                 SY_Sort_PCap pcap = new SY_Sort_PCap(logPath);
 
