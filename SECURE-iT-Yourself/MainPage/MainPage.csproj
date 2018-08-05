@@ -108,6 +108,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Beck_NC.xaml.cs">
+      <DependentUpon>Beck_NC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Beck_Option.xaml.cs">
+      <DependentUpon>Beck_Option.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Isabelle_HomePage.xaml.cs">
       <DependentUpon>Isabelle_HomePage.xaml</DependentUpon>
     </Compile>
@@ -117,33 +123,15 @@
     <Compile Include="Isabelle_News.xaml.cs">
       <DependentUpon>Isabelle_New.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Beck_Pass.xaml.cs">
-      <DependentUpon>Beck_Pass.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Isabelle_SignUp.xaml.cs">
       <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_Welcome.xaml.cs">
       <DependentUpon>Isabelle_Welcome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SY_CreatedSuccessCase.xaml.cs">
-      <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_NetworkLogUpload.xaml.cs">
-      <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_NewCase.xaml.cs">
-      <DependentUpon>SY_NewCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewCases.xaml.cs">
-      <DependentUpon>SY_ViewCases.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewSpecificCase.xaml.cs">
-      <DependentUpon>SY_ViewSpecificCase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SY_ViewSpecificTeam.xaml.cs">
-      <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Isabelle_HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Isabelle_Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,13 +153,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Beck_Option.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Beck_Pass.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SY_CreatedSuccessCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,9 +200,6 @@
     </None>
     <None Include="Isabelle_DatabaseDataSet1.xss">
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
