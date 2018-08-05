@@ -121,7 +121,7 @@
       <DependentUpon>Isabelle_Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_News.xaml.cs">
-      <DependentUpon>Isabelle_New.xaml</DependentUpon>
+      <DependentUpon>Isabelle_News.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_SignUp.xaml.cs">
       <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
@@ -155,14 +155,6 @@
     <Page Include="Beck_Option.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_NetworkLogUpload.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SY_NetworkStart.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
