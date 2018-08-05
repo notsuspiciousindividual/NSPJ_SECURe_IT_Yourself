@@ -171,7 +171,6 @@
     <Resource Include="Resources\img\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Beck_Images\Switch.png" />
     <Resource Include="Resources\Beck_Images\Background.jpg" />
   </ItemGroup>
   <ItemGroup>

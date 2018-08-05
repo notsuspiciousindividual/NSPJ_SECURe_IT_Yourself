@@ -456,22 +456,16 @@ namespace MainPage
             portArray.AddRange(from n in endPoints where n.Port >= startingPort select n.Port);
 
             portArray.Sort();
-
-            for (int i = startingPort; i < UInt16.MaxValue; i++)
+            if (!portArray.Contains(startingPort))
             {
-                if (!portArray.Contains(i))
-                { 
-                    closedPort.Add(i);
-                    return i;
-                }
-                else
-                {
-                    openedPort.Add(i);
-                    return 0;
-                }
+                closedPort.Add(startingPort);
+                return startingPort;
             }
-
-            return 0;
+            else
+            {
+                openedPort.Add(startingPort);
+                return 0;
+            }
         }
         private void ClosePortRule_Click(object sender, RoutedEventArgs e)
         {
