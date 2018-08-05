@@ -100,54 +100,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Isabelle_DatabaseDataSet1.cs">
-      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Isabelle_DatabaseDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Beck_NC.xaml.cs">
       <DependentUpon>Beck_NC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Beck_Option.xaml.cs">
       <DependentUpon>Beck_Option.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Isabelle_HomePage.xaml.cs">
-      <DependentUpon>Isabelle_HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Isabelle_Login.xaml.cs">
-      <DependentUpon>Isabelle_Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Isabelle_News.xaml.cs">
-      <DependentUpon>Isabelle_News.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Isabelle_SignUp.xaml.cs">
-      <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Isabelle_Welcome.xaml.cs">
-      <DependentUpon>Isabelle_Welcome.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Isabelle_HomePage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Isabelle_Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Isabelle_News.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Isabelle_SignUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Isabelle_Welcome.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Beck_NC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -181,17 +139,6 @@
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Isabelle_DatabaseDataSet1.xsc">
-      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Isabelle_DatabaseDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Isabelle_DatabaseDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Isabelle_DatabaseDataSet1.xss">
-      <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
