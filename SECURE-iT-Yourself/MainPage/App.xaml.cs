@@ -13,6 +13,8 @@ namespace MainPage
     /// </summary>
     public partial class App : Application
     {
-        
+        private void Application_StartUp(object sender, StartupEventArgs e) {
+            
+        }
     }
 }

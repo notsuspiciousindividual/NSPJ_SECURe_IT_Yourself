@@ -9,9 +9,9 @@
 
     <StackPanel Background="#39424D" Width="891">
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
-            <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
-                <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="Button_Click" />
-                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" Width="335" FontSize="40" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" FontFamily="/MainPage;component/Fonts/#Renault BQ">
+            <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" Margin="-1.333,-0.333,0,-1.667" >
+                <Button Content="Back" Background="red" Foreground="white" Height="39" Opacity="0.6" VerticalAlignment="Top" Width="144" Margin="10,35,60,0" FontSize="20" Click="Button_Click" />
+                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" MinWidth="335" FontSize="40" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" FontFamily="/MainPage;component/Fonts/#Renault BQ">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -23,23 +23,28 @@
                 </Label>
             </DockPanel>
         </Border>
-        <StackPanel Height="393" Name="Option_EditPanel" Background="white" Margin="119,20,119.333,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
+        <StackPanel Height="393" Name="Option_EditPanel" Background="white" Margin="118,20,117.667,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="655">
             <Grid Height="140" Margin="0,0,0.333,0">
                 <Label x:Name="lblStatus" Content="Status: " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.912,2.615" Margin="231,43,0,0" Height="40" MinWidth="80" FontFamily="Apex New Medium Italic" FontSize="20"/>
                 <Image x:Name="StatusImage" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="3.557,0.73" Margin="311,10,0,0"/>
             </Grid>
             <Border BorderBrush="Black" BorderThickness="1" Height="1" Margin="0,0,0.333,0"/>
-            <!--<ScrollViewer x:Name="Scroller" IsEnabled="True" Margin="0,0,-0.333,0">-->
+
+            <ScrollViewer x:Name="Scroller" IsEnabled="True" Margin="0,0,-0.333,0">
                 <StackPanel x:Name="Beck_Content" Height="240" Width="655" CanVerticallyScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
-                   
                     <!--Port Check-->
-                        <TextBox x:Name="NetStatBox" Text="" Height="40" IsReadOnly="True" Width="596" Visibility="Collapsed" VerticalScrollBarVisibility="Auto"/>
+                    <DockPanel Name="NetStatBoxDP" Visibility="Collapsed">
+                        <TextBox x:Name="NetStatBox" Text="" Height="40" IsReadOnly="True" Width="437" Visibility="Visible" VerticalScrollBarVisibility="Auto"/>
+                        <Button x:Name="NetStatBoxBtn" Content="Click Here to show Netstat result list" Click="DisplayNSMB" Width="199" Margin="0,0,17,0"/>
+                    </DockPanel>
+                    <!--Scans-->
+                    <Button x:Name="ScanShowHide" Content="Perform Port Scan ▼" Click="ScanShowHide_Click" Margin="0,0,17.667,0" Visibility="Collapsed" />
                     <DockPanel x:Name="PortCheckDP" Visibility="Collapsed">
                         <Label Content="Scan from port 1 ~ " Margin="60, 0, 0, 0" />
                         <TextBox Text="" Width="60" x:Name="SpecificPortRange" IsReadOnly="false" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99,0" />
                         <Button Content="Check" x:Name="ActivateCheck" Margin="0, 0, 20, 0" Click="Check_Click"/>
                     </DockPanel>
-                        <TextBlock x:Name="ReturnActCheck" Text="" Visibility="Collapsed" MinHeight="60" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <TextBlock x:Name="ReturnActCheck" Text="" Visibility="Collapsed" MinHeight="60" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
                     <DockPanel x:Name="PortCheckDP2" Visibility="Collapsed">
                         <Label Content="Scan Specific Port:  " Margin="60, 0, 0, 0"/>
                         <TextBox Text="" Width="60" x:Name="SpecificPort" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="83,0,99.5,0"/>
@@ -54,14 +59,13 @@
                         <Button Content="Check" x:Name="ActivateCheck3" Click="Check_Click3" Margin="0, 0, 20, 0"/>
                     </DockPanel>
                     <TextBlock x:Name="ReturnActCheck3" Text="" Visibility="Collapsed" ScrollViewer.CanContentScroll="True" Margin="65, 0, 0, 20" TextWrapping="WrapWithOverflow" RenderTransformOrigin="0.5,0.5"/>
+                    <!--Port Edits-->
+                    <Button x:Name="PortEdits" Content="Perform Port Edit ▼" Click="PortEdit_Click" Margin="0,0,17.667,0" Visibility="Collapsed"/>
                     <DockPanel x:Name="PortCloseDP" Visibility="Collapsed">
                         <Label Content="Close Port" Margin="60, 0, 0, 0"/>
                         <TextBox Text="" Width="60" x:Name="PortToClose" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="132.5,0,99.5,0"/>
                         <Button Content="Confirm" x:Name="ActivateClose" Click="ClosePortRule_Click" Margin="0, 0, 20, 0"/>
                     </DockPanel>
-                    <ScrollViewer x:Name="NSScrollViewer" Visibility="Collapsed" MinHeight="50">
-                        <TextBox x:Name="NetstatStatus"  Text="" IsReadOnly="True"/>
-                    </ScrollViewer>
                     <DockPanel x:Name="ProcessKillDP" Visibility="Collapsed">
                         <Label Content="Enter PID of Process to Kill:" Margin="60, 0, 0, 0"/>
                         <TextBox Text="" Width="60" x:Name="PIDIn" IsReadOnly="False" VerticalAlignment="Center" MaxLength="5" Margin="44,0,99.5,0"/>
@@ -76,6 +80,7 @@
                         <Label Margin="60,0,0,0" Content="Network Reset:"/>
                         <Button x:Name="ResetBtn" Content="Reset" Margin="266,0,20,0" Click="ResetBtn_Click"/>
                     </DockPanel>
+
                     <!--Proxy Check-->
                     <DockPanel x:Name="ProxyDP" Visibility="Collapsed">
                         <Label Content="Proxy server service: " Margin="60,0,0,0"/>
@@ -111,10 +116,29 @@
                         </StackPanel>
                     </DockPanel>
                     <!--Update Check-->
+                    <StackPanel Name="UpdatesSP" Visibility="Collapsed">
+                        <DockPanel>
+                            <Label Content="Ports to Monitor:"/>
+                        </DockPanel>
+                        <TextBox Name="ShowMonitoredPorts" Text="" TextWrapping="WrapWithOverflow" Height="71" Margin="27,0,22.667,0" />
+                        <DockPanel Margin="0,10,0,0">
+                            <Label Content="Add Port: " Margin="100,0,56,0" />
+                            <TextBox Name="AddMonIn" Width="74" Margin="0,0,100,0"/>
+                            <Button Name="AddPortMon" Content="Apply" Width="70" Click="AddPortMon_Click"/>
+                            <Button Name="Clear1" Content="Clear" Width="70" Margin="0,0,90,0" Click="Clear1_Click"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,10,0,0">
+                            <Label Content="Remove Port: " Margin="100,0,35,0" />
+                            <TextBox Name="RemMonIn" Width="74" Margin="0,0,100,0"/>
+                            <Button Name="RemPortMon" Content="Apply" Width="70" Click="RemPortMon_Click"/>
+                            <Button Name="Clear2" Content="Clear" Width="70" Margin="0,0,90,0" Click="Clear2_Click"/>
+                        </DockPanel>
+                        <Button Name="Reset" Content="Reset Ports to monitor to default" Margin="20" Width="200" Click="Reset_Click"/>
+                    </StackPanel>
 
                     <!--Vunerability Scanner-->
                 </StackPanel>
-            <!--</ScrollViewer>-->
+            </ScrollViewer>
 
             <Border BorderBrush="Black" BorderThickness="1" Height="19" Margin="-9,0,-6.333,0" RenderTransformOrigin="0.5,0.5">
                 <Border.RenderTransform>

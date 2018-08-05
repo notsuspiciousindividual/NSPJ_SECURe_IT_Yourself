@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using NetFwTypeLib;
+﻿using NetFwTypeLib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,17 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace MainPage
@@ -83,7 +74,7 @@ namespace MainPage
         //To pull the data from previous window 
         public void Transfer(String pageName, int statNo)
         {
-            MessageBox.Show("Stat No: " + statNo + "\nPage Name:" + pageName);
+            //MessageBox.Show("Stat No: " + statNo + "\nPage Name:" + pageName);
             //Add in the Title
             String OptionTitle = pageName;
             lblMisconfigType.Content = OptionTitle;
@@ -99,7 +90,6 @@ namespace MainPage
         {
             if (lblMisconfigType.Content.Equals("Check on Ports"))
             {
-
                 //first row
                 //DockPanel PortCheckDP = new DockPanel
                 //{
@@ -181,14 +171,9 @@ namespace MainPage
                 //Beck_Content.Children.Add(PortCheckDP);
                 //Beck_Content.Children.Add(PortCheckDP2);
                 Netstat_Set();
-                NetStatBox.Visibility = Visibility.Visible;
-                PortCheckDP.Visibility = Visibility.Visible;
-                PortCheckDP2.Visibility = Visibility.Visible;
-                PortCheckDP3.Visibility = Visibility.Visible;
-                PortOpenDP.Visibility = Visibility.Visible;
-                PortCloseDP.Visibility = Visibility.Visible;
-                ProcessKillDP.Visibility = Visibility.Visible;
-                NetworkResetDP.Visibility = Visibility.Visible;
+                NetStatBoxDP.Visibility = Visibility.Visible;
+                ScanShowHide.Visibility = Visibility.Visible;
+                PortEdits.Visibility = Visibility.Visible;
             }
             else if (lblMisconfigType.Content.Equals("Proxy Server on/off"))
             {
@@ -209,15 +194,16 @@ namespace MainPage
             }
             else if (lblMisconfigType.Content.Equals("Updates"))
             {
-
+                UpdatesSet();
+                UpdatesSP.Visibility = Visibility.Visible;
             }
-            else if (lblMisconfigType.Content.Equals("Configuration Severity"))
-            {
+            //else if (lblMisconfigType.Content.Equals("Configuration Severity"))
+            //{
 
-            }
+            //}
             else
             {
-                System.Windows.Forms.MessageBox.Show("You typed the name wrongly!");
+                System.Windows.Forms.MessageBox.Show("No Page is selected!");
             }
         }
         //Check Port
@@ -241,7 +227,8 @@ namespace MainPage
                 netStatRun.Start();
                 String NetstatOutput = netStatRun.StandardOutput.ReadToEnd();
                 netStatRun.WaitForExit(2000);
-                MessageBox.Show(NetstatOutput);
+                //MessageBox.Show(NetstatOutput);
+
                 //List<String> nsOut = NetstatOutput.Split('\n').ToList();
                 //MessageBox.Show("\"" + nsOut.FirstOrDefault() + "\"");
                 //String nsFirst = nsOut.FirstOrDefault();
@@ -269,6 +256,50 @@ namespace MainPage
                     {
                         MessageBox.Show("Error: "+ve.StackTrace);
                     }
+        }
+        private void ScanShowHide_Click(object sender, RoutedEventArgs e)
+        {
+            if (ScanShowHide.Content.Equals("Perform Port Scan ▼"))
+            {
+                ScanShowHide.Content = "Hide Port Scan ▲";
+                PortCheckDP.Visibility = Visibility.Visible;
+                PortCheckDP2.Visibility = Visibility.Visible;
+                PortCheckDP3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ScanShowHide.Content = "Perform Port Scan ▼";
+                PortCheckDP.Visibility = Visibility.Collapsed;
+                ReturnActCheck.Visibility = Visibility.Collapsed;
+                PortCheckDP2.Visibility = Visibility.Collapsed;
+                ReturnActCheck2.Visibility = Visibility.Collapsed;
+                PortCheckDP3.Visibility = Visibility.Collapsed;
+                ReturnActCheck3.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void PortEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (PortEdits.Content.Equals("Perform Port Edit ▼"))
+            {
+                PortEdits.Content = "Hide Port Edit ▲";
+                PortCloseDP.Visibility = Visibility.Visible;
+                ProcessKillDP.Visibility = Visibility.Visible;
+                PortOpenDP.Visibility = Visibility.Visible;
+                NetworkResetDP.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PortEdits.Content = "Perform Port Edit ▼";
+                PortCloseDP.Visibility = Visibility.Collapsed;
+                ProcessKillDP.Visibility = Visibility.Collapsed;
+                PortOpenDP.Visibility = Visibility.Collapsed;
+                NetworkResetDP.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void DisplayNSMB(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Netstat Information: " + NetStatBox.Text);
+
         }
         private void Check_Click(object sender, RoutedEventArgs e)
         {
@@ -302,6 +333,7 @@ namespace MainPage
                 }
                 ReturnActCheck.Text = "(Note, the larger your range, the longer the time taken to check)" + "\nOpened Ports: \n" + Opened /*+ "\nClosed Ports: \n" + Closed*/;
                 ReturnActCheck.Visibility = Visibility.Visible;
+                Scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             }
             else
             {
@@ -332,7 +364,7 @@ namespace MainPage
             {
                 MessageBox.Show("The value you have entered is not an integer!");
             }
-            ReturnActCheck2.Visibility = System.Windows.Visibility.Visible;
+            ReturnActCheck2.Visibility = Visibility.Visible;
 
         }
         private void Check_Click3(object sender, RoutedEventArgs e)
@@ -363,12 +395,12 @@ namespace MainPage
                     }
                     ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal
                         ;
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ReturnActCheck3.Text = "There are no ports opened in within the range you have specified";
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
             }
             else if (y > x)
@@ -386,19 +418,18 @@ namespace MainPage
                     {
                         portOpenVal += " " + openedPort[loop];
                     }
-                    ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal
-                        ;
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Text = "Port(s) opened:\n" + portOpenVal;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ReturnActCheck3.Text = "There are no ports opened in within the range you have specified";
-                    ReturnActCheck3.Visibility = System.Windows.Visibility.Visible;
+                    ReturnActCheck3.Visibility = Visibility.Visible;
                 }
             }
             else if (x <= 0 || y <= 0)
             {
-                MessageBox.Show("Your ports cannot be negative!");
+                MessageBox.Show("Your ports cannot be negative or empty!");
             }
             else
             {
@@ -498,7 +529,7 @@ namespace MainPage
                     MessageBox.Show("output: " + closePortProcOut + "\n" + "Port " + GPN + " has been closed");
 
 
-                    NSScrollViewer.Visibility = Visibility.Visible;
+                    //NSScrollViewer.Visibility = Visibility.Visible;
                     //NetstatStatus.Text = NetstatOutput;                    
                 }
                 else
@@ -641,6 +672,7 @@ namespace MainPage
                 MessageBox.Show("Error: "+ve.StackTrace);
             }
         }
+       
         //Check Proxy
         private void ProxyCheckDisplay()
         {
@@ -681,7 +713,7 @@ namespace MainPage
                     stat = 1;
                 }
                 ImageSet(stat, StatusImage);
-                System.Windows.Forms.MessageBox.Show("output "+output);
+                //MessageBox.Show("output "+output);
                 ProxyTxt.Text = output;
 
             }
@@ -714,13 +746,13 @@ namespace MainPage
                 String FWOutput = FWCheck.StandardOutput.ReadToEnd();
 
                 FWCheck.WaitForExit(2000);
-                MessageBox.Show(FWOutput);
+                //MessageBox.Show(FWOutput);
 
                 List<String> FWOut = FWOutput.Split('\n').ToList();
                 String FWString1 = FWOut.ElementAt(3);
                 String FWString2 = FWOut.ElementAt(20);
                 String FWString3 = FWOut.ElementAt(37);
-                MessageBox.Show("Check: " + FWString1);
+                //MessageBox.Show("Check: " + FWString1);
                 List<String> FWOut1 = FWString1.Split(' ').ToList();
 
                 string text = File.ReadAllText("../../Resources\\Beck_Text/fw.txt");
@@ -876,7 +908,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun1 = Process.Start(ICMPRemove1);
 
                 String ICMPRemoveArgs2 = "/C netsh advfirewall firewall delete rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any";
@@ -890,7 +922,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun2 = Process.Start(ICMPRemove2);
 
                 String ICMPAddArgs1 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V6 echo request\" protocol=icmpv6:8,any dir=in action=allow enable=yes";
@@ -904,7 +936,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun3 = Process.Start(ICMPAdd1);
 
                 String ICMPAddArgs2 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any dir=in action=allow enable=yes";
@@ -918,7 +950,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                MessageBox.Show("Sucessfully On ICMP Echo");
                 Process ChangeRun4 = Process.Start(ICMPAdd2);
             }
             else if (ICMPVal.Equals("Off"))
@@ -934,7 +966,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun1 = Process.Start(ICMPRemove1);
 
                 String ICMPRemoveArgs2 = "/C netsh advfirewall firewall delete rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any";
@@ -948,7 +980,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun2 = Process.Start(ICMPRemove2);
 
                 String ICMPAddArgs1 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V6 echo request\" protocol=icmpv6:8,any dir=in action=block enable=yes";
@@ -962,7 +994,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                //MessageBox.Show("Process Ran");
                 Process ChangeRun3 = Process.Start(ICMPAdd1);
 
                 String ICMPAddArgs2 = "/C netsh advfirewall firewall add rule name=\"ICMP Allow incoming V4 echo request\" protocol=icmpv4:8,any dir=in action=block enable=yes";
@@ -976,7 +1008,7 @@ namespace MainPage
                     RedirectStandardOutput = true,
                     Verb = "runas"
                 };
-                MessageBox.Show("Process Ran");
+                MessageBox.Show("Sucessfully Off ICMP Echo");
                 Process ChangeRun4 = Process.Start(ICMPAdd2);
             }
             else
@@ -984,13 +1016,207 @@ namespace MainPage
                 MessageBox.Show("No values selected!");
             }
         }
-        //Check Vulnerabilities
-        private void VulnerabilitiyCheck()
+        //For Updates
+        private void UpdatesSet()
         {
-            NessusClient.NessusConnection NessusC;
-            
+            String PortMonitor = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+            Array splitPM = PortMonitor.Split(' ');
+            String display = "";
+            foreach(String x in splitPM)
+            {
+                display += x+" ";
+            }
+            ShowMonitoredPorts.Text = display;
+
+            //Interface setting
+            lblStatus.Visibility = Visibility.Hidden;
+            try
+            {
+                StatusImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Beck_Images/Switch.jpg"));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Problem " + e);
+            }
+            Thickness margin = StatusImage.Margin;
+            margin.Left = 290;
+            StatusImage.Margin = margin;
+        }
+        private void AddPortMon_Click(object sender, RoutedEventArgs e)
+        {
+            Int32.TryParse(AddMonIn.Text, out int checkVal);
+            if (checkVal != 0)
+            {
+                try
+                {
+                    String AddIn = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+                    List<String> splitPMA = AddIn.Split(' ').ToList<String>();
+                    
+                    String finding = splitPMA.Find(val => val.Equals(AddMonIn.Text));
+                    if (finding == AddMonIn.Text)
+                    {
+                        MessageBox.Show("The port is already in the list!");
+                        AddMonIn.Text = "";
+                    }
+                    else
+                    {
+                        splitPMA.Add(AddMonIn.Text.ToString());
+                        List<int> splitInt = new List<int>();
+                        foreach (String x in splitPMA)
+                        {
+
+                            Int32.TryParse(x, out int z);
+                            splitInt.Add(z);
+                        }
+                        splitInt.Sort();
+                        AddIn = "";
+                        int count = 0;
+                        foreach (int x in splitInt)
+                        {
+                            if (count == 0)
+                            {
+                                AddIn = x.ToString();
+                                count++;
+                            }
+                            else
+                            {
+                                AddIn += " " + x;
+                            }
+                        }
+                        MessageBox.Show("New set of ports to monitor: " + AddIn);
+                        File.WriteAllText("../../Resources\\Beck_Text/PortsMonitor.txt", AddIn);
+
+                        String PortMonitor = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+                        Array splitPM = PortMonitor.Split(' ');
+                        String display = "";
+                        foreach (String x in splitPM)
+                        {
+                            display += x + " ";
+                        }
+                        ShowMonitoredPorts.Text = display;
+                        System.Windows.Forms.MessageBox.Show("Port Added");
+                        AddMonIn.Text = "";
+                    }
+                }
+                catch(Exception ve)
+                {
+                    System.Windows.Forms.MessageBox.Show("Error: "+ve.StackTrace);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The value you entered is invalid! Try entering a port number instead!");
+                AddMonIn.Text = "";
+            }
+        }
+        private void RemPortMon_Click(object sender, RoutedEventArgs e)
+        {
+            Int32.TryParse(RemMonIn.Text, out int checkVal);
+            if (checkVal != 0)
+            {
+                try
+                {
+                    String RemIn = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+                    List<String> splitPMA = RemIn.Split(' ').ToList<String>();
+                    String finding = splitPMA.Find(val => val.Equals(RemMonIn.Text));
+                    if (finding == RemMonIn.Text)
+                    {
+                        splitPMA.Remove(RemMonIn.Text);
+                        List<int> splitInt = new List<int>();
+                        foreach (String x in splitPMA)
+                        {
+                            Int32.TryParse(x, out int z);
+                            splitInt.Add(z);
+                        }
+                        splitInt.Sort();
+                        RemIn = "";
+                        int count = 0;
+                        foreach (int x in splitInt)
+                        {
+                            if (count == 0)
+                            {
+                                RemIn = x.ToString();
+                                count++;
+                            }
+                            else
+                            {
+                                RemIn += " " + x;
+                            }
+                        }
+                        MessageBox.Show("New set of ports to monitor: " + RemIn);
+                        File.WriteAllText("../../Resources\\Beck_Text/PortsMonitor.txt", RemIn);
+
+                        String PortMonitor = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+                        Array splitPM = PortMonitor.Split(' ');
+                        String display = "";
+                        foreach (String x in splitPM)
+                        {
+                            display += x + " ";
+                        }
+                        ShowMonitoredPorts.Text = display;
+                        System.Windows.Forms.MessageBox.Show("Port Removed");
+                        RemMonIn.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Port is not being monitored!");
+                        RemMonIn.Text = "";
+                    }
+                }
+                catch (Exception ve)
+                {
+                    System.Windows.Forms.MessageBox.Show("Error: " + ve.StackTrace);
+                }
+            }
+            else if (RemMonIn.Text == "all" || RemMonIn.Text == "All" || RemMonIn.Text == "ALL")
+            {
+                String RemIn = "";
+                File.WriteAllText("../../Resources\\Beck_Text/PortsMonitor.txt", RemIn);
+
+                String PortMonitor = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+                Array splitPM = PortMonitor.Split(' ');
+                String display = "";
+                foreach (String x in splitPM)
+                {
+                    display += x + " ";
+                }
+                ShowMonitoredPorts.Text = display;
+                System.Windows.Forms.MessageBox.Show("All Ports Removed");
+            }
+            else
+            {
+                RemMonIn.Text = "";
+                MessageBox.Show("The value you entered is invalid! Try entering a port number instead!");
+            }
+        }
+        private void Clear1_Click(object sender, RoutedEventArgs e)
+        {
+            AddMonIn.Text = "";
+        }
+        private void Clear2_Click(object sender, RoutedEventArgs e)
+        {
+            RemMonIn.Text = "";
+        }
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            String Default = File.ReadAllText("../../Resources\\Beck_Text/MonitorDefault.txt");
+            File.WriteAllText("../../Resources\\Beck_Text/PortsMonitor.txt", Default);
+
+            String PortMonitor = File.ReadAllText("../../Resources\\Beck_Text/PortsMonitor.txt");
+            Array splitPM = PortMonitor.Split(' ');
+            String display = "";
+            foreach (String x in splitPM)
+            {
+                display += x + " ";
+            }
+            ShowMonitoredPorts.Text = display;
+            System.Windows.Forms.MessageBox.Show("Refreshed");
         }
 
-      
+        //Check Vulnerabilities
+        //private void VulnerabilitiyCheck()
+        //{
+
+        //}
     }
  }

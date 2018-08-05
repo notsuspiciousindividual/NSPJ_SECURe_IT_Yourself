@@ -11,12 +11,12 @@
         <Image Source="/Resources/Beck_Images/Background.jpg" Stretch="UniformToFill" Margin="-110,-75,-25,-50"/>
         <StackPanel x:Name="HomeContainer" Background="Transparent" Margin="-2,1,2,-1" Width="900" Height="600">
             <DockPanel Name="TopContainer" Background="#A9D0E5" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="900" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,20" LastChildFill="False" >
-                <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="BackButton_Click" />
+                <Button x:Name="BackToHome" Content="Back" Background="red" Foreground="white" Height="39" Opacity="0.6" VerticalAlignment="Top" Margin="10,35,60,0" FontSize="20" Click="BackButton_Click" Width="144" />
                 <Label x:Name="lblTitle" Content="Network Configuration"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,35,0,0" Height="64" Width="417" FontSize="36" FontFamily="./#Renault BQ" FontWeight="Bold" FontStyle="Italic"/>
             </DockPanel>
             <DockPanel x:Name="dockLowerInterface">
                 <!--Main table looking interface-->
-                <StackPanel Name="TableOfConfig" Background="White" HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="708" Margin="37,10,0,0" Grid.RowSpan="2">
+                <StackPanel Name="TableOfConfig" Background="#FF25315D" HorizontalAlignment="Left" Height="387" VerticalAlignment="Top" Width="708" Margin="37,10,0,0" Grid.RowSpan="2">
                     <!--Title-->
                     <DockPanel Name="Titles"  Opacity="1" Height="60"  Margin="0,0,0.333,0">
                         <TextBlock Name="TitleConfig" TextDecorations="Baseline" Background="#B7B1B0" TextAlignment="Center" Margin="10,10,0,10" Text="Configuration" Width="223" FontWeight="Bold" FontStyle="Italic"/>
@@ -25,7 +25,7 @@
                     </DockPanel>
                     <!--Rest of the table-->
                     <DockPanel>
-                        <ScrollViewer HorizontalAlignment="Right" MinHeight="341" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705">
+                        <ScrollViewer HorizontalAlignment="Right" Height="325" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="705" Background="#FF25315D">
                             <StackPanel MinHeight="20">
                                 <!--Row 1: Port checking-->
                                 <DockPanel Name="Row1" MinHeight="60" Margin="0,0,0.333,0">
@@ -34,10 +34,10 @@
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,10,0,0" Width="243">
                                         <Button Name="DescRowBtn1" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn1_Click"></Button>
-                                        <TextBlock x:Name="DescRow1" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Description of Unused ports" MaxWidth="243" Visibility="Collapsed"/>
+                                        <TextBlock x:Name="DescRow1" TextWrapping="WrapWithOverflow" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Description of Unused ports" MaxWidth="243" Visibility="Collapsed"/>
                                     </StackPanel>
-                                    <Grid Background="#B7B1B0" Margin="0,10,0,0" Width="158" MaxHeight="60" >
-                                        <Button x:Name="StatsRow1"  Content="Good" Click="StatsRow1_Click" FontFamily="Apex New Book Italic" MaxHeight="60" Width="158" Margin="0,0,0,0"/>
+                                    <Grid Background="#B7B1B0" Margin="0,10,0,0" Width="158" MaxHeight="60"  >
+                                        <Button x:Name="StatsRow1"  Background="#FF404A56" Content="Good" Click="StatsRow1_Click" FontFamily="Apex New Book Italic" MaxHeight="60" Width="158" Margin="0,0,0,0"/>
                                         <Image x:Name="PortCheckImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
@@ -48,10 +48,10 @@
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn2" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn2_Click"></Button>
-                                        <TextBlock x:Name="DescRow2" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Description of proxy server" MaxWidth="243" Visibility="Collapsed" />
+                                        <TextBlock x:Name="DescRow2" TextWrapping="WrapWithOverflow" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Description of proxy server" MaxWidth="243" Visibility="Collapsed" />
                                     </StackPanel>
                                     <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
-                                        <Button Name="StatsRow2" Background="#B7B1B0" Margin="0,0,0,0" Content="" Width="158" Click="StatsRow2_Click" />
+                                        <Button Name="StatsRow2" Background="#FF404A56" Margin="0,0,0,0" Content="" Width="158" Click="StatsRow2_Click" />
                                         <Image x:Name="ProxyCheckingImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
@@ -62,10 +62,10 @@
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn3" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn3_Click"></Button>
-                                        <TextBlock Name="DescRow3" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Firewall is a very important line of defence in the security system of you system." MaxWidth="243" Visibility="Collapsed"/>
+                                        <TextBlock Name="DescRow3" TextWrapping="WrapWithOverflow" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Firewall is a very important line of defence in the security system of you system." MaxWidth="243" Visibility="Collapsed"/>
                                     </StackPanel>
                                     <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
-                                        <Button Name="StatsRow3" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow3_Click" FontFamily="Apex New Book Italic" />
+                                        <Button Name="StatsRow3" Background="#FF404A56" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow3_Click" FontFamily="Apex New Book Italic" />
                                         <Image x:Name="FireWallImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
@@ -76,10 +76,10 @@
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn4" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn4_Click"></Button>
-                                        <TextBlock Name="DescRow4" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" MaxWidth="243" Visibility="Collapsed"/>
+                                        <TextBlock Name="DescRow4" TextWrapping="WrapWithOverflow" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="tion" MaxWidth="243" Visibility="Collapsed"/>
                                     </StackPanel>
                                     <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
-                                        <Button Name="StatsRow4" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow4_Click" />
+                                        <Button Name="StatsRow4" Background="#FF404A56" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow4_Click" />
                                         <Image x:Name="ICMPEchoImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
                                 </DockPanel>
@@ -90,15 +90,14 @@
                                     </StackPanel>
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="243">
                                         <Button Name="DescRowBtn5" Background="#B7B1B0"  Content="▼" Width="243" MinHeight="60" Click="DescRowBtn5_Click"></Button>
-                                        <TextBlock Name="DescRow5" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="It is always important to keep your computer up date, allowing it to be at it's latest patch, hence reducing vulnerabilities it is exposed to." MaxWidth="243" Visibility="Collapsed"/>
+                                        <TextBlock Name="DescRow5" TextWrapping="WrapWithOverflow" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="It is always important to keep your computer up date, allowing it to be at it's latest patch, hence reducing vulnerabilities it is exposed to." MaxWidth="243" Visibility="Collapsed"/>
                                     </StackPanel>
                                     <Grid Background="#B7B1B0" Margin="0,0,0,0" Width="158" MaxHeight="60" >
-                                        <Button Name="StatsRow5" Background="#B7B1B0" Margin="0,0,0,0" Content="St" Width="158" Click="StatsRow5_Click" />
-                                        <Image x:Name="UpdatesImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
+                                        <Button Name="StatsRow5" Foreground="White" Background="#FF404A56" Margin="0,0,0,0" Content="Edit&#xD;&#xA;" Width="158" Click="StatsRow5_Click" />
                                     </Grid>
                                 </DockPanel>
                                 <!--Row 6: Configuration Serverity Checking-->
-                                <DockPanel Name="Row6" MinHeight="60" Margin="0,0,0.333,0">
+                                <!--<DockPanel Name="Row6" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
                                         <TextBlock Name="ConfigRow6" Background="#B7B1B0" TextAlignment="Center" Margin="10,0,0,0" Text="Configuration Serverity" Width="223" Height="60" VerticalAlignment="Bottom" FontStretch="ExtraExpanded"/>
                                     </StackPanel>
@@ -110,7 +109,7 @@
                                         <Button Name="StatsRow6" Background="#B7B1B0" Content="St" Width="158" Click="StatsRow6_Click" />
                                         <Image x:Name="SeverityCheckImg" Source="/Resources/Beck_Images/green-smiley-face-md.png" Margin="49,10,49,10" MaxHeight="60" Width="60"/>
                                     </Grid>
-                                </DockPanel>
+                                </DockPanel>-->
                                 <!--Dont config below first-->
                                 <!--<DockPanel Name="Row7" MinHeight="60" Margin="0,0,0.333,0">
                                     <StackPanel MinHeight="60" Background="#B7B1B0" Margin="10,0,0,0" Width="223">
@@ -178,10 +177,11 @@
                 </StackPanel>
                 <StackPanel x:Name="DisplayCurrentStat" Width="135" Height="227">
                     <Grid Height="229" Margin="-8,0,7.667,0">
-                        <Grid Background="Gray" Opacity="0.5" Margin="-8,0,6,55"/>
+                        <Grid Background="Gray" Opacity="0.5" Margin="-8,0,6,45"/>
                         <Label Foreground="white" Content="How well configured&#xA; is your device?" Height="78" Margin="6,-22,10,173" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center"/>
                         <Image x:Name="CurrentOverallStatImg" Height="55" Margin="37,51,0,123" HorizontalAlignment="Left" Width="55"/>
-                        <ProgressBar x:Name="OverallPB" Height="7" Margin="12,123,8,99"/>
+                        <Label Name="statLbl" Foreground="white" Content="Status: " Margin="24,86,20,83" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="91"/>
+                        <ProgressBar x:Name="OverallPB" Height="7" Margin="14,139,6,83"/>
                     </Grid>
 
 

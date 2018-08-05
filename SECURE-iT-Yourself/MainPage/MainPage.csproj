@@ -108,9 +108,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Beck_Pass.xaml.cs">
-      <DependentUpon>Beck_Pass.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Isabelle_HomePage.xaml.cs">
       <DependentUpon>Isabelle_HomePage.xaml</DependentUpon>
     </Compile>
@@ -118,7 +115,10 @@
       <DependentUpon>Isabelle_Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_News.xaml.cs">
-      <DependentUpon>Isabelle_News.xaml</DependentUpon>
+      <DependentUpon>Isabelle_New.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Beck_Pass.xaml.cs">
+      <DependentUpon>Beck_Pass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Isabelle_SignUp.xaml.cs">
       <DependentUpon>Isabelle_SignUp.xaml</DependentUpon>
@@ -126,9 +126,24 @@
     <Compile Include="Isabelle_Welcome.xaml.cs">
       <DependentUpon>Isabelle_Welcome.xaml</DependentUpon>
     </Compile>
-    <Page Include="Isabelle_HomePage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="SY_CreatedSuccessCase.xaml.cs">
+      <DependentUpon>SY_CreatedSuccessCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_NetworkLogUpload.xaml.cs">
+      <DependentUpon>SY_NetworkLogUpload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_NewCase.xaml.cs">
+      <DependentUpon>SY_NewCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_ViewCases.xaml.cs">
+      <DependentUpon>SY_ViewCases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_ViewSpecificCase.xaml.cs">
+      <DependentUpon>SY_ViewSpecificCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SY_ViewSpecificTeam.xaml.cs">
+      <DependentUpon>SY_ViewSpecificTeam.xaml</DependentUpon>
+    </Compile>
     <Page Include="Isabelle_Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,9 +160,28 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Beck_Pass.xaml">
+    <Page Include="Beck_NC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Beck_Option.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Beck_Pass.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SY_CreatedSuccessCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NetworkLogUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SY_NetworkStart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -172,6 +206,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Isabelle_DatabaseDataSet1.xsc">
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </None>
@@ -231,8 +268,8 @@
     <Resource Include="Images\dashboard.png" />
     <Resource Include="Images\data.png" />
     <Resource Include="Images\logout-icon.png" />
-    <Resource Include="Images\network.png" />
     <Resource Include="Images\newspaper.png" />
+    <Resource Include="Images\network.png" />
     <Resource Include="Images\updates-icon.png" />
     <Content Include="LocalDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -241,6 +278,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>LocalDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Beck_Images\green-smiley-face-md.png" />
+    <Resource Include="Resources\Beck_Images\red-smiley-face-md.png" />
+    <Resource Include="Resources\Beck_Images\yellow-neutral-face-md.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -255,11 +295,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Beck_Images\green-smiley-face-md.png" />
-    <Resource Include="Resources\Beck_Images\red-smiley-face-md.png" />
-    <Resource Include="Resources\Beck_Images\yellow-neutral-face-md.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +302,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Beck_Text\fw.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Beck_Images\Switch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Beck_Text\MonitorDefault.txt" />
+    <Resource Include="Resources\Beck_Text\PortsMonitor.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
