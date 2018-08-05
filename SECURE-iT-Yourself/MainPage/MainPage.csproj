@@ -100,6 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Beck_Option.xaml.cs">
+      <DependentUpon>Beck_Option.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Isabelle_DatabaseDataSet1.cs">
       <DependentUpon>Isabelle_DatabaseDataSet1.xsd</DependentUpon>
     </Compile>
