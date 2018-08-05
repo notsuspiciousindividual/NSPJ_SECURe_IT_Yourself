@@ -9,9 +9,9 @@
 
     <StackPanel Background="#39424D" Width="891">
         <Border BorderBrush="Black" BorderThickness="1" Height="142">
-            <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" >
-                <Button Content="Back" Background="red" Foreground="white" Height="64" Opacity="0.6" VerticalAlignment="Top" Width="204" Margin="10 35 10 10" FontSize="20" Click="Button_Click" />
-                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" Width="335" FontSize="40" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" FontFamily="/MainPage;component/Fonts/#Renault BQ">
+            <DockPanel Background="#A9D0E5" Height="142" LastChildFill="False" Margin="-1.333,-0.333,0,-1.667" >
+                <Button Content="Back" Background="red" Foreground="white" Height="39" Opacity="0.6" VerticalAlignment="Top" Width="144" Margin="10,35,60,0" FontSize="20" Click="Button_Click" />
+                <Label x:Name="lblMisconfigType" Content="Label" Height="142" VerticalAlignment="Top" MinWidth="335" FontSize="40" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" FontFamily="/MainPage;component/Fonts/#Renault BQ">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -116,6 +116,25 @@
                         </StackPanel>
                     </DockPanel>
                     <!--Update Check-->
+                    <StackPanel Name="UpdatesSP" Visibility="Collapsed">
+                        <DockPanel>
+                            <Label Content="Ports to Monitor:"/>
+                        </DockPanel>
+                        <TextBox Name="ShowMonitoredPorts" Text="" TextWrapping="WrapWithOverflow" Height="71" Margin="27,0,22.667,0" />
+                        <DockPanel Margin="0,10,0,0">
+                            <Label Content="Add Port: " Margin="100,0,56,0" />
+                            <TextBox Name="AddMonIn" Width="74" Margin="0,0,100,0"/>
+                            <Button Name="AddPortMon" Content="Apply" Width="70" Click="AddPortMon_Click"/>
+                            <Button Name="Clear1" Content="Clear" Width="70" Margin="0,0,90,0" Click="Clear1_Click"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,10,0,0">
+                            <Label Content="Remove Port: " Margin="100,0,35,0" />
+                            <TextBox Name="RemMonIn" Width="74" Margin="0,0,100,0"/>
+                            <Button Name="RemPortMon" Content="Apply" Width="70" Click="RemPortMon_Click"/>
+                            <Button Name="Clear2" Content="Clear" Width="70" Margin="0,0,90,0" Click="Clear2_Click"/>
+                        </DockPanel>
+                        <Button Name="Reset" Content="Reset Ports to monitor to default" Margin="20" Width="200" Click="Reset_Click"/>
+                    </StackPanel>
 
                     <!--Vunerability Scanner-->
                 </StackPanel>
