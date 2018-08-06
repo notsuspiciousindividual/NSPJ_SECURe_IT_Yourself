@@ -1,0 +1,121 @@
+﻿<Window x:Class="MainPage.SY_ViewSpecificCase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainPage"
+        mc:Ignorable="d"
+        Title="SY_ViewSpecificCase" Height="600" Width="900">
+    <Window.Resources>
+        <Style x:Key="CenterAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="/MainPage;component/Fonts/#Apex New Light" />
+            <Setter Property="Background" Value="#25315D" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="#39424D">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <Button Click="Go_Back" Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image  Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
+                    <Label FontSize="20" Foreground="White" FontFamily="/MainPage;component/Fonts/#Apex New Light">Back</Label>
+                </StackPanel>
+            </Button>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="90"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                        
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Rectangle HorizontalAlignment="Left"  Height="45" Width="360" Fill="#25315D" ></Rectangle>
+                        <Label HorizontalAlignment="Right" Margin="0,0,40,0" VerticalContentAlignment="Center" Name="Case_Label"  Foreground="White" FontSize="20" FontFamily="/MainPage;component/Fonts/#Renault BQ">Case Name</Label>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                        <Button Click="Search_Log" Cursor="Hand" Height="40" Width="100" Background="ForestGreen" FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
+                        <TextBox Name="SearchBox" Height="40" Width="235"></TextBox>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="20,10,20,10">
+                    <DataGrid Name="LogTable" IsReadOnly="True" AutoGenerateColumns="False" Background="#A9D0E5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Log_Name}" Width="245" Header="Log Name" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="21" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Log_Desc}" Width="300" Header="Log Description" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Width="138" Header="View"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="View_Log" FontSize="18">View</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="153" Header="Options"  HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Width="50" Click="Remove_Item" Content="Remove" />
+                                            <Button Width="50" Click="Edit_Item" Content="Edit" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button Click="Upload_Log" FontSize="25" Background="ForestGreen" Margin="10,0,0,0" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Add New Log</Button>
+                    <Button Visibility="Hidden" Margin="0,0,10,0" Grid.Column="2" FontSize="25" Background="DarkSeaGreen" FontFamily="/MainPage;component/Fonts/#Apex New Light" >Create Report</Button>
+                </Grid>
+                
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

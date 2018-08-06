@@ -1,0 +1,93 @@
+﻿<Window x:Class="MainPage.SY_ViewSpecificTeam"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainPage"
+        mc:Ignorable="d"
+        Title="SY_ViewSpecificTeam" Height="600" Width="900">
+    <Grid Background="#39424D">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Background="#404A56" >
+                <Button Click="Go_Back" Cursor="Hand" HorizontalAlignment="Left" Width="90" Height="40" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Width="35" Height="35"  Source="pack://application:,,,/Resources/img/black_arrow.png"/>
+                        <Label FontFamily="/MainPage;component/Fonts/#Apex New Light" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Foreground="White">Back</Label>
+                    </StackPanel>
+                </Button>
+                <Rectangle Width="110"></Rectangle>
+                <Label Name="CaseName" FontFamily="/MainPage;component/Fonts/#Apex New Light"  FontSize="20" Foreground="White" >Case Name</Label>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Background="#39424D">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Background="#25315D">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <Label FontFamily="/MainPage;component/Fonts/#Apex New Light" HorizontalContentAlignment="Center" Foreground="White" FontSize="30" >Anormalies Detected</Label>
+                        <Grid Height="50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Click="ScanWithAi"   FontFamily="/MainPage;component/Fonts/#Apex New Light" VerticalContentAlignment="Center" Background="YellowGreen" Width="150" FontSize="20" Margin="7,0,3,0">Scan</Button>
+                            <Button Click="Create_Anomaly" FontFamily="/MainPage;component/Fonts/#Apex New Light" Grid.Column="1" Width="150" FontSize="20" Background="DarkRed">Tag Anormaly</Button>
+                        </Grid>
+                    </StackPanel>
+
+                    <ListView HorizontalContentAlignment="Stretch" Name="AnomalyList" BorderBrush="Transparent" Grid.Row="1" Background="Transparent">
+                        
+                    </ListView>
+                    
+                </Grid>
+
+                <GridSplitter Cursor="Hand" Background="Black" Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Click="Button_Click" FontSize="18" Background="DarkSeaGreen" Width="100" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
+                        <TextBox Name="SearchBox" Margin="0,0,10,0" Grid.Column="1" FontFamily="/MainPage;component/Fonts/#Apex New Light" MinWidth="350" FontSize="18"  />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <ListBox HorizontalContentAlignment="Stretch" Name="LogData" BorderBrush="Transparent" Background="Transparent" >
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </Grid>
+
+
+                </Grid>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
