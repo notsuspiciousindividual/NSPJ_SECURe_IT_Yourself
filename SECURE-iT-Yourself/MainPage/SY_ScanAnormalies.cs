@@ -242,8 +242,6 @@ namespace MainPage
                                 items = JsonConvert.DeserializeObject<List<SY_Tag>>(json);
                             }
 
-                            items.Add(newTag);
-
                             if (items != null && (!items.Any()))
                             {
                                 items.Add(newTag);
