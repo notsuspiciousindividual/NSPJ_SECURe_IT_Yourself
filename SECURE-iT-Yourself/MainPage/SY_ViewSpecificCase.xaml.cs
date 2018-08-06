@@ -151,5 +151,34 @@ namespace MainPage
             Close();
 
         }
+
+        private void Search_Log(object sender, RoutedEventArgs e)
+        {
+
+            if (!(String.IsNullOrEmpty(SearchBox.Text)))
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["MainPage.Properties.Settings.LocalDBConnectionString"].ConnectionString;
+
+                CaseDAO caseDb = new CaseDAO();
+                int case_id = caseDb.getCaseId(C_Name);
+
+                string query = "SELECT Log_Name, Log_Desc FROM Network_Log WHERE Case_Id = @cId AND Log_Name = @logName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                using (SqlDataAdapter adapt = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@cId", case_id);
+                    cmd.Parameters.AddWithValue("@logName", SearchBox.Text);
+
+                    DataTable table = new DataTable("Network_Log");
+                    adapt.Fill(table);
+                    LogTable.ItemsSource = table.DefaultView;
+                }
+            }
+            else {
+                FillDataGrid();
+            }
+        }
     }
 }

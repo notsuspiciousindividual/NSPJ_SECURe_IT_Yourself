@@ -53,8 +53,8 @@
                     </Canvas>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
-                        <Button Cursor="Hand" Height="40" Width="100" Background="ForestGreen" FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
-                        <TextBox Height="40" Width="235"></TextBox>
+                        <Button Click="Search_Case" Cursor="Hand" Height="40" Width="100" Background="ForestGreen" FontSize="20" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
+                        <TextBox Name="SearchBox" Height="40" Width="235"></TextBox>
                     </StackPanel>
                 </Grid>
 

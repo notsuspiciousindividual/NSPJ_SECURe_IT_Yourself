@@ -132,5 +132,31 @@ namespace MainPage
                 Close();
             }
         }
+
+        private void Search_Case(object sender, RoutedEventArgs e)
+        {
+            if (!(String.IsNullOrEmpty(SearchBox.Text)))
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["MainPage.Properties.Settings.LocalDBConnectionString"].ConnectionString;
+
+                string query = "SELECT C_Name, C_Description FROM Cases WHERE C_Name = @caseName";
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                using (SqlDataAdapter adapt = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("caseName", SearchBox.Text);
+                    DataTable table = new DataTable("Cases");
+                    adapt.Fill(table);
+                    CaseTable.ItemsSource = table.DefaultView;
+                    SearchBox.Text = "";
+                }
+
+            }
+            else {
+                FillDataGrid();
+            }
+
+        }
     }
 }

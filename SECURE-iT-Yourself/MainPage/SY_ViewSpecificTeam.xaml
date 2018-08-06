@@ -70,8 +70,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         
-                        <Button FontSize="18" Background="DarkSeaGreen" Width="100" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
-                        <TextBox Margin="0,0,10,0" Grid.Column="1" FontFamily="/MainPage;component/Fonts/#Apex New Light" MinWidth="350" FontSize="18"  />
+                        <Button Click="Button_Click" FontSize="18" Background="DarkSeaGreen" Width="100" FontFamily="/MainPage;component/Fonts/#Apex New Light">Search</Button>
+                        <TextBox Name="SearchBox" Margin="0,0,10,0" Grid.Column="1" FontFamily="/MainPage;component/Fonts/#Apex New Light" MinWidth="350" FontSize="18"  />
                     </Grid>
 
                     <Grid Grid.Row="1">

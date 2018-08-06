@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,6 +33,8 @@ namespace MainPage
 
         public SY_ViewSpecificTeam(string logName, string cName)
         {
+            
+
             this.logName = logName;
             this.cName = cName;
             LogsDAO logdb = new LogsDAO();
@@ -45,6 +48,7 @@ namespace MainPage
             FillListBox();
             FillTagBox();
 
+            
 
         }
 
@@ -199,13 +203,20 @@ namespace MainPage
                     panel.Children.Add(Deletebtn);
                     DynamicGrid.Children.Add(panel);
 
+                    
+
                     AnomalyList.Items.Add(DynamicGrid);
 
+                    
 
                 }
             }
             else {
+                
+
                 AnomalyList.Visibility = Visibility.Hidden;
+
+                
             }
 
         }
@@ -577,7 +588,7 @@ namespace MainPage
                         checker = false;
                         Console.WriteLine("checker is false!");
                     }
-                    else if (logFormat.Equals(".CAP"))
+                    else if (logFormat.Equals(".PCAP"))
                     {
 
 
@@ -782,7 +793,9 @@ namespace MainPage
                     DynamicGrid.Children.Add(panel1);
                     DynamicGrid.Children.Add(SecondGrid);
                     DynamicGrid.Children.Add(ThirdGrid);
-                    
+
+
+
                     LogData.Items.Add(DynamicGrid);
 
                 }
@@ -794,7 +807,159 @@ namespace MainPage
             else if (logFormat.Equals(".PCAP"))
             {
                 SY_Sort_PCap pcap = new SY_Sort_PCap(logPath);
+                pCapItems = pcap.getList();
 
+                foreach (SY_Sort_PCap test in pCapItems) {
+                    Grid DynamicGrid = new Grid();
+                    DynamicGrid.Height = 100;
+                    DynamicGrid.MinWidth = 500;
+                    DynamicGrid.Background = new SolidColorBrush(Color.FromRgb(156, 202, 224));
+
+                    RowDefinition gridRow1 = new RowDefinition();
+                    gridRow1.Height = new GridLength(20);
+                    RowDefinition gridRow2 = new RowDefinition();
+                    gridRow2.Height = new GridLength(20);
+                    RowDefinition gridRow3 = new RowDefinition();
+                    gridRow3.Height = new GridLength(20);
+
+                    DynamicGrid.RowDefinitions.Add(gridRow1);
+                    DynamicGrid.RowDefinitions.Add(gridRow2);
+                    DynamicGrid.RowDefinitions.Add(gridRow3);
+
+                    //Second Grid
+                    Grid SecondGrid = new Grid();
+                    ColumnDefinition gridColumn1 = new ColumnDefinition();
+                    gridColumn1.Width = new GridLength(1, GridUnitType.Star);
+                    ColumnDefinition gridColumn2 = new ColumnDefinition();
+                    gridColumn2.Width = new GridLength(1, GridUnitType.Star);
+                    ColumnDefinition gridColumn3 = new ColumnDefinition();
+                    gridColumn3.Width = new GridLength(1, GridUnitType.Star);
+                    ColumnDefinition gridColumn4 = new ColumnDefinition();
+                    gridColumn4.Width = new GridLength(1, GridUnitType.Star);
+                    ColumnDefinition gridColumn5 = new ColumnDefinition();
+                    gridColumn5.Width = new GridLength(1, GridUnitType.Star);
+                    ColumnDefinition gridColumn6 = new ColumnDefinition();
+                    gridColumn6.Width = new GridLength(1, GridUnitType.Star);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn1);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn2);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn3);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn4);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn5);
+                    SecondGrid.ColumnDefinitions.Add(gridColumn6);
+
+                    //Stack Panel for Row 1
+                    StackPanel panel1 = new StackPanel();
+                    panel1.Orientation = Orientation.Horizontal;
+
+                    //Third Grid
+                    Grid ThirdGrid = new Grid();
+                    gridColumn1 = new ColumnDefinition();
+                    gridColumn1.Width = new GridLength(1, GridUnitType.Star);
+                    gridColumn2 = new ColumnDefinition();
+                    gridColumn2.Width = new GridLength(1, GridUnitType.Star);
+                    gridColumn3 = new ColumnDefinition();
+                    gridColumn3.Width = new GridLength(1, GridUnitType.Star);
+                    gridColumn4 = new ColumnDefinition();
+                    gridColumn4.Width = new GridLength(1, GridUnitType.Star);
+                    gridColumn5 = new ColumnDefinition();
+                    gridColumn5.Width = new GridLength(1, GridUnitType.Star);
+                    gridColumn6 = new ColumnDefinition();
+                    gridColumn6.Width = new GridLength(1, GridUnitType.Star);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn1);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn2);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn3);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn4);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn5);
+                    ThirdGrid.ColumnDefinitions.Add(gridColumn6);
+
+                    //Items for Second Grid Row 2
+                    TextBlock txtBlock = new TextBlock();
+                    txtBlock.Text = "Date: " + test.Captured.Year.ToString() + "." + test.Captured.Month.ToString() + "." + test.Captured.Day.ToString();
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    panel1.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " Time: " + test.Captured.Hour.ToString() + ":" + test.Captured.Minute.ToString() + ":" + test.Captured.Second.ToString();
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    panel1.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = "Source IP: " + test.SRCIP;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 0);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " Source Port: " + test.SRCPort;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 1);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " Destination IP: " + test.DSTIP;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 2);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " Destination Port: " + test.DSTPort;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 3);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " Protocol: " + test.Protocol;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 4);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " TCP Flag: " + test.TCPFlags;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 5);
+                    SecondGrid.Children.Add(txtBlock);
+
+                    //Items for Third Grid, Row 3
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = "TCP Syn: " + test.TCPSYN;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 0);
+                    ThirdGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " TCP ACK: " + test.TCPACK;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 1);
+                    ThirdGrid.Children.Add(txtBlock);
+
+                    txtBlock = new TextBlock();
+                    txtBlock.Text = " TCP Window Size: " + test.TCPWin;
+                    txtBlock.FontSize = 14;
+                    txtBlock.FontFamily = new FontFamily("/MainPage;component/Fonts/#Apex New Light");
+                    Grid.SetColumn(txtBlock, 2);
+                    ThirdGrid.Children.Add(txtBlock);
+
+                    //Adding Items Yes
+                    Grid.SetRow(SecondGrid, 1);
+                    Grid.SetRow(panel1, 0);
+                    Grid.SetRow(ThirdGrid, 2);
+                    DynamicGrid.Children.Add(panel1);
+                    DynamicGrid.Children.Add(SecondGrid);
+                    DynamicGrid.Children.Add(ThirdGrid);
+
+                    LogData.Items.Add(DynamicGrid);
+                }
             }
 
         }
@@ -815,7 +980,7 @@ namespace MainPage
                 potatoe.ScanAnormalies();
                 AnomalyList.Items.Refresh();
     }
-            else if (logFormat.Equals(".CAP")) {
+            else if (logFormat.Equals(".PCAP")) {
 
             }
 
@@ -826,6 +991,67 @@ namespace MainPage
             SY_ViewSpecificCase wnd = new SY_ViewSpecificCase(cName);
             wnd.Show();
             Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            if (logFormat.Equals("Window Firewall"))
+            {
+
+
+               
+                string[] wordsToMatch = { "SRC.IP==", "DST.IP==", "SRC.Port==", "DST.Port==" , "SizePackage==" , "TCP.Flag==", "TCP.Syn==", "TCP.Ack==", "TCP.Win==", "ICMP.Type==", "ICMP.Info==", "Path=="};
+                //creating string list for t
+                List<String> SRCIPList = new List<String>();
+                List<String> DSTIPList = new List<String>();
+                List<String> SRCPORTList = new List<String>();
+                List<String> DSTPORTList = new List<String>();
+                List<String> SizePackageList = new List<String>();
+                List<String> TCPFlagList = new List<String>();
+                List<String> TCPSYNList = new List<String>();
+                List<String> TCPAckList = new List<String>();
+                List<String> TCPWinList = new List<String>();
+                List<String> ICMPTypeList = new List<String>();
+                List<String> IMCPInfoList = new List<String>();
+                List<String> PathList = new List<String>();
+
+                foreach (SY_Sort_Windows item in windowItems) {
+                    SRCIPList.Add(item.SRCIP);
+                    DSTIPList.Add(item.DSTIP);
+                    SRCPORTList.Add(item.SRCPort);
+                    DSTPORTList.Add(item.DSTPort);
+                    SizePackageList.Add(item.SizePackage);
+                    TCPFlagList.Add(item.TCPFlag);
+                    TCPSYNList.Add(item.TCPSyn);
+                    TCPAckList.Add(item.TCpack);
+                    TCPWinList.Add(item.TCPwin);
+                    ICMPTypeList.Add(item.ICMPType);
+                    IMCPInfoList.Add(item.icmpinfo);
+                    PathList.Add(item.Path);
+                }
+
+                //get user to input the field
+                //use && to specify more than 1 field
+                //use algorithm to get the number of fields via splitting
+                //pass the items into an array
+                //do a for loop for each array item, run the following algorithm
+                //use algorithm to determine the type of field the item is
+                //use algorithm to read what the item is after the "==" in your field
+                //take the item read and matches them with the dictionary
+                //if search result == true, return +
+                //else return not found message
+
+                String[] SplitByAnd = SearchBox.Text.Split(new Char[] { '&' });
+                
+
+
+
+            }
+            else if (logFormat.Equals(".PCAP")) {
+
+            }
         }
     }
 }
