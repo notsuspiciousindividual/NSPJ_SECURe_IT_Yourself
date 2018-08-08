@@ -107,7 +107,7 @@ namespace MainPage
                             DateTime StartOf = perNumber[0].dateSpecific;
                             DateTime EndTime = perNumber[perNumber.Count - 1].dateSpecific;
 
-                            SY_Tag newTag = new SY_Tag("Possible DDoS", "Possible Distributed Denial of Service is detected. DDoS is one of the causes of services being down. Severity: High", StartOf, EndTime);
+                            SY_Tag newTag = new SY_Tag("Possible Port Scanned", "Possible port scanned detected. Severity: High", StartOf, EndTime);
 
                             SY_TagDAO tagdb = new SY_TagDAO();
                             String file = tagdb.GetTaggingPath(logName);
@@ -208,7 +208,7 @@ namespace MainPage
                         foreach (SY_Sort_Windows receivedPacket in retrivedPacket) {
                             if (skip != 0)
                             {
-                                if (!(receivedPacket.SRCIP.Equals(prevIp)) && receivedPacket.DSTPort.Equals(prevPort)) {
+                                if (receivedPacket.SRCIP.Equals(prevIp) && receivedPacket.DSTPort.Equals(prevPort)) {
                                     probability++;
                                     prevIp = receivedPacket.SRCIP;
                                     prevPort = receivedPacket.DSTPort;
@@ -224,7 +224,7 @@ namespace MainPage
                         }
 
 
-                        if (probability >= ((packetPerRoll / 2) + 2)) {
+                        if (probability >= ((packetPerRoll / 2))) {
                             Console.WriteLine("Port Scanned Detected");
                             DateTime StartOf = perNumber[0].dateSpecific;
                             DateTime EndTime = perNumber[perNumber.Count - 1].dateSpecific;

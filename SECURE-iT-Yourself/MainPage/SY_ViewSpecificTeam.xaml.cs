@@ -979,6 +979,7 @@ namespace MainPage
                 SY_ScanAnormalies potatoe = new SY_ScanAnormalies(windowItems, logName);
                 potatoe.ScanAnormalies();
                 AnomalyList.Items.Refresh();
+
     }
             else if (logFormat.Equals(".PCAP")) {
 
